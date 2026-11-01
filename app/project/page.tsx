@@ -1,5 +1,6 @@
 import "./project.css";
 import ArchitectureDiagrams from "../../components/ArchitectureDiagrams";
+import NodeContents from "../../components/NodeContents";
 export const metadata = { title: "Together — Project evidence and pilot" };
 export default function Project() {
   return (
@@ -181,6 +182,7 @@ export default function Project() {
           </li>
         </ul>
       </section>
+      <NodeContents />
       <ArchitectureDiagrams />
       <footer>
         Team Sisyphus · DevDay Exchange, New Delhi · 1 November 2026

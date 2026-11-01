@@ -68,13 +68,13 @@ The independent Sites have separate hosting identities. The nodal server uses a 
 ### A five-minute demonstration
 
 1. **Meet the community.** Open the landing and select a cottage. The forested Himalayan village has **24 selectable fictional families and four distant hubs**, with wooded hills, terraces, small homes and animated connections. Follow the government head-server backbone, send a simulated bulletin, then disable the backhaul link to inspect the retained last bulletin. The people, locations, links and broadcasts are illustrative.
-2. **Inspect the proposed node.** Open the IoT bench and select a colored jumper wire or pin. Identify the Raspberry Pi, ESP32, SX127x radio, breadboard and antenna. Switch to “LoRa in action,” send the simulated short SOS and watch the acknowledgement.
+2. **Inspect the proposed node.** Open the IoT bench and select a colored jumper wire or pin. Identify the Raspberry Pi, ESP32, SX127x radio, breadboard and antenna. Switch to “LoRa in action”: follow a short help request and its acknowledgement in **Community mesh**, push a simulated **Government bulletin**, or inspect the separate **LoRaWAN sensors** gateway path.
 3. **Send a real exercise record.** Open the PWA and nodal console at the same hub, such as School. Submit a fictional four-person drinking-water request. It should appear in the laptop queue.
 4. **Close the loop.** Acknowledge the request on the laptop and watch the phone refresh. Continue to assigned/completed to inspect the lifecycle. A database acknowledgement is not a promise of rescue.
 5. **Inspect AI provenance.** Ask a brief question using OpenAI or Cerebras. Prepare a district briefing with Exa; open its source links and check issue/retrieval dates and pending review status.
 6. **Demonstrate the offline boundary.** Prepare the app and guides while connected. Disconnect the device or make the origin unavailable, reload, read a saved guide, inspect the map and draft a request. Restore connectivity and use the outgoing queue’s sync control. Offline drafts should remain visibly unsent until delivery succeeds.
 
-Use fictional names and needs throughout. No physical radio is needed to review the web MVP.
+Use fictional names and needs throughout. No physical radio is needed to review the web MVP. Each 3D view has a **Full screen** control, with **Scene**, **Controls** and **Exit** navigation. Escape exits the expanded view. Scene state stays mounted across fullscreen entry/exit; browsers without native fullscreen use an expanded-page fallback.
 
 ## PWA: prepare once, keep useful information nearby
 
@@ -245,6 +245,47 @@ flowchart LR
 ![Interactive Raspberry Pi, ESP32 and LoRa hardware concept](docs/images/iot-bench.jpg)
 
 The electronics scene includes a green Raspberry Pi, teal ESP32, blue radio board, white breadboard, antenna, metallic ports, colored jumper wires and selectable pin explanations. LED/power controls are educational interactions. **This is not validated wiring, a schematic or an electrical simulator.** Hardware selection, voltage compatibility, antenna placement, regional radio requirements, power design and field testing must precede deployment.
+
+### What would run inside a physical nodal centre?
+
+The proposed node combines **local coordination, an offline knowledge library, retrieval over reviewed documents, and optional small-model/voice services**. The core forms, queue and library should remain usable if AI is slow or unavailable. This is a reference configuration for a future prototype, not an installed system or a validated bill of materials. The current MVP continues to use hosted APIs; no local model is running on the development Mac or a Raspberry Pi.
+
+| Proposed component | Purpose and sizing boundary |
+| --- | --- |
+| **Raspberry Pi 5, 16 GB RAM** | Headroom for local web services, document search and experiments with optional inference. An 8 GB knowledge-and-coordination variant could omit generation; neither configuration has been load-tested for Together. |
+| **256 GB SSD with a compatible adapter** | Local database, selected ZIM archives, reviewed packs, indexes and optional model files. Choose the actual library before confirming capacity and reserve space for updates and backups. |
+| **Active cooler and suitable power supply** | Support sustained operation; cooling and power requirements must be tested with the enclosure and attached devices. |
+| **Local Wi-Fi access point** | Give phones and a coordinator laptop access to the node without internet. Coverage and client capacity require an on-site survey and tests. |
+| **ESP32/SX127x bridge and appropriate antenna** | Future compact radio transport, separate from the Pi’s web/content service. Firmware, packet protocol and hardware compatibility remain to be implemented. |
+| **Real-time clock with backup battery** | Preserve time through power interruptions so document dates and event ordering remain meaningful. Check clock accuracy during readiness drills. |
+| **Backup power and protective enclosure** | Plan for controlled shutdown, recovery and the local environment. Battery endurance and weather resistance are unmeasured. |
+
+Raspberry Pi documents the Pi 5’s 16 GB option, SSD connectivity, real-time clock and active-cooling accessories. Those capabilities inform the proposed configuration; they do not establish Together’s performance on it. [Raspberry Pi 5 specifications](https://www.raspberrypi.com/products/raspberry-pi-5/)
+
+**Core local services.** The Pi would host the resident PWA, nodal desk and a local API. A local SQLite database would store requests, check-ins, community messages, acknowledgements and a durable store-and-forward queue. Requests should keep stable IDs as they cross a radio or internet link, with explicit queued/received/acknowledged states and retry/deduplication rules. The current cloud D1 schema is a useful starting point; synchronization between local SQLite and D1 is future work. Operator authentication, scoped roles and audit records belong in this local service too.
+
+**Offline knowledge.** A Kiwix server could serve selected Wikipedia ZIM archives alongside approved preparedness guides and saved local maps. Select language, topic and archive size deliberately rather than assuming all Wikipedia will fit or is useful. Kiwix provides different archive variants, including versions without images. Reviewed official guidance should take precedence over general encyclopedia material for operational questions. Static archives cannot establish a current warning, an open shelter or a safe route. [Kiwix FAQ](https://get.kiwix.org/en/faq/)
+
+**Retrieval first; generation optional.** The proposed retrieval-augmented generation (RAG) path would be:
+
+1. **Prepare before deployment:** curate approved documents, preserve source/issue/expiry metadata, split them into passages and build a SQLite full-text search index. An optional vector index could use [`multilingual-e5-small`](https://huggingface.co/intfloat/multilingual-e5-small); document embeddings would be prepared with the content pack, avoiding expensive re-indexing during an outage.
+2. **Retrieve locally:** search keywords first, and optionally embed the resident’s query locally for semantic retrieval. Select roughly **three to five relevant passages**, applying source authority, language and freshness filters. If evidence is missing or expired, show that limitation and offer source browsing or coordinator review.
+3. **Answer from evidence:** an optional small model receives the question and only the selected short context. The interface should show source titles, issue dates and pack version beside the answer and keep the original passage available. Generation must not invent current conditions from a static pack.
+4. **Keep essential services responsive:** use a serial AI job queue, bounded context/output and a clear wait/cancel state. Forms, acknowledgements and direct document search should not depend on a model response.
+
+One example candidate for evaluation is **Qwen3-4B, `Q4_K_M`, through `llama.cpp`**. The model publisher supplies this GGUF quantization; it is not a promise of acceptable Raspberry Pi CPU latency, memory use or concurrent-user capacity. Benchmark the chosen build, context length and thermal conditions before deciding whether local generation belongs in the pilot. [Qwen3-4B GGUF model card](https://huggingface.co/Qwen/Qwen3-4B-GGUF)
+
+**Optional voice access.** A push-to-talk flow could use the multilingual Whisper `tiny` or `base` model through [`whisper.cpp`](https://github.com/ggml-org/whisper.cpp), then show the transcript for confirmation before sending a request. Hindi speech output could evaluate a [Piper Hindi voice](https://huggingface.co/rhasspy/piper-voices/tree/main/hi/hi_IN). Cached, human-reviewed recordings are another option for essential regional phrases. Start with Hindi and English; Garhwali, Kumaoni and Kangri require native-speaker review, and no model coverage or recognition-quality guarantee is implied. Local voice inference, microphone permissions, noisy-room accuracy and audio privacy still need implementation and testing.
+
+**Connectivity and maintenance.** With backhaul available, OpenAI or Cerebras could provide cloud assistance; Exa could research candidate updates online. A coordinator would then approve a versioned, dated and signed bundle for distribution to nodes. This future pipeline is not already connected to local RAG. The node should verify origin/signature, issue and expiry times, pack version and approval before activation, retain a known-good pack and visibly flag stale material. A low-bandwidth priority queue should reserve radio capacity for compact requests and acknowledgements; archives, model downloads and audio belong on suitable local or internet links.
+
+Operational work also includes battery/disk/service health monitoring, encrypted backups with controlled key access, tested restore procedures and optional service restart/watchdog handling. These are proposed resilience controls. Physical deployment, end-to-end offline RAG, local voice, radio delivery and power recovery remain unvalidated.
+
+### Interactive radio walkthrough
+
+![Forested radio network with selectable mesh and LoRaWAN scenes](docs/images/radio-simulation.jpg)
+
+The rebuilt scene has separate **Community mesh** and **LoRaWAN sensors** views. A short help request travels from phone Wi-Fi through a dedicated hub and relay to a relief centre, then returns an acknowledgement. A second example sends a simulated government bulletin through available backhaul and radio links. The sensor example follows end devices → gateway → IP backhaul → network server → application. Progress is timed for explanation; planning rings never determine delivery or measured range.
 
 ### LoRa, LoRa mesh and LoRaWAN are different layers
 

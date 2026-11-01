@@ -87,3 +87,18 @@ Physical LoRa/Wi-Fi deployment, sensors, radio range, flood physics, local LLMs,
 - Architecture gallery is linked from the demo navigation and included on the project-evidence page. Previews load, cards stack at a narrow phone width, and the document has no horizontal overflow.
 - Both SVG and PNG asset routes returned HTTP 200 with the expected MIME types; `/project` returned HTTP 200.
 - System poster separates working PWA/cloud services, simulated bulletin publishing and proposed field hardware. Radio poster separates proposed LoRa mesh from conventional LoRaWAN telemetry; 1/3/5 km rings are explicitly illustrative and not measured coverage.
+
+## Fullscreen and rebuilt radio walkthrough
+
+- Added one persistent fullscreen wrapper for village, IoT and radio scenes. Expanded-page fallback entered and exited with the button and Escape; Scene/Controls jumps exposed the full interaction panels. Village Home 12 and an IoT DIO0 wire selection remained selected after exiting.
+- Radio demonstration rebuilt with natural forest/hardware colors, separate community mesh and LoRaWAN sensor groups, selectable components, planning rings, camera controls and visible stage progress.
+- Browser completion states verified for the 9.1-second help/acknowledgement, 6.5-second government bulletin, and 5.5-second sensor sample. Timed examples make no actual radio, sensor, government or dispatch calls.
+- Phone expanded layout checked at 390 × 844: frame width and scroll width both 390px; controls remain reachable. Native browser fullscreen has an API path; the embedded-browser fallback was the path verified locally.
+- TypeScript checks and production builds passed. Local Vite development hit its next/dynamic React dependency issue; UI validation used the production Worker runtime.
+
+## Proposed Raspberry Pi node contents
+
+- Added an illustrated landing/project section with a proposed Pi 5 16 GB / 256 GB SSD configuration and six local-service modules: web apps, offline library, reviewed RAG, optional AI/speech, community queue and operations. The section explicitly distinguishes this blueprint from the current cloud MVP.
+- Expanded the native system architecture SVG to 1800 × 1740 with a matching 2400 × 2320 PNG and updated primary-source notes. Diagram URLs carry a new asset revision so an existing PWA cache can fetch the updated poster.
+- Opened the node-contents anchor from the hardware view and expanded/collapsed the native RAG explanation. Desktop layout reviewed; phone viewport width and document scroll width both measured 390px.
+- README details retrieval-first RAG, optional local-model/speech candidates, data/queue operation, pack approval/freshness, hardware requirements and unmeasured field limits. No local AI or new provider calls were installed or made.

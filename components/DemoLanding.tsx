@@ -9,6 +9,7 @@ import {
   Check,
   ChevronRight,
   Cpu,
+  Database,
   House,
   Laptop,
   Radio,
@@ -19,6 +20,8 @@ import {
 } from "lucide-react";
 import "./demo-landing.css";
 import ArchitectureDiagrams from "./ArchitectureDiagrams";
+import SceneFrame from "./SceneFrame";
+import NodeContents from "./NodeContents";
 
 function SceneLoading() {
   return <div className="demo-scene-loading" role="status"><Radio size={26} /><span>Preparing the interactive view…</span></div>;
@@ -155,13 +158,15 @@ export default function DemoLanding({
               ? "Meet a family. Explore a distant node. Send a demo bulletin from the government server."
               : mode === "hardware"
                 ? "Tap a component. Follow the jumper wires. See what connects to what."
-                : "Send an SOS. Explore radio reach and what a ridge changes."}
+                : "Follow a request or bulletin through the mesh. Switch to LoRaWAN to explore sensor gateways."}
           </p>
+          {mode === "hardware" && <a className="demo-node-storage-link" href="#node-contents"><Database size={15} />See what a node holds <ArrowDown size={14} /></a>}
           <div
             className={
               mode === "city" ? "demo-city-frame" : "demo-hardware-frame"
             }
           >
+            <SceneFrame title={mode === "city" ? "Village view" : mode === "hardware" ? "IoT workbench" : "LoRa in action"}>
             {mode === "city" ? (
               <CitySimulation />
             ) : mode === "hardware" ? (
@@ -169,6 +174,7 @@ export default function DemoLanding({
             ) : (
               <LoRaSimulation />
             )}
+            </SceneFrame>
           </div>
           <div className="demo-simulation-note">
             <span>
@@ -229,6 +235,7 @@ export default function DemoLanding({
           </div>
         </section>
         <p className="demo-backhaul-note">Requests travel out. Bulletins travel back when a head-server link is available. Local nodes retain the last saved update.</p>
+        <NodeContents />
         <ArchitectureDiagrams />
 
         <section

@@ -203,7 +203,7 @@ export default function CitySimulation(){
       </div>
       <div className="tg-area-hint"><MousePointer2 size={13}/>Hover or tap<span>·</span><Move size={13}/>Drag to explore</div>
     </div>
-    <div className="tg-village-panels">
+    <div className="tg-village-panels" data-scene-controls>
       <aside className="tg-area-family" aria-live="polite">
         <div className="tg-area-family-header"><div className="tg-area-avatar">{isServer?<Server size={23}/>:family?<Users size={23}/>:<Radio size={23}/>}</div><div><span className="tg-area-kicker">{isServer?"GOVERNMENT DESK · CONCEPT":family?`HOME ${String(homes.indexOf(family)+1).padStart(2,"0")}`:"COMMUNITY HUB"}</span><h3>{isServer?"Head server":family?family.name:node.name}</h3></div></div>
         <p>{isServer?"A coordinator approves an information bulletin, then publishes it to connected nodal centres.":family?family.contact:`${nodeHomes.length} homes · ${nodeHomes.reduce((n,h)=>n+h.members,0)} residents`}</p>
