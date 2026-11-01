@@ -1,0 +1,53 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="color-scheme" content="light">
+  <title>Together — Identity explorations</title>
+  <style>
+    :root{--ivory:#f6f5ef;--coral:#ef5b35;--ink:#202923;--sage:#aab8a1;--line:#d9ddd2}
+    *{box-sizing:border-box}body{margin:0;background:var(--ivory);color:var(--ink);font:16px/1.55 -apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif}
+    main{max-width:1280px;margin:auto;padding:64px 48px 40px}header{display:flex;align-items:center;justify-content:space-between;gap:24px;border-bottom:1px solid var(--line);padding-bottom:24px;margin-bottom:52px}
+    .eyebrow{font-size:11px;letter-spacing:.16em;font-weight:700;text-transform:uppercase}.dot{display:inline-block;width:8px;height:8px;background:var(--coral);border-radius:50%;margin-right:10px}
+    h1{font-size:clamp(32px,5vw,54px);line-height:1.1;letter-spacing:-.045em;font-weight:550;margin:12px 0 18px}h2{font-size:20px;font-weight:600;letter-spacing:-.025em;margin:0 0 8px}p{margin:0;max-width:680px;color:#576052}.intro{margin-bottom:34px}.intro p{font-size:18px}
+    .status{color:#3e5140;background:#e3e8dd;border-radius:30px;padding:7px 13px;font-size:11px;font-weight:600;letter-spacing:.02em}
+    .hero{min-height:314px;display:flex;align-items:center;justify-content:center;border:1px solid var(--line);border-radius:18px;background:#fffefa;padding:42px}.hero img{width:min(100%,800px);height:auto;display:block}
+    .caption{display:flex;justify-content:space-between;align-items:baseline;gap:20px;margin:18px 0 42px}.caption p{font-size:14px}.caption a{white-space:nowrap}
+    a{color:var(--ink);text-underline-offset:4px;font-size:13px}a:hover{color:var(--coral)}a:focus-visible{outline:3px solid var(--coral);outline-offset:5px;border-radius:2px}
+    .grid{display:grid;grid-template-columns:1fr 1fr;gap:24px}.card{border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fffefa}.display{height:264px;display:flex;align-items:center;justify-content:center;padding:30px}.display img{max-width:100%;height:auto}.meta{border-top:1px solid var(--line);padding:22px 24px 24px}.meta p{font-size:14px}.meta a{display:inline-block;margin-top:14px}
+    .app{background:#e3e8dd;gap:26px}.app img{border-radius:25%;width:136px}.app .mini{width:64px;border-radius:25%}.app .tiny{width:32px;border-radius:25%}.fist img{width:100%}
+    .size-section{margin:42px 0;border:1px solid var(--line);border-radius:18px;overflow:hidden;background:#fffefa}.size-head{padding:22px 24px;border-bottom:1px solid var(--line);display:flex;justify-content:space-between;align-items:baseline;gap:20px}.size-head p{font-size:13px}.sizes{display:flex;align-items:end;justify-content:space-evenly;gap:18px;padding:32px 24px}.sample{text-align:center;min-width:48px}.sample img{display:block;margin:0 auto 16px}.sample span{font-size:11px;color:#576052}.reverse{background:var(--ink);border-radius:10px;padding:12px 20px}.reverse img{filter:brightness(0) invert(95%)}.reverse span{color:var(--ivory)}
+    .banner{width:100%;display:block;border-radius:18px;border:1px solid var(--line)}.palette{display:grid;grid-template-columns:repeat(4,1fr);gap:16px;margin:42px 0}.swatch{border-radius:12px;min-height:106px;display:flex;flex-direction:column;justify-content:space-between;padding:16px;font-size:13px;border:1px solid #20292315}.swatch code{font-size:12px;font-family:ui-monospace,monospace}.swatch.ink{color:var(--ivory)}
+    .decision{display:grid;grid-template-columns:1fr 2fr;gap:24px;border-top:1px solid var(--line);padding:28px 0}.decision p{font-size:15px}footer{display:flex;justify-content:space-between;gap:24px;padding-top:24px;border-top:1px solid var(--line);font-size:12px;color:#576052}
+    @media(max-width:760px){main{padding:32px 20px}.grid,.decision{grid-template-columns:1fr}.hero{min-height:210px;padding:24px 16px}.caption{align-items:start}.palette{grid-template-columns:repeat(2,1fr)}.size-head{display:block}.sizes{flex-wrap:wrap;align-items:center;gap:28px}.display{height:225px}header{margin-bottom:34px}footer{display:block}footer a{display:block;margin-top:12px}}
+    @media print{main{padding:20px}.hero{min-height:200px}.display{height:180px}.card,.size-section,.banner,.palette,.decision{break-inside:avoid}header{margin-bottom:25px}a{color:inherit}.caption{margin-bottom:24px}}
+  </style>
+</head>
+<body>
+<main>
+  <header><div class="eyebrow"><span class="dot"></span>Together / Visual identity</div><div class="eyebrow">Concept study · 01</div></header>
+  <section class="intro"><div class="status" style="display:inline-block">Primary direction: the embrace</div><h1>A little closer. A little stronger.</h1><p>A welcoming identity for neighbors helping neighbors through difficult moments. Two people, one gesture of care.</p></section>
+  <section aria-labelledby="primary-title">
+    <div class="hero"><img src="../public/brand/wordmark.svg" alt="Together: a coral embrace symbol with rounded, near-black lettering" width="720" height="160"></div>
+    <div class="caption"><div><h2 id="primary-title">01 / The embrace</h2><p>Open, human, and hopeful. The primary Together identity.</p></div><a href="../public/brand/wordmark.svg" download>Download wordmark SVG ↗</a></div>
+  </section>
+  <div class="grid">
+    <section class="card" aria-labelledby="app-title"><div class="display app"><img src="../public/brand/logo-square.svg" alt="Together app icon" width="136" height="136"><img class="mini" src="../public/brand/logo-square.svg" alt="" width="64" height="64"><img class="tiny" src="../public/brand/logo-square.svg" alt="" width="32" height="32"></div><div class="meta"><h2 id="app-title">A familiar face on your home screen</h2><p>An ivory embrace on coral, with room for platform icon masks. The exported square has no baked-in rounded corners.</p><a href="../public/brand/logo-square.svg" download>Download square SVG ↗</a></div></section>
+    <section class="card" aria-labelledby="fist-title"><div class="display fist"><img src="../public/brand/fist-concept.svg" alt="Alternative Together wordmark with a raised coral fist" width="640" height="176"></div><div class="meta"><h2 id="fist-title">02 / Collective strength</h2><p>The raised fist expresses resolve and solidarity. The embrace better centers reassurance, mutual care, and broad belonging.</p><a href="../public/brand/fist-concept.svg" download>Download alternate SVG ↗</a></div></section>
+  </div>
+  <section class="size-section" aria-labelledby="sizes-title"><div class="size-head"><h2 id="sizes-title">One symbol. Every scale.</h2><p>Transparent SVG · 24 px recommended minimum</p></div><div class="sizes">
+    <div class="sample"><img src="../public/brand/mark.svg" alt="Embrace symbol at 16 pixels, stress test" width="16" height="16"><span>16 / stress test</span></div>
+    <div class="sample"><img src="../public/brand/mark.svg" alt="Embrace symbol at 24 pixels" width="24" height="24"><span>24</span></div>
+    <div class="sample"><img src="../public/brand/mark.svg" alt="Embrace symbol at 32 pixels" width="32" height="32"><span>32</span></div>
+    <div class="sample"><img src="../public/brand/mark.svg" alt="Embrace symbol at 48 pixels" width="48" height="48"><span>48</span></div>
+    <div class="sample"><img src="../public/brand/mark.svg" alt="Embrace symbol at 96 pixels" width="96" height="96"><span>96</span></div>
+    <div class="sample reverse"><img src="../public/brand/mark.svg" alt="Single-color reversed embrace preview" width="64" height="64"><span>Reversed preview</span></div>
+  </div></section>
+  <section aria-labelledby="banner-title"><img class="banner" src="../public/brand/banner.svg" alt="Together submission banner. When it matters most. Find help. Offer hope. A community that shows up." width="1600" height="900"><div class="caption"><div><h2 id="banner-title">Ready to introduce Together</h2><p>16:9 submission banner · all lettering converted to vector paths</p></div><a href="../public/brand/banner.svg" download>Download banner SVG ↗</a></div></section>
+  <section class="palette" aria-label="Brand colors"><div class="swatch" style="background:#f6f5ef"><strong>Warm ivory</strong><code>#f6f5ef</code></div><div class="swatch" style="background:#ef5b35"><strong>Coral orange</strong><code>#ef5b35</code></div><div class="swatch ink" style="background:#202923"><strong>Near-black</strong><code>#202923</code></div><div class="swatch" style="background:#aab8a1"><strong>Muted sage</strong><code>#aab8a1</code></div></section>
+  <section class="decision"><h2>Care comes first.</h2><p>Choose the embrace as the primary mark. The two equal-sized heads and interlocking arms express mutual support without assigning a rescuer and a recipient. The transparent gap keeps the gesture readable in one color. Original rounded lettering complements the soft geometry without relying on a downloaded typeface.</p></section>
+  <footer><span>Original vector artwork for Together. No external assets or runtime fonts.</span><div><a href="../public/brand/mark.svg" download>Standalone mark ↗</a> &nbsp; <a href="brand-notes.md">Brand notes ↗</a></div></footer>
+</main>
+</body>
+</html>

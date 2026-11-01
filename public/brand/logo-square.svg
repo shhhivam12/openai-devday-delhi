@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="512" height="512" viewBox="0 0 512 512" role="img" aria-labelledby="logo-square-title logo-square-desc">
+  <title id="logo-square-title">Together app icon</title>
+  <desc id="logo-square-desc">An ivory embrace on a coral square. The symbol fits within the central maskable icon safe area.</desc>
+  <path fill="#ef5b35" d="M0 0h512v512H0z"/><g transform="translate(64 48) scale(3)"><g fill="#f6f5ef">
+    <circle cx="44" cy="30" r="12"/>
+    <circle cx="85" cy="36" r="12"/>
+    <path d="M54.2400 51.2160C54.3579 51.2897 54.4738 51.3664 54.5877 51.4461L66.0554 59.4735L52.0616 69.2083L45.6488 64.7194C41.4398 62.1362 38.0237 62.9684 34.4000 67.8000C34.3060 67.9254 34.2083 68.0479 34.1071 68.1675C28.1422 75.2170 28.8477 86.4008 34.9610 95.1695C31.8616 100.9946 33.8459 108.2849 39.5688 111.7187C50.1701 118.0794 56.4463 121.3286 63.4964 123.5481C63.8401 123.6563 64.1831 123.7606 64.5206 123.8299C52.0138 125.0538 39.7077 121.4630 29.8325 113.1071C12.9892 98.8551 8.3042 73.9904 21.8324 57.9130C30.2890 46.8615 42.7579 44.0397 54.2400 51.2160ZM21.8324 57.9130C21.7508 58.0000 21.6752 58.0997 21.6000 58.2000L21.8929 57.8325C21.8709 57.8585 21.8490 57.8845 21.8324 57.9130Z"/>
+  </g>
+  <g fill="none" stroke="#f6f5ef" stroke-width="16" stroke-linecap="round" stroke-linejoin="round">
+    <path d="M57 81 80 65C88 59 97 63 102 73 110 88 102 105 87 111 74 117 61 110 46 101"/>
+  </g></g>
+</svg>
