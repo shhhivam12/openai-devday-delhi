@@ -5,6 +5,7 @@ export const metadata: Metadata = {
   description:
     "A multilingual community relief companion. Ask for help, find saved knowledge, and explore a Himalayan flood and IoT node simulation.",
   manifest: "/manifest.webmanifest",
+  appleWebApp: { capable: true, title: "Together", statusBarStyle: "default" },
   icons: { icon: "/brand/mark.svg", apple: "/icon-192.png" },
   themeColor: "#f3f4f4",
 };

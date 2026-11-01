@@ -92,7 +92,7 @@ export default function LoRaSimulation() {
       return;
     }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.65));
-    renderer.setClearColor(0xf6f6ef, 1);
+    renderer.setClearColor(0xf3f3ee, 1);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -185,15 +185,15 @@ export default function LoRaSimulation() {
       x: number,
       y: number,
       z: number,
-      color = "#294a35",
+      color = "#252b33",
     ) => {
       const c = document.createElement("canvas");
       c.width = 512;
       c.height = 100;
       const ctx = c.getContext("2d")!;
-      ctx.fillStyle = "#fffef7";
+      ctx.fillStyle = "#ffffff";
       ctx.fillRect(0, 0, 512, 100);
-      ctx.strokeStyle = "#b9c7ae";
+      ctx.strokeStyle = "#cbd2d8";
       ctx.lineWidth = 3;
       ctx.strokeRect(1, 1, 510, 98);
       ctx.fillStyle = color;
@@ -218,11 +218,11 @@ export default function LoRaSimulation() {
       scene.add(s);
       return s;
     };
-    box(30, 0.7, 14, 0x3c5740, 0, -0.45, 0);
-    box(29.7, 0.08, 13.7, 0x6d8765, 0, -0.04, 0);
+    box(30, 0.7, 14, 0x8b9c82, 0, -0.45, 0);
+    box(29.7, 0.08, 13.7, 0xa7ba91, 0, -0.04, 0);
     const river = mesh(
       new THREE.BoxGeometry(30, 0.1, 2),
-      mat(0x9ccbc3, { transparent: true, opacity: 0.8, roughness: 0.2 }),
+      mat(0x65b9d3, { transparent: true, opacity: 0.8, roughness: 0.2 }),
       0,
       0.04,
       4.3,
@@ -230,7 +230,7 @@ export default function LoRaSimulation() {
     for (let x = -14; x < 15; x += 2) {
       const m = mesh(
         new THREE.PlaneGeometry(0.75, 0.045),
-        mat(0xd5ede3, { transparent: true, opacity: 0.5 }),
+        mat(0xc1e5ef, { transparent: true, opacity: 0.5 }),
         x,
         0.105,
         4.3 + Math.sin(x) * 0.4,
@@ -240,7 +240,7 @@ export default function LoRaSimulation() {
     for (let i = 0; i < 8; i++) {
       const h = mesh(
         new THREE.ConeGeometry(2.8 + (i % 2), 4 + (i % 3), 5),
-        mat(i % 2 ? 0x3c5740 : 0x3c5740),
+        mat(i % 2 ? 0x658759 : 0x8a9f72),
         -16 + i * 4.4,
         1.0,
         -8 - (i % 2),
@@ -252,7 +252,7 @@ export default function LoRaSimulation() {
     for (let i = 0; i < 3; i++) {
       const h = mesh(
         new THREE.ConeGeometry(1.8, 3.5 + i * 0.5, 5),
-        mat(0x6d8765),
+        mat(0x83937b),
         -0.4 + i * 0.35,
         1.2,
         -1.6 + i * 1.7,
@@ -269,15 +269,24 @@ export default function LoRaSimulation() {
         1.2,
         0.95 + (i % 2) * 0.45,
         1.15,
-        [0x99ab8f, 0x99ab8f, 0x99ab8f][i % 3],
+        [0xf0e4ce, 0xe7d5ca, 0xdfebdf][i % 3],
         0,
         0.55 + (i % 2) * 0.2,
         0,
         g,
       );
-      box(1.45, 0.14, 1.4, 0x3c5740, 0, 1.13 + (i % 2) * 0.4, 0, g);
-      box(0.25, 0.37, 0.025, 0xdce2d1, -0.28, 0.7, 0.59, g);
-      box(0.25, 0.37, 0.025, 0xdce2d1, 0.28, 0.7, 0.59, g);
+      box(
+        1.45,
+        0.14,
+        1.4,
+        [0xb96351, 0x4c80a0, 0x668953][i % 3],
+        0,
+        1.13 + (i % 2) * 0.4,
+        0,
+        g,
+      );
+      box(0.25, 0.37, 0.025, 0x64969e, -0.28, 0.7, 0.59, g);
+      box(0.25, 0.37, 0.025, 0x64969e, 0.28, 0.7, 0.59, g);
       return g;
     }
     for (let i = 0; i < 6; i++) {
@@ -292,11 +301,20 @@ export default function LoRaSimulation() {
       const g = new THREE.Group();
       g.position.set(hub.x, 0, hub.z);
       scene.add(g);
-      box(1.85, 0.25, 1.75, 0x3c5740, 0, 0.15, 0, g);
-      box(1.45, 0.85, 1.35, 0xf2f4e8, 0, 0.68, 0, g);
-      box(1.7, 0.13, 1.62, 0x99ab8f, 0, 1.17, 0, g);
-      box(0.6, 0.62, 0.03, 0x6d8765, 0, 0.62, 0.69, g);
-      cylinder(0.06, 0.09, 2.7, 0x3c5740, 0.45, 2.6, -0.1, g);
+      box(1.85, 0.25, 1.75, 0x8a9d84, 0, 0.15, 0, g);
+      box(1.45, 0.85, 1.35, 0xfff9e9, 0, 0.68, 0, g);
+      box(
+        1.7,
+        0.13,
+        1.62,
+        [0x457ea0, 0xb76350, 0x658d55, 0x927553][i],
+        0,
+        1.17,
+        0,
+        g,
+      );
+      box(0.6, 0.62, 0.03, 0x436a70, 0, 0.62, 0.69, g);
+      cylinder(0.06, 0.09, 2.7, 0x4b6262, 0.45, 2.6, -0.1, g);
       const led = mesh(
         new THREE.SphereGeometry(0.13, 10, 10),
         mat(0x396d46, { emissive: 0x396d46, emissiveIntensity: 2 }),
@@ -311,7 +329,7 @@ export default function LoRaSimulation() {
         small = [];
       for (let r = 0; r < 3; r++) {
         const m = new THREE.MeshBasicMaterial({
-          color: 0x5a8b55,
+          color: 0x42bbc5,
           transparent: true,
           opacity: 0.22 - r * 0.04,
           side: THREE.DoubleSide,
@@ -327,7 +345,7 @@ export default function LoRaSimulation() {
         ring.rotation.x = -Math.PI / 2;
         big.push(ring);
         const wm = new THREE.MeshBasicMaterial({
-          color: 0x5b7c55,
+          color: 0x458edd,
           transparent: true,
           opacity: 0.45 - r * 0.1,
           side: THREE.DoubleSide,
@@ -350,17 +368,17 @@ export default function LoRaSimulation() {
     phone.position.set(-11.3, 0.45, 0.8);
     phone.rotation.x = -0.65;
     scene.add(phone);
-    box(0.8, 0.13, 1.5, 0x26392b, 0, 0, 0, phone);
-    box(0.68, 0.015, 1.23, 0x99ab8f, 0, 0.08, 0, phone);
-    box(0.44, 0.02, 0.35, 0xdce2d1, 0, 0.1, 0.15, phone);
-    label("Resident’s phone", -12, 2.7, 1.8, "#45614c");
+    box(0.8, 0.13, 1.5, 0x253747, 0, 0, 0, phone);
+    box(0.68, 0.015, 1.23, 0x68a4d4, 0, 0.08, 0, phone);
+    box(0.44, 0.02, 0.35, 0xd6f1f5, 0, 0.1, 0.15, phone);
+    label("Resident’s phone", -12, 2.7, 1.8, "#364a5a");
     const shelter = new THREE.Group();
     shelter.position.set(12, 0.2, 2.5);
     scene.add(shelter);
-    box(2.3, 1.05, 1.5, 0xdce2d1, 0, 0.5, 0, shelter);
+    box(2.3, 1.05, 1.5, 0xf2e7d1, 0, 0.5, 0, shelter);
     const roof = mesh(
       new THREE.ConeGeometry(1.8, 0.6, 4),
-      mat(0x99ab8f),
+      mat(0xb36e59),
       0,
       1.3,
       0,
@@ -387,7 +405,7 @@ export default function LoRaSimulation() {
     const connectionMats: THREE.MeshBasicMaterial[] = [];
     curves.forEach((curve, i) => {
       const m = new THREE.MeshBasicMaterial({
-        color: i === 0 || i === 4 ? 0x4f8358 : 0x327148,
+        color: i === 0 || i === 4 ? 0x458edd : 0x31a9b9,
         transparent: true,
         opacity: 0.55,
       });
@@ -395,12 +413,12 @@ export default function LoRaSimulation() {
       connectionMats.push(m);
       mesh(new THREE.TubeGeometry(curve, 30, 0.025, 6, false), m);
     });
-    const dotMat = new THREE.MeshBasicMaterial({ color: 0xf2f4e8 });
+    const dotMat = new THREE.MeshBasicMaterial({ color: 0xe66677 });
     mats.push(dotMat);
     const dot = mesh(new THREE.SphereGeometry(0.17, 12, 12), dotMat);
     dot.visible = false;
     const glowMat = new THREE.MeshBasicMaterial({
-      color: 0xc1cbb6,
+      color: 0xe66677,
       transparent: true,
       opacity: 0.2,
     });
@@ -408,8 +426,8 @@ export default function LoRaSimulation() {
     const glow = mesh(new THREE.SphereGeometry(0.34, 12, 12), glowMat);
     glow.visible = false;
     const arrowLabels = [
-      label("Wi-Fi", -11.7, 3, 1.0, "#45614c"),
-      label("LoRa · short messages", 0, 6.1, 0.2, "#315e3b"),
+      label("Wi-Fi", -11.7, 3, 1.0, "#364a5a"),
+      label("LoRa · short messages", 0, 6.1, 0.2, "#364a5a"),
     ];
     const resize = () => {
       const w = mount.clientWidth,
@@ -462,7 +480,7 @@ export default function LoRaSimulation() {
             ) + (s.terrain && i === 2 ? 2 : 0)
           : 0;
         const okay = !radioEdge || gap <= range;
-        m.color.setHex(okay ? (radioEdge ? 0x327148 : 0x4f8358) : 0x6d8765);
+        m.color.setHex(okay ? (radioEdge ? 0x31a9b9 : 0x458edd) : 0x8e9b9c);
         m.opacity = okay ? 0.55 : 0.15;
       });
       const elapsed = (performance.now() - s.started) / 1000;
@@ -476,13 +494,13 @@ export default function LoRaSimulation() {
         glow.position.copy(dot.position);
         dot.visible = true;
         glow.visible = true;
-        dotMat.color.setHex(elapsed < 5.7 ? 0x2d6b43 : 0x2a7650);
+        dotMat.color.setHex(elapsed < 5.7 ? 0xe66677 : 0x36a16f);
       } else if (s.status === "acknowledged") {
         dot.visible = true;
         dot.position.copy(pathPoints[0]);
         glow.position.copy(dot.position);
         glow.visible = true;
-        dotMat.color.setHex(0x2a7650);
+        dotMat.color.setHex(0x36a16f);
       } else {
         dot.visible = false;
         glow.visible = false;

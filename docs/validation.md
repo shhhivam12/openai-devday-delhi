@@ -21,7 +21,7 @@
 - A hosted D1 request was saved successfully with HTTP 201. No real emergency service was contacted.
 - The separate hosted nodal Site read that same record and acknowledged it through its fixed server-side proxy (HTTP 200 read; HTTP 201 update). Cloudflare public-hostname routing was enabled to support cross-Site requests.
 
-OpenAI Responses, OpenAI Decisions and optional microphone transcription still await an OpenAI key. Regional-language content beyond the supplied primary interface strings needs native-speaker review. Account billing totals and field outcomes are not measured.
+OpenAI Responses and Decisions are now verified live (HTTP 200). Optional microphone transcription has not been exercised through the resident interface. Regional-language content beyond the supplied primary interface strings needs native-speaker review. Account billing totals and field outcomes are not measured.
 
 ## Boundaries
 
@@ -53,3 +53,21 @@ Physical LoRa/Wi-Fi deployment, sensors, radio range, flood physics, local LLMs,
 - Browser: selecting Home 12 displayed the fictional Basnet family and Riverside hub; selecting that hub updated the app connection settings. Switched back to School and submitted a four-person demonstration request successfully.
 - After preparing the updated app cache, stopped the local Worker, reloaded the app and opened the Map tab. Hubs, homes, controls and the selected-hub card remained available; connection status correctly changed to device-only.
 - Original solid fist, wordmark, lime app icon and banner replaced the previous logo; checked at 16, 24 and 32 pixels by the logo task.
+
+## OpenAI activation and presentation rebuild
+
+- OpenAI key added only to hosted runtime secrets; production revision 3 activated. Status confirms all three providers configured.
+- OpenAI Responses returned a concise drinking-water request checklist. Decisions classified a four-person demonstration water request as water, normal priority, confidence 0.8.
+- Interface uses black/white/neutral grey and #006AFF accents. The 3D scenes use independent natural materials and no branded green wash.
+- Added original monochrome/blue vector-rendered PNG illustrations.
+
+## Final black/white/blue presentation and documentation
+
+- Replaced prior green/lime UI accents with neutral black/white and #006AFF. The 3D scenes retain natural terrain, water, roof and electronic-component colors under neutral lighting.
+- Larger resident typography, normal-weight nodal headings, larger character illustrations and rounder cards reviewed at 390 × 844 and 1280 × 900. Three original transparent community PNG illustrations were generated with the built-in image tool; prompts are tracked separately.
+- Inspected the rebuilt dense, irregular city; selected Home 12 and verified its family and assigned hub. Inspected the colored Raspberry Pi/ESP32/LoRa bench with breadboard and jumper connections.
+- Fixed server rendering of browser-only Three.js views with dynamic loading. Root `/`, `/demo` and `/node` returned HTTP 200 after the fix.
+- Browser install instructions opened and were readable. Native Android/iOS installation has not been verified on a physical phone.
+- Prepared the version-7 offline pack, stopped the preview server, reloaded the PWA, selected the local map and opened the saved flood explainer. Device-only state remained explicit.
+- Added a resident provider selector for Cerebras and OpenAI. Live server provider calls were verified earlier; the selector itself does not call a provider until a question is sent.
+- README now includes seven screenshots, two architecture diagrams, dated humanitarian sources, multilingual coverage, Exa/Cerebras implementation details and proposed district-pilot metrics.

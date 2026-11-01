@@ -5,7 +5,7 @@ export default function Project() {
     <main className="evidence">
       <a className="evidence-brand" href="/">
         <img src="/brand/mark.svg" alt="" />
-        together.
+        together<span>.</span>
       </a>
       <h1>Community relief, connected.</h1>
       <p>
@@ -88,7 +88,7 @@ export default function Project() {
               ],
               [
                 "OpenAI / Cerebras / Exa",
-                "Cerebras cloud assistance and Exa source-linked research verified live. OpenAI Responses, Decisions and voice await a server key",
+                "OpenAI Responses and Decisions, Cerebras assistance and Exa source-linked research verified live. Optional transcription adapter configured; microphone capture is not part of this interface",
               ],
               [
                 "Physical LoRa, local AI and sensor readings",
@@ -111,8 +111,8 @@ export default function Project() {
           <b>OpenAI</b> supports Decisions, Responses and optional speech
           transcription. <b>Cerebras</b> serves OpenAI gpt-oss-120b for cloud
           assistance. <b>Exa Agent</b> prepares source-linked district
-          briefings. Cerebras and Exa have passed live checks; OpenAI awaits its
-          server key. Cloud calls need internet.
+          briefings. Responses, Decisions, Cerebras and Exa have passed live checks.
+          Cloud calls need internet.
         </p>
       </section>
       <section id="business">

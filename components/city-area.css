@@ -1,0 +1,954 @@
+.tg-city-area {
+  width: 100%;
+  overflow: hidden;
+  border: 1px solid #e5e7eb;
+  border-radius: 18px;
+  background: #ffffff;
+  color: #22262c;
+  font-family: Arial, Inter, "Segoe UI", sans-serif;
+}
+.tg-city-area-stage {
+  height: 650px;
+  position: relative;
+  isolation: isolate;
+  overflow: hidden;
+  background: #ffffff;
+}
+.tg-city-area-canvas {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}
+.tg-city-area-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  outline: none;
+}
+.tg-area-badge {
+  position: absolute;
+  top: 23px;
+  left: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 1.1px;
+  font-weight: 600;
+  color: #22262c;
+  pointer-events: none;
+}
+.tg-area-badge > span {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #22262c;
+  box-shadow: 0 0 0 4px #11182715;
+}
+.tg-area-legend {
+  position: absolute;
+  left: 25px;
+  top: 48px;
+  display: flex;
+  gap: 16px;
+  font-size: 9px;
+  color: #22262c;
+  pointer-events: none;
+}
+.tg-area-legend > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.tg-area-camera {
+  position: absolute;
+  left: 23px;
+  bottom: 55px;
+  display: flex;
+  flex-direction: column;
+  background: #111827ec;
+  border: 1px solid #cbd0d7;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 6px 18px #1118270c;
+}
+.tg-area-camera button {
+  border: 0;
+  background: none;
+  color: #22262c;
+  padding: 10px;
+  display: grid;
+  place-items: center;
+  cursor: pointer;
+}
+.tg-area-camera button + button {
+  border-top: 1px solid #e5e7eb;
+}
+.tg-area-camera button:hover {
+  background: #e5e7eb;
+}
+.tg-area-hint {
+  position: absolute;
+  left: 25px;
+  bottom: 21px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #22262c;
+  font-size: 9px;
+  pointer-events: none;
+}
+.tg-area-hint > span {
+  margin: 0 4px;
+  color: #4b5057;
+}
+.tg-area-family {
+  position: absolute;
+  right: 22px;
+  top: 22px;
+  width: 207px;
+  border: 1px solid #cbd0d7;
+  background: #111827ef;
+  backdrop-filter: blur(12px);
+  box-shadow: 0 12px 28px #11182710;
+  border-radius: 12px;
+  padding: 19px;
+  pointer-events: none;
+}
+.tg-area-avatar {
+  height: 40px;
+  width: 40px;
+  display: grid;
+  place-items: center;
+  color: #22262c;
+  background: #e5e7eb;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  margin-bottom: 16px;
+}
+.tg-area-kicker {
+  display: block;
+  font-size: 7px;
+  letter-spacing: 1.1px;
+  color: #4b5057;
+  font-weight: 600;
+}
+.tg-area-family h3 {
+  font-size: 19px;
+  line-height: 1.25;
+  font-weight: 600;
+  letter-spacing: -0.5px;
+  color: #22262c;
+  margin: 8px 0;
+}
+.tg-area-family > p {
+  font-size: 10px;
+  line-height: 1.7;
+  color: #22262c;
+  margin: 0 0 13px;
+}
+.tg-area-facts {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  font-size: 9px;
+  color: #22262c;
+}
+.tg-area-facts > span {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.tg-area-need {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  font-size: 10px;
+  color: #22262c;
+  margin: 15px 0;
+}
+.tg-area-need > span {
+  height: 6px;
+  width: 6px;
+  border-radius: 50%;
+  background: #4b5057;
+}
+.tg-area-need > span.safe {
+  background: #4b5057;
+}
+.tg-area-connected {
+  border-top: 1px solid #e5e7eb;
+  padding-top: 13px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #22262c;
+  font-size: 9px;
+  line-height: 1.6;
+}
+.tg-area-family small {
+  display: block;
+  color: #4b5057;
+  font-size: 7px;
+  margin-top: 11px;
+}
+.tg-area-controls {
+  display: flex;
+  align-items: center;
+  gap: 17px;
+  background: #ffffff;
+  border-top: 1px solid #e5e7eb;
+  padding: 20px 24px;
+}
+.tg-area-controls > label {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  color: #22262c;
+  font-size: 11px;
+  flex: 1;
+  min-width: 180px;
+}
+.tg-area-controls > label svg {
+  color: #4b5057;
+  flex: none;
+}
+.tg-area-controls input {
+  height: 4px;
+  min-width: 60px;
+  max-width: 220px;
+  width: 100%;
+  accent-color: #22262c;
+  cursor: pointer;
+}
+.tg-area-controls b {
+  font-size: 9px;
+  font-weight: 500;
+  color: #4b5057;
+  min-width: 37px;
+}
+.tg-area-network {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  background: #ffffff;
+  border: 1px solid #cbd0d7;
+  border-radius: 7px;
+  padding: 10px 12px;
+  font-size: 10px;
+  color: #4b5057;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tg-area-network > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #4b5057;
+}
+.tg-area-network.active {
+  background: #e5e7eb;
+  border-color: #4b5057;
+  color: #22262c;
+}
+.tg-area-network.active > span {
+  background: #4b5057;
+  box-shadow: 0 0 0 3px #11182713;
+}
+.tg-area-controls select {
+  border: 1px solid #cbd0d7;
+  border-radius: 7px;
+  background: #ffffff;
+  padding: 10px;
+  font-size: 10px;
+  font-family: inherit;
+  color: #22262c;
+  max-width: 210px;
+}
+.tg-area-caption {
+  font-size: 9px;
+  color: #4b5057;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0 24px 18px;
+}
+.tg-city-area button:focus-visible,
+.tg-city-area select:focus-visible,
+.tg-city-area input:focus-visible {
+  outline: 3px solid #4b5057;
+  outline-offset: 3px;
+}
+.tg-area-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 19px;
+  text-align: center;
+  color: #4b5057;
+  padding: 30px;
+}
+.tg-area-fallback p {
+  max-width: 260px;
+  font-size: 12px;
+  line-height: 1.7;
+}
+@media (min-width: 1600px) {
+  .tg-city-area-stage {
+    height: 720px;
+  }
+}
+@media (max-width: 1000px) {
+  .tg-city-area-stage {
+    height: 600px;
+  }
+  .tg-area-family {
+    width: 186px;
+    padding: 16px;
+  }
+  .tg-area-family h3 {
+    font-size: 17px;
+  }
+  .tg-area-controls {
+    padding: 18px;
+    gap: 12px;
+  }
+  .tg-area-controls > label {
+    font-size: 10px;
+  }
+  .tg-area-controls select {
+    max-width: 172px;
+    font-size: 9px;
+  }
+}
+@media (max-width: 650px) {
+  .tg-city-area {
+    border-radius: 14px;
+  }
+  .tg-city-area-stage {
+    height: 575px;
+  }
+  .tg-area-badge {
+    top: 16px;
+    left: 15px;
+    font-size: 6.5px;
+    letter-spacing: 0.6px;
+  }
+  .tg-area-legend {
+    top: 38px;
+    left: 15px;
+    font-size: 8px;
+    gap: 13px;
+  }
+  .tg-area-legend svg {
+    width: 11px;
+  }
+  .tg-area-family {
+    left: 13px;
+    right: 13px;
+    bottom: 15px;
+    top: auto;
+    width: auto;
+    display: grid;
+    grid-template-columns: 32px 1fr auto;
+    column-gap: 10px;
+    padding: 14px;
+  }
+  .tg-area-avatar {
+    height: 32px;
+    width: 32px;
+    grid-row: 1/4;
+    align-self: center;
+    border-radius: 9px;
+    margin: 0;
+  }
+  .tg-area-avatar svg {
+    width: 19px;
+  }
+  .tg-area-kicker {
+    font-size: 6px;
+    letter-spacing: 0.8px;
+    grid-column: 2;
+  }
+  .tg-area-family h3 {
+    grid-column: 2;
+    grid-row: 2;
+    font-size: 16px;
+    margin: 4px 0;
+  }
+  .tg-area-family > p {
+    grid-column: 2;
+    grid-row: 3;
+    font-size: 8px;
+    margin: 0;
+  }
+  .tg-area-facts {
+    grid-column: 3;
+    grid-row: 1/3;
+    align-self: center;
+    flex-direction: column;
+    align-items: flex-end;
+    gap: 6px;
+    font-size: 8px;
+  }
+  .tg-area-facts svg {
+    width: 11px;
+  }
+  .tg-area-need {
+    grid-column: 3;
+    grid-row: 3;
+    justify-content: flex-end;
+    font-size: 8px;
+    gap: 4px;
+    margin: 0;
+  }
+  .tg-area-need > span {
+    height: 4px;
+    width: 4px;
+  }
+  .tg-area-connected {
+    grid-column: 1/4;
+    font-size: 8px;
+    padding-top: 9px;
+    margin-top: 11px;
+  }
+  .tg-area-family small {
+    grid-column: 1/4;
+    font-size: 6px;
+    margin-top: 7px;
+  }
+  .tg-area-camera {
+    left: auto;
+    right: 15px;
+    bottom: 170px;
+  }
+  .tg-area-camera button {
+    padding: 8px;
+  }
+  .tg-area-camera button svg {
+    width: 13px;
+  }
+  .tg-area-hint {
+    left: 15px;
+    bottom: 175px;
+    font-size: 7px;
+    gap: 4px;
+  }
+  .tg-area-hint svg {
+    width: 10px;
+  }
+  .tg-area-controls {
+    padding: 16px;
+    gap: 12px;
+    flex-wrap: wrap;
+  }
+  .tg-area-controls > label {
+    flex-basis: 100%;
+    font-size: 11px;
+    min-width: 0;
+    gap: 9px;
+  }
+  .tg-area-controls input {
+    max-width: none;
+  }
+  .tg-area-controls b {
+    font-size: 8px;
+  }
+  .tg-area-network {
+    padding: 9px 10px;
+    font-size: 9px;
+  }
+  .tg-area-controls select {
+    flex: 1;
+    max-width: none;
+    min-width: 0;
+    font-size: 9px;
+  }
+  .tg-area-caption {
+    padding: 0 16px 16px;
+    font-size: 8px;
+  }
+}
+.tg-area-badge {
+  color: #22262c;
+}
+.tg-area-legend,
+.tg-area-hint {
+  color: #22262c;
+}
+.tg-area-kicker {
+  color: #22262c;
+}
+.tg-area-family > p,
+.tg-area-facts {
+  color: #22262c;
+}
+.tg-area-family small {
+  color: #22262c;
+}
+.tg-area-controls > label {
+  color: #22262c;
+}
+.tg-area-controls select {
+  color: #22262c;
+}
+.tg-area-caption {
+  color: #22262c;
+}
+
+/* Interface palette only; the city geometry retains its original natural colours. */
+.tg-city-area {
+  background: #fff;
+  border-color: #e1e4e8;
+  color: #202328;
+}
+.tg-city-area-stage {
+  background: #f3f3ee;
+}
+.tg-area-badge,
+.tg-area-legend,
+.tg-area-hint {
+  color: #4b5057;
+}
+.tg-area-badge > span {
+  background: #006aff;
+  box-shadow: 0 0 0 4px #006aff12;
+}
+.tg-area-camera {
+  background: #fffffff0;
+  border-color: #d9dde3;
+  box-shadow: 0 6px 18px #1118270c;
+}
+.tg-area-camera button {
+  color: #30343a;
+}
+.tg-area-camera button + button {
+  border-color: #e4e7eb;
+}
+.tg-area-camera button:hover {
+  background: #edf4ff;
+  color: #006aff;
+}
+.tg-area-family {
+  background: #fffffff2;
+  border-color: #dce0e5;
+  box-shadow: 0 12px 28px #1118270d;
+}
+.tg-area-avatar {
+  background: #edf4ff;
+  border-color: #dce9ff;
+  color: #006aff;
+}
+.tg-area-kicker {
+  color: #4b5057;
+}
+.tg-area-family h3 {
+  color: #1b1f24;
+}
+.tg-area-family > p,
+.tg-area-facts,
+.tg-area-need {
+  color: #4b5057;
+}
+.tg-area-need > span,
+.tg-area-need > span.safe {
+  background: #006aff;
+}
+.tg-area-connected {
+  border-color: #e1e5ea;
+  color: #006aff;
+}
+.tg-area-family small {
+  color: #4b5057;
+}
+.tg-area-controls {
+  background: #f8f9fb;
+  border-color: #e1e5ea;
+}
+.tg-area-controls > label {
+  color: #30363e;
+}
+.tg-area-controls > label svg {
+  color: #006aff;
+}
+.tg-area-controls input {
+  accent-color: #006aff;
+}
+.tg-area-controls b {
+  color: #4b5057;
+}
+.tg-area-network {
+  background: #fff;
+  border-color: #d7dde5;
+  color: #4b5057;
+}
+.tg-area-network > span {
+  background: #a7afba;
+}
+.tg-area-network.active {
+  background: #006aff;
+  border-color: #006aff;
+  color: #fff;
+}
+.tg-area-network.active > span {
+  background: #fff;
+  box-shadow: 0 0 0 3px #ffffff25;
+}
+.tg-area-controls select {
+  background: #fff;
+  border-color: #d7dde5;
+  color: #30363e;
+}
+.tg-area-caption {
+  color: #4b5057;
+}
+.tg-city-area button:focus-visible,
+.tg-city-area select:focus-visible,
+.tg-city-area input:focus-visible {
+  outline-color: #006aff;
+}
+.tg-area-fallback {
+  color: #4b5057;
+}
+/* Comfortable reading and touch targets. */
+.tg-city-area {
+  border-radius: 24px;
+}
+.tg-city-area-stage {
+  height: 680px;
+}
+.tg-area-badge {
+  font-size: 11px;
+  letter-spacing: 0.8px;
+}
+.tg-area-legend {
+  top: 52px;
+  font-size: 12px;
+  gap: 18px;
+}
+.tg-area-legend svg {
+  width: 15px;
+  height: 15px;
+}
+.tg-area-camera {
+  border-radius: 14px;
+}
+.tg-area-camera button {
+  min-width: 43px;
+  min-height: 43px;
+  padding: 12px;
+}
+.tg-area-camera button svg {
+  width: 17px;
+  height: 17px;
+}
+.tg-area-hint {
+  font-size: 12px;
+  gap: 8px;
+}
+.tg-area-hint svg {
+  width: 15px;
+  height: 15px;
+}
+.tg-area-family {
+  width: 242px;
+  padding: 22px;
+  border-radius: 20px;
+}
+.tg-area-avatar {
+  width: 46px;
+  height: 46px;
+  border-radius: 14px;
+}
+.tg-area-kicker {
+  font-size: 11px;
+  letter-spacing: 0.8px;
+}
+.tg-area-family h3 {
+  font-size: 23px;
+  line-height: 1.25;
+  margin: 10px 0;
+}
+.tg-area-family > p {
+  font-size: 13px;
+  line-height: 1.6;
+  margin-bottom: 16px;
+}
+.tg-area-facts {
+  font-size: 12px;
+  gap: 11px;
+}
+.tg-area-facts svg {
+  width: 15px;
+  height: 15px;
+}
+.tg-area-need {
+  font-size: 13px;
+  gap: 8px;
+  margin: 18px 0;
+}
+.tg-area-connected {
+  font-size: 12px;
+  line-height: 1.6;
+  padding-top: 15px;
+  gap: 8px;
+}
+.tg-area-connected svg {
+  width: 16px;
+  height: 16px;
+  flex: none;
+}
+.tg-area-family small {
+  font-size: 11px;
+  line-height: 1.6;
+  margin-top: 13px;
+}
+.tg-area-controls {
+  padding: 22px 25px;
+  gap: 18px;
+}
+.tg-area-controls > label {
+  font-size: 14px;
+  gap: 12px;
+  min-width: 220px;
+}
+.tg-area-controls b {
+  font-size: 12px;
+  min-width: 46px;
+}
+.tg-area-controls > label svg {
+  width: 20px;
+  height: 20px;
+}
+.tg-area-network {
+  min-height: 44px;
+  font-size: 12px;
+  padding: 12px 16px;
+  border-radius: 14px;
+}
+.tg-area-network > span {
+  height: 7px;
+  width: 7px;
+}
+.tg-area-controls select {
+  min-height: 44px;
+  font-size: 12px;
+  padding: 11px 14px;
+  border-radius: 14px;
+  max-width: 240px;
+}
+.tg-area-caption {
+  font-size: 12px;
+  line-height: 1.75;
+  padding: 0 25px 22px;
+}
+.tg-area-fallback p {
+  font-size: 14px;
+}
+@media (min-width: 1600px) {
+  .tg-city-area-stage {
+    height: 740px;
+  }
+}
+@media (max-width: 1000px) {
+  .tg-city-area-stage {
+    height: 660px;
+  }
+  .tg-area-family {
+    width: 225px;
+    padding: 20px;
+  }
+  .tg-area-family h3 {
+    font-size: 22px;
+  }
+  .tg-area-controls {
+    gap: 13px;
+    flex-wrap: wrap;
+  }
+  .tg-area-controls > label {
+    flex: 1;
+    min-width: 240px;
+  }
+  .tg-area-controls select {
+    max-width: 220px;
+  }
+}
+@media (max-width: 650px) {
+  .tg-city-area {
+    border-radius: 24px;
+  }
+  .tg-city-area-stage {
+    height: 650px;
+  }
+  .tg-area-badge {
+    top: 18px;
+    left: 17px;
+    font-size: 9px;
+    letter-spacing: 0.45px;
+  }
+  .tg-area-legend {
+    top: 44px;
+    left: 17px;
+    font-size: 11px;
+    gap: 16px;
+  }
+  .tg-area-legend svg {
+    width: 13px;
+    height: 13px;
+  }
+  .tg-area-family {
+    left: 13px;
+    right: 13px;
+    bottom: 15px;
+    width: auto;
+    grid-template-columns: 38px 1fr auto;
+    column-gap: 10px;
+    padding: 17px 16px;
+    border-radius: 20px;
+  }
+  .tg-area-avatar {
+    height: 37px;
+    width: 37px;
+    border-radius: 12px;
+  }
+  .tg-area-avatar svg {
+    width: 22px;
+    height: 22px;
+  }
+  .tg-area-kicker {
+    font-size: 9px;
+    letter-spacing: 0.6px;
+  }
+  .tg-area-family h3 {
+    font-size: 22px;
+    line-height: 1.2;
+    margin: 6px 0;
+  }
+  .tg-area-family > p {
+    font-size: 12px;
+    margin: 0;
+    line-height: 1.5;
+  }
+  .tg-area-facts {
+    font-size: 10px;
+    gap: 7px;
+  }
+  .tg-area-facts svg {
+    width: 13px;
+    height: 13px;
+  }
+  .tg-area-need {
+    font-size: 11px;
+    gap: 5px;
+    margin: 0;
+  }
+  .tg-area-connected {
+    font-size: 12px;
+    line-height: 1.5;
+    margin-top: 15px;
+    padding-top: 12px;
+    gap: 7px;
+  }
+  .tg-area-connected svg {
+    width: 15px;
+    height: 15px;
+  }
+  .tg-area-family small {
+    font-size: 10px;
+    margin-top: 10px;
+    line-height: 1.5;
+  }
+  .tg-area-camera {
+    bottom: 230px;
+    right: 16px;
+    border-radius: 14px;
+  }
+  .tg-area-camera button {
+    min-width: 40px;
+    min-height: 40px;
+    padding: 10px;
+  }
+  .tg-area-hint {
+    bottom: 237px;
+    left: 17px;
+    font-size: 10px;
+    gap: 5px;
+    max-width: 235px;
+    flex-wrap: wrap;
+  }
+  .tg-area-hint svg {
+    width: 12px;
+    height: 12px;
+  }
+  .tg-area-controls {
+    padding: 18px 17px;
+    gap: 13px;
+  }
+  .tg-area-controls > label {
+    font-size: 13px;
+    min-width: 0;
+    flex-basis: 100%;
+    gap: 10px;
+  }
+  .tg-area-controls b {
+    font-size: 11px;
+    min-width: 44px;
+  }
+  .tg-area-network {
+    min-height: 44px;
+    font-size: 11px;
+    padding: 11px 13px;
+    border-radius: 13px;
+  }
+  .tg-area-controls select {
+    min-height: 44px;
+    font-size: 11px;
+    flex: 1;
+    max-width: none;
+    min-width: 0;
+    border-radius: 13px;
+    padding: 11px;
+  }
+  .tg-area-caption {
+    font-size: 11px;
+    padding: 0 17px 20px;
+  }
+}
+@media (max-width: 650px) {
+  .tg-area-badge {
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+  .tg-area-legend {
+    font-size: 12px;
+  }
+  .tg-area-kicker {
+    font-size: 11px;
+  }
+  .tg-area-facts {
+    font-size: 11px;
+  }
+  .tg-area-need {
+    font-size: 12px;
+  }
+  .tg-area-family small {
+    font-size: 11px;
+  }
+  .tg-area-hint {
+    font-size: 11px;
+  }
+  .tg-area-controls b {
+    font-size: 12px;
+  }
+  .tg-area-network,
+  .tg-area-controls select {
+    font-size: 12px;
+  }
+  .tg-area-caption {
+    font-size: 12px;
+  }
+}

@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from "react";
+import dynamic from "next/dynamic";
 import {
   ArrowDown,
   ArrowRight,
@@ -8,71 +9,23 @@ import {
   Check,
   ChevronRight,
   Cpu,
-  Globe2,
-  HeartHandshake,
   House,
   Laptop,
-  MapPin,
   Radio,
   ShieldCheck,
   Smartphone,
-  Users,
   Waves,
-  Zap,
 } from "lucide-react";
-import CitySimulation from "./CitySimulation";
-import HardwareSimulation from "./HardwareSimulation";
-import LoRaSimulation from "./LoRaSimulation";
 import "./demo-landing.css";
 
-type Props = { appUrl?: string; nodeUrl?: string };
-
-function Neighbour({ variant = 0 }: { variant?: number }) {
-  return (
-    <svg viewBox="0 0 140 150" aria-hidden="true" className="demo-neighbour">
-      <path
-        d="M18 145c0-27 14-43 43-43h20c29 0 43 16 43 43"
-        fill={variant ? "#557651" : "#a8bc91"}
-      />
-      <path d="M58 88h25v23c-5 10-20 10-25 0Z" fill="#c39077" />
-      <ellipse
-        cx="70"
-        cy="59"
-        rx="31"
-        ry="36"
-        fill={variant ? "#b67d62" : "#d8aa8b"}
-      />
-      <path
-        d="M38 57c-4-26 10-43 33-43 24 0 38 20 30 49l-8-21c-12 0-21-6-26-12-4 14-13 22-29 27Z"
-        fill="#28392d"
-      />
-      <path
-        d="M45 88c6 14 16 20 25 20s20-7 26-20"
-        fill="none"
-        stroke="#28392d"
-        strokeWidth="5"
-        strokeLinecap="round"
-      />
-      <circle cx="59" cy="62" r="2" fill="#28392d" />
-      <circle cx="81" cy="62" r="2" fill="#28392d" />
-      <path
-        d="M64 80q6 5 12 0"
-        fill="none"
-        stroke="#754d42"
-        strokeWidth="2.5"
-        strokeLinecap="round"
-      />
-      {variant === 1 && (
-        <path
-          d="M40 37 70 16l30 21"
-          fill="#f4f4e9"
-          stroke="#28392d"
-          strokeWidth="3"
-        />
-      )}
-    </svg>
-  );
+function SceneLoading() {
+  return <div className="demo-scene-loading" role="status"><Radio size={26} /><span>Preparing the interactive view…</span></div>;
 }
+const CitySimulation = dynamic(() => import("./CitySimulation"), { ssr: false, loading: SceneLoading });
+const HardwareSimulation = dynamic(() => import("./HardwareSimulation"), { ssr: false, loading: SceneLoading });
+const LoRaSimulation = dynamic(() => import("./LoRaSimulation"), { ssr: false, loading: SceneLoading });
+
+type Props = { appUrl?: string; nodeUrl?: string };
 
 export default function DemoLanding({
   appUrl = "https://together-relief.shiiim.chatgpt.site",
@@ -109,15 +62,15 @@ export default function DemoLanding({
       <main>
         <section className="demo-hero">
           <div className="demo-hero-copy">
-            <div className="demo-eyebrow">
-              <span /> A COMMUNITY THAT STAYS CONNECTED
+            <div className="demo-hero-brand">
+              <img src="/brand/mark-mono.svg" alt="" width={96} height={96} />
+              <h1 className="demo-hero-wordmark">
+                together<span>.</span>
+              </h1>
             </div>
-            <h1>
-              When networks stop.
-              <br />
-              <em>We stay together.</em>
-            </h1>
-            <p>Help. Trusted information. Each other.</p>
+            <p className="demo-hero-lead">
+              When networks stop, we stay together.
+            </p>
             <div className="demo-hero-actions">
               <a className="demo-btn demo-btn-primary" href={appUrl}>
                 <Smartphone size={19} /> Open mobile app{" "}
@@ -137,35 +90,15 @@ export default function DemoLanding({
               </span>
             </div>
           </div>
-          <div className="demo-hero-art" aria-hidden="true">
-            <div className="demo-art-orbit orbit-one" />
-            <div className="demo-art-orbit orbit-two" />
-            <div className="demo-art-node">
-              <Radio size={38} />
-              <span>TOGETHER NODE</span>
-              <i />
-              <i />
-              <i />
-            </div>
-            <div className="demo-neighbour-card neighbour-one">
-              <Neighbour />
-              <span>
-                <i /> Maya’s family
-              </span>
-            </div>
-            <div className="demo-neighbour-card neighbour-two">
-              <Neighbour variant={1} />
-              <span>
-                <i /> Community volunteer
-              </span>
-            </div>
-            <div className="demo-art-message">
-              <HeartHandshake size={20} />
-              <span>“We’re here for you.”</span>
-              <Check size={14} />
-            </div>
-            <span className="demo-art-spark spark-a">✦</span>
-            <span className="demo-art-spark spark-b">✦</span>
+          <div className="demo-hero-art">
+            <img
+              className="demo-community-people"
+              src="/illustrations/community-people.png"
+              alt="A Himalayan community standing together: families, elders and a relief volunteer."
+              width={1024}
+              height={1024}
+              fetchPriority="high"
+            />
           </div>
           <button className="demo-scroll" onClick={() => explore("city")}>
             See the connection <ArrowDown size={16} />

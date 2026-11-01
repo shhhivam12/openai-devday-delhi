@@ -280,9 +280,10 @@ export default function NodeConsole({
     <div className="node-app">
       <aside className="node-sidebar">
         <a className="node-brand" href="/">
-          <img src="/brand/mark.svg" alt="Together fist" />
+          <img src="/brand/mark-mono.svg" alt="" />
           <strong>
-            together<span>:</span>
+            together
+            <span className="node-brand-dot" aria-hidden="true" />
           </strong>
         </a>
         <span className="node-side-label">NODE CONSOLE</span>
@@ -520,7 +521,13 @@ export default function NodeConsole({
                       ))
                     ) : (
                       <div className="node-empty">
-                        <ShieldCheck size={36} />
+                        <img
+                          className="node-state-art"
+                          src="/illustrations/coordinator-people.png"
+                          alt=""
+                          width={180}
+                          height={180}
+                        />
                         <h3>
                           {loading
                             ? "Connecting to your room…"
@@ -557,11 +564,13 @@ export default function NodeConsole({
                 </section>
                 <aside className="node-right">
                   <section className="node-join">
-                    <div className="node-join-icon">
-                      <Radio size={30} />
-                      <span />
-                      <span />
-                    </div>
+                    <img
+                      className="node-join-people"
+                      src="/illustrations/coordinator-people.png"
+                      alt=""
+                      width={180}
+                      height={180}
+                    />
                     <span>CONNECT TO THIS DEMO</span>
                     <h2>{selected.code}</h2>
                     <p>
@@ -635,7 +644,13 @@ export default function NodeConsole({
                     ))
                   ) : (
                     <div className="node-empty">
-                      <MessageCircle size={37} />
+                      <img
+                        className="node-state-art"
+                        src="/illustrations/community-people.png"
+                        alt=""
+                        width={180}
+                        height={180}
+                      />
                       <h3>Your community starts here.</h3>
                       <p>
                         Post a short update for people in this exercise room.

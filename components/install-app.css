@@ -1,0 +1,283 @@
+.tg-install-entry {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  background: #fff;
+  border: 1px solid #e3e5e5;
+  border-radius: 16px;
+  padding: 14px;
+  margin: 14px 0;
+  color: #151719;
+  font-family: Arial, Helvetica, sans-serif;
+}
+.tg-install-icon {
+  width: 37px;
+  height: 37px;
+  display: grid;
+  place-items: center;
+  flex-shrink: 0;
+  background: #f3f4f4;
+  color: #151719;
+  border-radius: 11px;
+}
+.tg-install-entry > div {
+  flex: 1;
+  min-width: 0;
+}
+.tg-install-entry strong {
+  font-size: 13px;
+  font-weight: 500;
+}
+.tg-install-entry p {
+  font-size: 11px;
+  color: #151719;
+  margin: 4px 0 0;
+}
+.tg-install-entry > button {
+  border: 0;
+  background: #151719;
+  color: #fff;
+  border-radius: 24px;
+  padding: 10px 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  cursor: pointer;
+  font:
+    500 12px Arial,
+    Helvetica,
+    sans-serif;
+  min-height: 38px;
+}
+.tg-install-entry > button:disabled {
+  opacity: 0.65;
+}
+.tg-install-entry button:focus-visible,
+.tg-install-dialog button:focus-visible {
+  outline: 3px solid #151719;
+  outline-offset: 3px;
+}
+.tg-install-entry.settings {
+  background: #f7f8f7;
+  margin-top: 18px;
+}
+.tg-install-overlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 20px;
+  background: #15171966;
+  z-index: 160;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #151719;
+}
+.tg-install-dialog {
+  width: 390px;
+  max-width: 100%;
+  max-height: calc(100dvh - 40px);
+  overflow: auto;
+  background: #fff;
+  border: 1px solid #e3e5e5;
+  padding: 23px;
+  border-radius: 22px;
+  box-shadow: 0 20px 100px #15171926;
+  box-sizing: border-box;
+}
+.tg-install-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.tg-install-top > button {
+  display: grid;
+  place-items: center;
+  width: 36px;
+  height: 36px;
+  background: #f3f4f4;
+  color: #151719;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+.tg-install-dialog h2 {
+  font-size: 23px;
+  line-height: 1.25;
+  letter-spacing: -0.6px;
+  font-weight: 500;
+  margin: 22px 0 11px;
+}
+.tg-install-dialog p {
+  font-size: 13px;
+  color: #151719;
+  line-height: 1.6;
+  margin: 0;
+}
+.tg-install-dialog ol {
+  list-style: none;
+  padding: 0;
+  margin: 23px 0;
+  display: grid;
+  gap: 17px;
+}
+.tg-install-dialog li {
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 5px;
+  font-size: 13px;
+  line-height: 1.6;
+}
+.tg-install-dialog li > span {
+  display: grid;
+  place-items: center;
+  width: 23px;
+  height: 23px;
+  flex-shrink: 0;
+  border-radius: 50%;
+  background: #f0f0f0;
+  color: #151719;
+  margin-right: 4px;
+  font-size: 11px;
+}
+.tg-install-dialog li strong {
+  font-weight: 600;
+}
+.tg-install-dialog .tg-install-note {
+  font-size: 11px;
+  line-height: 1.6;
+  padding: 12px;
+  background: #f6f7f5;
+  border-radius: 10px;
+}
+.tg-install-done {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 9px;
+  width: 100%;
+  background: #151719;
+  color: #fff;
+  border: 0;
+  border-radius: 25px;
+  min-height: 46px;
+  margin-top: 20px;
+  cursor: pointer;
+  font:
+    500 14px Arial,
+    Helvetica,
+    sans-serif;
+}
+@media (max-width: 370px) {
+  .tg-install-entry {
+    gap: 8px;
+    padding: 11px;
+  }
+  .tg-install-entry > button {
+    padding: 10px;
+  }
+  .tg-install-entry > button > svg {
+    display: none;
+  }
+}
+@media (max-width: 520px) {
+  .tg-install-overlay {
+    align-items: flex-end;
+    padding: 12px;
+  }
+  .tg-install-dialog {
+    width: 100%;
+    border-radius: 21px;
+    padding: 23px 21px;
+  }
+}
+.tg-install-icon {
+  background: #006aff0d;
+  color: #006aff;
+}
+.tg-install-entry {
+  color: #151719;
+}
+.tg-install-entry p,
+.tg-install-dialog p {
+  color: #4b5057;
+}
+.tg-install-entry button:focus-visible,
+.tg-install-dialog button:focus-visible {
+  outline-color: #006aff;
+}
+.tg-install-dialog li > span {
+  background: #006aff0b;
+  color: #151719;
+}
+.tg-install-entry {
+  border-radius: 24px;
+  padding: 17px;
+  gap: 12px;
+}
+.tg-install-icon {
+  width: 43px;
+  height: 43px;
+  border-radius: 16px;
+}
+.tg-install-entry strong {
+  font-size: 15px;
+}
+.tg-install-entry p {
+  font-size: 12px;
+  line-height: 1.5;
+}
+.tg-install-entry > button {
+  font-size: 14px;
+  padding: 12px 14px;
+  min-height: 44px;
+  border-radius: 23px;
+}
+.tg-install-dialog {
+  border-radius: 28px;
+  padding: 27px;
+}
+.tg-install-dialog h2 {
+  font-size: 26px;
+}
+.tg-install-dialog p {
+  font-size: 14px;
+}
+.tg-install-dialog li {
+  font-size: 14px;
+}
+.tg-install-dialog .tg-install-note {
+  font-size: 12px;
+  border-radius: 18px;
+  padding: 15px;
+}
+.tg-install-done {
+  font-size: 16px;
+  min-height: 52px;
+  border-radius: 27px;
+}
+.tg-install-top > button {
+  width: 41px;
+  height: 41px;
+  border-radius: 15px;
+}
+@media (max-width: 370px) {
+  .tg-install-entry {
+    padding: 15px 12px;
+    gap: 9px;
+  }
+  .tg-install-icon {
+    width: 35px;
+    height: 35px;
+    border-radius: 13px;
+  }
+  .tg-install-entry strong {
+    font-size: 14px;
+  }
+  .tg-install-entry > button {
+    padding: 11px 12px;
+    font-size: 13px;
+  }
+}

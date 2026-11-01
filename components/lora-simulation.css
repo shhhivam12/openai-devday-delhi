@@ -1,8 +1,8 @@
 .tg-lora {
   font-family: inherit;
-  color: #24362c;
-  background: #f4f6ee;
-  border: 1px solid #d6decd;
+  color: #22262c;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   border-radius: 22px;
   overflow: hidden;
   width: 100%;
@@ -11,7 +11,7 @@
   height: 530px;
   position: relative;
   isolation: isolate;
-  background: #fafaf4;
+  background: #ffffff;
   overflow: hidden;
 }
 .tg-lora-canvas {
@@ -37,15 +37,15 @@
   font-size: 9px;
   letter-spacing: 1.3px;
   font-weight: 700;
-  color: #53664f;
+  color: #22262c;
   pointer-events: none;
 }
 .tg-lora-badge > span {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #3d694a;
-  box-shadow: 0 0 0 4px #4462441a;
+  background: #22262c;
+  box-shadow: 0 0 0 4px #1118271a;
 }
 .tg-lora-scale {
   position: absolute;
@@ -54,7 +54,7 @@
   display: flex;
   gap: 15px;
   font-size: 9px;
-  color: #53664f;
+  color: #22262c;
   pointer-events: none;
 }
 .tg-lora-scale > span {
@@ -67,12 +67,12 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #3d694a;
-  box-shadow: 0 0 0 3px #4462441a;
+  background: #22262c;
+  box-shadow: 0 0 0 3px #1118271a;
 }
 .tg-lora-scale > span + span i {
-  background: #3d694a;
-  box-shadow: 0 0 0 3px #4462441a;
+  background: #22262c;
+  box-shadow: 0 0 0 3px #1118271a;
 }
 .tg-lora-hint {
   position: absolute;
@@ -82,7 +82,7 @@
   align-items: center;
   gap: 6px;
   font-size: 9px;
-  color: #61745c;
+  color: #22262c;
   pointer-events: none;
 }
 .tg-lora-status {
@@ -94,34 +94,34 @@
   align-items: center;
   gap: 10px;
   padding: 13px 16px;
-  border: 1px solid #d6decd;
-  background: #24392be8;
+  border: 1px solid #e5e7eb;
+  background: #111827e8;
   backdrop-filter: blur(8px);
   border-radius: 10px;
-  color: #24362c;
+  color: #22262c;
   font-size: 11px;
   line-height: 1.6;
 }
 .tg-lora-status > svg {
   flex: none;
-  color: #3d694a;
+  color: #22262c;
 }
 .tg-lora-status.success {
-  border-color: #d6decd;
-  color: #53664f;
-  background: #24392be8;
+  border-color: #e5e7eb;
+  color: #22262c;
+  background: #111827e8;
 }
 .tg-lora-status.success > svg {
-  color: #3d694a;
+  color: #22262c;
 }
 .tg-lora-controls {
   display: flex;
   align-items: center;
   gap: 28px;
   padding: 22px 25px;
-  border-top: 1px solid #e9eee1;
-  border-bottom: 1px solid #e9eee1;
-  background: #f4f6ee;
+  border-top: 1px solid #e5e7eb;
+  border-bottom: 1px solid #e5e7eb;
+  background: #ffffff;
 }
 .tg-lora-reach {
   display: flex;
@@ -129,10 +129,10 @@
   gap: 11px;
   flex: 1;
   font-size: 11px;
-  color: #53664f;
+  color: #22262c;
 }
 .tg-lora-reach > svg {
-  color: #3d694a;
+  color: #22262c;
   flex: none;
 }
 .tg-lora-reach input {
@@ -140,12 +140,12 @@
   min-width: 70px;
   max-width: 250px;
   height: 4px;
-  accent-color: #3d694a;
+  accent-color: #22262c;
   cursor: pointer;
 }
 .tg-lora-reach b {
   font-size: 9px;
-  color: #3d694a;
+  color: #22262c;
   font-weight: 550;
   min-width: 76px;
 }
@@ -153,9 +153,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid #d6decd;
-  background: #f4f6ee;
-  color: #53664f;
+  border: 1px solid #e5e7eb;
+  background: #ffffff;
+  color: #22262c;
   border-radius: 7px;
   padding: 10px 13px;
   font-size: 10px;
@@ -163,9 +163,9 @@
   white-space: nowrap;
 }
 .tg-lora-controls > button.selected {
-  border-color: #61745c;
-  color: #53664f;
-  background: #e9eee1;
+  border-color: #22262c;
+  color: #22262c;
+  background: #e5e7eb;
 }
 .tg-lora-send {
   display: flex;
@@ -178,8 +178,8 @@
   gap: 5px;
   padding: 4px;
   border-radius: 8px;
-  background: #fafaf4;
-  border: 1px solid #e9eee1;
+  background: #ffffff;
+  border: 1px solid #e5e7eb;
   flex: none;
 }
 .tg-lora-payload > button {
@@ -187,7 +187,7 @@
   align-items: center;
   gap: 6px;
   background: transparent;
-  color: #61745c;
+  color: #22262c;
   border: 0;
   padding: 9px 11px;
   font-size: 10px;
@@ -196,8 +196,8 @@
   white-space: nowrap;
 }
 .tg-lora-payload > button.selected {
-  background: #e9eee1;
-  color: #53664f;
+  background: #e5e7eb;
+  color: #22262c;
 }
 .tg-lora-message {
   flex: 1;
@@ -206,12 +206,12 @@
 .tg-lora-message > span {
   font-size: 7px;
   letter-spacing: 1.2px;
-  color: #61745c;
+  color: #22262c;
   font-weight: 700;
 }
 .tg-lora-message p {
   font-size: 11px;
-  color: #53664f;
+  color: #22262c;
   margin: 6px 0 0;
   line-height: 1.65;
 }
@@ -222,16 +222,16 @@
   justify-content: space-between;
   padding: 13px 16px;
   border-radius: 8px;
-  background: #3d694a;
-  color: #24362c;
-  border: 1px solid #3d694a;
+  background: #22262c;
+  color: #22262c;
+  border: 1px solid #22262c;
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
 }
 .tg-lora-send-button:hover {
-  background: #3d694a;
+  background: #22262c;
 }
 .tg-lora-send-button:disabled {
   opacity: 0.6;
@@ -243,33 +243,33 @@
   justify-content: center;
   gap: 17px;
   padding: 0 25px 22px;
-  color: #d6decd;
+  color: #e5e7eb;
 }
 .tg-lora-journey > span {
   display: flex;
   align-items: center;
   gap: 7px;
   padding: 9px 12px;
-  border: 1px solid #e9eee1;
+  border: 1px solid #e5e7eb;
   border-radius: 7px;
-  color: #61745c;
+  color: #22262c;
   font-size: 10px;
 }
 .tg-lora-journey > span.active {
-  color: #3d694a;
-  border-color: #a4b59c;
-  background: #f4f6ee;
+  color: #22262c;
+  border-color: #4b5057;
+  background: #ffffff;
 }
 .tg-lora-caption {
   font-size: 9px;
-  color: #61745c;
+  color: #22262c;
   line-height: 1.8;
   margin: 0;
   padding: 0 25px 20px;
 }
 .tg-lora button:focus-visible,
 .tg-lora input:focus-visible {
-  outline: 3px solid #3d694a;
+  outline: 3px solid #22262c;
   outline-offset: 3px;
 }
 .tg-lora-fallback {
@@ -280,7 +280,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 18px;
-  color: #3d694a;
+  color: #22262c;
   padding: 35px;
   text-align: center;
 }
@@ -459,111 +459,509 @@
 }
 /* Light, forest-green radio story. */
 .tg-lora {
-  color: #2d4532;
-  background: #fafbf3;
-  border-color: #cbd9be;
+  color: #22262c;
+  background: #ffffff;
+  border-color: #cbd0d7;
 }
 .tg-lora-stage {
-  background: #f6f6ef;
+  background: #ffffff;
 }
 .tg-lora-badge,
 .tg-lora-scale,
 .tg-lora-hint {
-  color: #687f5d;
+  color: #22262c;
 }
 .tg-lora-badge > span {
-  background: #467847;
-  box-shadow: 0 0 0 4px #46784715;
+  background: #22262c;
+  box-shadow: 0 0 0 4px #11182715;
 }
 .tg-lora-scale i {
-  background: #779262;
-  box-shadow: 0 0 0 3px #77926216;
+  background: #4b5057;
+  box-shadow: 0 0 0 3px #11182716;
 }
 .tg-lora-scale > span + span i {
-  background: #356a40;
-  box-shadow: 0 0 0 3px #356a4015;
+  background: #22262c;
+  box-shadow: 0 0 0 3px #11182715;
 }
 .tg-lora-status {
-  border-color: #bed1ad;
-  background: #fffef6eb;
-  color: #4b6a40;
+  border-color: #cbd0d7;
+  background: #111827eb;
+  color: #22262c;
 }
 .tg-lora-status > svg {
-  color: #497c42;
+  color: #22262c;
 }
 .tg-lora-status.success {
-  border-color: #9fbd8b;
-  background: #edf5e1ed;
-  color: #3c6d3e;
+  border-color: #4b5057;
+  background: #111827ed;
+  color: #22262c;
 }
 .tg-lora-status.success > svg {
-  color: #4a8548;
+  color: #22262c;
 }
 .tg-lora-controls {
-  border-color: #cad9bd;
-  background: #f1f5e8;
+  border-color: #cbd0d7;
+  background: #ffffff;
 }
 .tg-lora-reach {
-  color: #607b53;
+  color: #22262c;
 }
 .tg-lora-reach > svg,
 .tg-lora-reach b {
-  color: #477444;
+  color: #22262c;
 }
 .tg-lora-reach input {
-  accent-color: #4e8147;
+  accent-color: #22262c;
 }
 .tg-lora-controls > button {
-  border-color: #bbceac;
-  background: #fafcf3;
-  color: #66815b;
+  border-color: #cbd0d7;
+  background: #ffffff;
+  color: #22262c;
 }
 .tg-lora-controls > button.selected {
-  border-color: #91b17a;
-  background: #e5efd7;
-  color: #487443;
+  border-color: #4b5057;
+  background: #e5e7eb;
+  color: #22262c;
 }
 .tg-lora-payload {
-  background: #f2f6e8;
-  border-color: #c4d6b3;
+  background: #ffffff;
+  border-color: #cbd0d7;
 }
 .tg-lora-payload > button {
-  color: #849876;
+  color: #4b5057;
 }
 .tg-lora-payload > button.selected {
-  background: #deebcb;
-  color: #49703e;
+  background: #e5e7eb;
+  color: #22262c;
 }
 .tg-lora-message > span {
-  color: #8b9c7e;
+  color: #4b5057;
 }
 .tg-lora-message p {
-  color: #627a53;
+  color: #22262c;
 }
 .tg-lora-send-button {
-  background: #2b5b3a;
-  border-color: #3d7148;
-  color: #fffef5;
+  background: #22262c;
+  border-color: #22262c;
+  color: #ffffff;
 }
 .tg-lora-send-button:hover {
-  background: #397347;
+  background: #22262c;
 }
 .tg-lora-journey {
-  color: #b0c0a3;
+  color: #cbd0d7;
 }
 .tg-lora-journey > span {
-  border-color: #cddcbd;
-  color: #7e9470;
+  border-color: #cbd0d7;
+  color: #4b5057;
 }
 .tg-lora-journey > span.active {
-  color: #46743e;
-  border-color: #9fbc87;
-  background: #e7f0d9;
+  color: #22262c;
+  border-color: #4b5057;
+  background: #e5e7eb;
 }
 .tg-lora-caption {
-  color: #7b8f6e;
+  color: #4b5057;
 }
 .tg-lora button:focus-visible,
 .tg-lora input:focus-visible {
-  outline-color: #4b7e48;
+  outline-color: #22262c;
+}
+
+/* Neutral interface. Scene materials retain independent natural colours. */
+.tg-lora {
+  color: #22262c;
+  background: #fff;
+  border-color: #dce1e7;
+}
+.tg-lora-stage {
+  background: #f3f3ee;
+}
+.tg-lora-badge,
+.tg-lora-scale,
+.tg-lora-hint {
+  color: #4b5057;
+}
+.tg-lora-badge > span {
+  background: #006aff;
+  box-shadow: 0 0 0 4px #006aff12;
+}
+.tg-lora-scale i {
+  background: #006aff;
+  box-shadow: 0 0 0 3px #006aff15;
+}
+.tg-lora-scale > span + span i {
+  background: #475467;
+  box-shadow: 0 0 0 3px #47546715;
+}
+.tg-lora-status {
+  border-color: #d9e1eb;
+  background: #fffffff2;
+  color: #30363e;
+}
+.tg-lora-status > svg {
+  color: #006aff;
+}
+.tg-lora-status.success {
+  border-color: #cbdaf0;
+  background: #f2f7ff;
+  color: #30363e;
+}
+.tg-lora-status.success > svg {
+  color: #006aff;
+}
+.tg-lora-controls {
+  border-color: #e0e5eb;
+  background: #f8f9fb;
+}
+.tg-lora-reach {
+  color: #30363e;
+}
+.tg-lora-reach > svg {
+  color: #006aff;
+}
+.tg-lora-reach b {
+  color: #4b5057;
+}
+.tg-lora-reach input {
+  accent-color: #006aff;
+}
+.tg-lora-controls > button {
+  border-color: #d5dce5;
+  background: #fff;
+  color: #4b5057;
+}
+.tg-lora-controls > button.selected {
+  border-color: #a9caff;
+  background: #edf4ff;
+  color: #006aff;
+}
+.tg-lora-payload {
+  background: #f5f7fa;
+  border-color: #d9e0e8;
+}
+.tg-lora-payload > button {
+  color: #4b5057;
+}
+.tg-lora-payload > button.selected {
+  background: #006aff;
+  color: #fff;
+}
+.tg-lora-message > span,
+.tg-lora-message p {
+  color: #4b5057;
+}
+.tg-lora-send-button {
+  background: #006aff;
+  border-color: #006aff;
+  color: #fff;
+}
+.tg-lora-send-button:hover {
+  background: #0056d2;
+}
+.tg-lora-journey {
+  color: #b4bdc9;
+}
+.tg-lora-journey > span {
+  border-color: #d8e0e9;
+  color: #4b5057;
+}
+.tg-lora-journey > span.active {
+  border-color: #b2cefb;
+  background: #edf4ff;
+  color: #006aff;
+}
+.tg-lora-caption {
+  color: #4b5057;
+}
+.tg-lora button:focus-visible,
+.tg-lora input:focus-visible {
+  outline-color: #006aff;
+}
+.tg-lora-fallback {
+  color: #4b5057;
+}
+/* Larger type and rounded touch controls. */
+.tg-lora {
+  border-radius: 24px;
+}
+.tg-lora-badge {
+  font-size: 11px;
+  letter-spacing: 0.8px;
+}
+.tg-lora-scale {
+  font-size: 12px;
+  gap: 17px;
+}
+.tg-lora-hint {
+  font-size: 12px;
+  gap: 8px;
+}
+.tg-lora-status {
+  font-size: 14px;
+  line-height: 1.6;
+  max-width: 420px;
+  border-radius: 20px;
+  padding: 16px 19px;
+  gap: 12px;
+}
+.tg-lora-status > svg {
+  width: 22px;
+  height: 22px;
+}
+.tg-lora-controls {
+  padding: 24px 25px;
+  gap: 24px;
+}
+.tg-lora-reach {
+  font-size: 14px;
+  gap: 12px;
+}
+.tg-lora-reach > svg {
+  width: 20px;
+  height: 20px;
+}
+.tg-lora-reach b {
+  font-size: 12px;
+  min-width: 95px;
+}
+.tg-lora-controls > button {
+  min-height: 44px;
+  padding: 12px 16px;
+  font-size: 12px;
+  border-radius: 14px;
+}
+.tg-lora-payload {
+  border-radius: 16px;
+  padding: 5px;
+  gap: 5px;
+}
+.tg-lora-payload > button {
+  min-height: 43px;
+  padding: 12px 14px;
+  font-size: 12px;
+  border-radius: 12px;
+  gap: 8px;
+}
+.tg-lora-message > span {
+  font-size: 11px;
+  letter-spacing: 0.8px;
+}
+.tg-lora-message p {
+  font-size: 14px;
+  line-height: 1.6;
+  margin-top: 8px;
+}
+.tg-lora-send-button {
+  min-height: 48px;
+  padding: 15px 18px;
+  font-size: 13px;
+  border-radius: 15px;
+  gap: 14px;
+}
+.tg-lora-journey {
+  gap: 18px;
+  padding-bottom: 25px;
+}
+.tg-lora-journey > span {
+  min-height: 46px;
+  font-size: 12px;
+  padding: 12px 15px;
+  border-radius: 14px;
+  gap: 9px;
+}
+.tg-lora-caption {
+  font-size: 12px;
+  line-height: 1.75;
+  padding: 0 25px 23px;
+}
+.tg-lora-fallback p {
+  font-size: 14px;
+}
+@media (max-width: 1000px) {
+  .tg-lora-send {
+    flex-wrap: wrap;
+    gap: 18px;
+  }
+  .tg-lora-message {
+    min-width: 230px;
+  }
+  .tg-lora-controls {
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+  .tg-lora-reach {
+    min-width: 270px;
+  }
+  .tg-lora-journey {
+    gap: 12px;
+  }
+  .tg-lora-journey > span {
+    font-size: 11px;
+    padding: 12px;
+    gap: 7px;
+  }
+}
+@media (max-width: 650px) {
+  .tg-lora {
+    border-radius: 24px;
+  }
+  .tg-lora-stage {
+    height: 470px;
+  }
+  .tg-lora-badge {
+    font-size: 9px;
+    letter-spacing: 0.55px;
+    left: 17px;
+    top: 18px;
+  }
+  .tg-lora-scale {
+    left: 17px;
+    top: 45px;
+    font-size: 11px;
+    gap: 16px;
+  }
+  .tg-lora-hint {
+    left: 17px;
+    bottom: 115px;
+    font-size: 11px;
+    gap: 7px;
+  }
+  .tg-lora-hint svg {
+    width: 14px;
+    height: 14px;
+  }
+  .tg-lora-status {
+    left: 14px;
+    right: 14px;
+    bottom: 17px;
+    font-size: 13px;
+    line-height: 1.55;
+    min-height: 72px;
+    padding: 15px 16px;
+    border-radius: 20px;
+    max-width: none;
+    gap: 11px;
+  }
+  .tg-lora-status > svg {
+    width: 20px;
+    height: 20px;
+  }
+  .tg-lora-controls {
+    padding: 19px 17px;
+    gap: 15px;
+  }
+  .tg-lora-reach {
+    font-size: 13px;
+    flex-basis: 100%;
+    gap: 10px;
+    min-width: 0;
+  }
+  .tg-lora-reach b {
+    font-size: 10px;
+    min-width: 79px;
+  }
+  .tg-lora-controls > button {
+    min-height: 44px;
+    font-size: 12px;
+    padding: 11px 14px;
+    border-radius: 14px;
+  }
+  .tg-lora-send {
+    display: flex;
+    flex-wrap: wrap;
+    padding: 19px 17px;
+    gap: 15px;
+  }
+  .tg-lora-payload {
+    order: 0;
+    flex: 1;
+    border-radius: 16px;
+  }
+  .tg-lora-payload > button {
+    flex: 1;
+    justify-content: center;
+    font-size: 11px;
+    padding: 11px 9px;
+    min-height: 43px;
+    border-radius: 12px;
+  }
+  .tg-lora-payload > button svg {
+    width: 15px;
+    height: 15px;
+  }
+  .tg-lora-message {
+    min-width: 0;
+    flex-basis: 100%;
+    order: 2;
+  }
+  .tg-lora-message > span {
+    font-size: 10px;
+  }
+  .tg-lora-message p {
+    font-size: 13px;
+    line-height: 1.65;
+  }
+  .tg-lora-send-button {
+    order: 1;
+    min-height: 49px;
+    font-size: 11px;
+    padding: 13px 12px;
+    gap: 8px;
+    border-radius: 15px;
+  }
+  .tg-lora-send-button svg {
+    width: 15px;
+    height: 15px;
+  }
+  .tg-lora-journey {
+    padding: 0 17px 21px;
+    gap: 5px;
+  }
+  .tg-lora-journey > span {
+    font-size: 10px;
+    padding: 10px 6px;
+    gap: 6px;
+    min-height: 62px;
+    border-radius: 13px;
+  }
+  .tg-lora-journey > span svg {
+    width: 17px;
+    height: 17px;
+  }
+  .tg-lora-journey > svg {
+    width: 10px;
+  }
+  .tg-lora-caption {
+    font-size: 11px;
+    padding: 0 17px 21px;
+  }
+}
+@media (max-width: 650px) {
+  .tg-lora-badge {
+    font-size: 11px;
+    letter-spacing: 0.3px;
+  }
+  .tg-lora-scale {
+    font-size: 12px;
+  }
+  .tg-lora-reach b {
+    font-size: 12px;
+    min-width: 88px;
+  }
+  .tg-lora-payload > button {
+    font-size: 12px;
+  }
+  .tg-lora-send-button {
+    font-size: 12px;
+  }
+  .tg-lora-message > span {
+    font-size: 11px;
+  }
+  .tg-lora-journey > span {
+    font-size: 11px;
+  }
+  .tg-lora-caption {
+    font-size: 12px;
+  }
 }

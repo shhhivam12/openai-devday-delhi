@@ -9,7 +9,7 @@
   align-items: center;
   gap: 9px;
   font-size: 30px;
-  font-weight: 850;
+  font-weight: 600;
   letter-spacing: -1px;
   margin-bottom: 40px;
 }
@@ -25,7 +25,7 @@
 }
 .evidence > p {
   font-size: 18px;
-  color: #56665b;
+  color: #343a42;
 }
 .evidence-links {
   display: flex;
@@ -42,7 +42,7 @@
 }
 .evidence section {
   padding: 30px 0;
-  border-bottom: 1px solid #d8e0d4;
+  border-bottom: 1px solid #d8dde4;
 }
 .evidence h2 {
   font-size: 25px;
@@ -52,7 +52,7 @@
 .evidence section p,
 .evidence li {
   font-size: 14px;
-  color: #56665b;
+  color: #343a42;
   margin-bottom: 13px;
 }
 .evidence table {
@@ -63,12 +63,12 @@
 .evidence th,
 .evidence td {
   padding: 13px;
-  border: 1px solid #d8e0d4;
+  border: 1px solid #d8dde4;
   text-align: left;
   vertical-align: top;
 }
 .evidence th {
-  background: #f0f2ee;
+  background: #f1f4f8;
 }
 .evidence a:not(.evidence-brand) {
   color: #202120;
@@ -78,7 +78,7 @@
 }
 .evidence footer {
   font-size: 11px;
-  color: #66766a;
+  color: #4b5057;
   padding-top: 25px;
 }
 @media (max-width: 550px) {
@@ -95,3 +95,5 @@
     font-size: 10px;
   }
 }
+
+.evidence{max-width:960px;font-size:16px}.evidence-brand{font-size:34px;font-weight:500}.evidence-brand span{color:#006AFF}.evidence>p{font-size:20px}.evidence-links a{font-size:15px;padding:14px 20px;border-radius:18px}.evidence section p,.evidence li{font-size:16px;line-height:1.8}.evidence table{font-size:14px}.evidence th,.evidence td{padding:16px}.evidence h2{font-size:28px;font-weight:500}.evidence footer{font-size:13px;color:#4b5057}

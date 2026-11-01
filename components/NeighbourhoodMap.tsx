@@ -41,13 +41,13 @@ export default function NeighbourhoodMap({ selectedNode, onSelectNode, connected
       <div className="local-map">
         <div className="local-map-world" style={{ transform: `scale(${zoom})` }}>
           <svg className="local-map-drawing" viewBox="0 0 560 420" preserveAspectRatio="none" aria-hidden="true">
-            <rect width="560" height="420" fill="#edf0ed" />
-            <path d="M0 345C116 278 151 371 269 329S438 346 560 306V420H0Z" fill="#e1e7e3" />
-            <path d="M0 365C116 298 151 391 269 349S438 366 560 326" fill="none" stroke="#f8faf8" strokeWidth="3" />
-            <g fill="#f7f8f6" stroke="#dce0dc" strokeWidth="1.5">
+            <rect width="560" height="420" fill="#f0f2f4" />
+            <path d="M0 345C116 278 151 371 269 329S438 346 560 306V420H0Z" fill="#d7e8f9" />
+            <path d="M0 365C116 298 151 391 269 349S438 366 560 326" fill="none" stroke="#edf5ff" strokeWidth="3" />
+            <g fill="#fafbfc" stroke="#d4dae1" strokeWidth="1.5">
               {blocks.map(([x,y,w,h], index) => <rect key={index} x={x} y={y} width={w} height={h} rx="3" />)}
             </g>
-            <g fill="none" stroke="#d1d7d1" strokeWidth="20" strokeLinecap="round">
+            <g fill="none" stroke="#cfd5dc" strokeWidth="20" strokeLinecap="round">
               <path d="M92-10L101 337M187-10L195 345M278-10L280 339M365-10L366 334M463-10L461 344" />
               <path d="M-10 124L575 117M-10 202L575 190M-10 282L570 260" />
               <path d="M-10 35L571 70" />
@@ -57,11 +57,11 @@ export default function NeighbourhoodMap({ selectedNode, onSelectNode, connected
               <path d="M-10 124L575 117M-10 202L575 190M-10 282L570 260" />
               <path d="M-10 35L571 70" />
             </g>
-            <path d="M327 144L249 171" fill="none" stroke="#94a48e" strokeWidth="2" strokeDasharray="4 5" />
-            <g fill="#adb6ad">
+            <path d="M327 144L249 171" fill="none" stroke="#006AFF" strokeWidth="2" strokeDasharray="4 5" />
+            <g fill="#a5adb7">
               {[[43,77],[56,90],[134,49],[144,164],[228,45],[225,215],[243,226],[309,66],[313,190],[403,72],[416,143],[497,90],[497,163],[507,231],[227,287],[308,260],[148,311]].map(([x,y], i) => <rect key={i} x={x} y={y} width="12" height="9" rx="1" opacity=".5" />)}
             </g>
-            <g fill="#8d968e" fontFamily="Arial, sans-serif" fontSize="11">
+            <g fill="#4b5057" fontFamily="Arial, sans-serif" fontSize="15">
               <text x="210" y="119" transform="rotate(-1 210 119)">School road</text>
               <text x="307" y="194" transform="rotate(-2 307 194)">Market lane</text>
               <text x="72" y="274" transform="rotate(-2 72 274)">Community road</text>

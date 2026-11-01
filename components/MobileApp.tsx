@@ -40,6 +40,7 @@ import {
 import { knowledge, languages } from "../lib/content";
 import "./mobile-app.css";
 import NeighbourhoodMap from "./NeighbourhoodMap";
+import InstallApp from "./InstallApp";
 type Tab = "home" | "community" | "ai" | "guides" | "alerts";
 type EventRecord = {
   id: string;
@@ -87,12 +88,13 @@ export default function MobileApp() {
   const [article, setArticle] = useState<(typeof knowledge)[number] | null>(
     null,
   );
-  const [pack, setPack] = saved("tg-pack-ready:together-v5", false);
+  const [pack, setPack] = saved("tg-pack-ready:together-v7", false);
   const [packBusy, setPackBusy] = useState(false);
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("");
   const [question, setQuestion] = useState("");
-  const [ai, setAi] = useState<{ role: string; text: string; mode?: string }[]>(
+  const [aiProvider, setAiProvider] = useState<"cerebras" | "openai">("cerebras");
+  const [ai, setAi] = useState<{ role: string; text: string; mode?: string; provider?: string }[]>(
     [],
   );
   const [busy, setBusy] = useState(false);
@@ -256,7 +258,7 @@ export default function MobileApp() {
                 ? "Nepali"
                 : languages.find((l) => l.code === language)?.label ||
                   "English",
-          provider: "cerebras",
+          provider: aiProvider,
         }),
       });
       const d: any = await r.json();
@@ -266,6 +268,7 @@ export default function MobileApp() {
           role: "assistant",
           text: d.answer || d.error || "Please try again.",
           mode: d.mode,
+          provider: d.provider,
         },
       ]);
     } catch {
@@ -288,13 +291,16 @@ export default function MobileApp() {
     try {
       await navigator.serviceWorker.register("/sw.js");
       await navigator.serviceWorker.ready;
-      const c = await caches.open("together-v5");
+      const c = await caches.open("together-v7");
       await c.addAll([
         "/",
         "/manifest.webmanifest",
         "/brand/mark-mono.svg",
         "/icon-192.png",
         "/icon-512.png",
+        "/illustrations/helping-people.png",
+        "/illustrations/community-people.png",
+        "/illustrations/coordinator-people.png",
       ]);
       const assets = [
         ...document.querySelectorAll("script[src],link[rel=stylesheet]"),
@@ -397,7 +403,11 @@ export default function MobileApp() {
                 <ArrowUpRight size={17} />
               </button>
               <div className="m-shortcuts">
-                <button onClick={markSafe} disabled={checkin}>
+                <button
+                  className="m-shortcut-safe"
+                  onClick={markSafe}
+                  disabled={checkin}
+                >
                   <span>
                     <CheckCircle2 size={19} />
                   </span>
@@ -415,7 +425,7 @@ export default function MobileApp() {
                   </div>
                   {checkin ? <Check size={15} /> : <ChevronRight size={15} />}
                 </button>
-                <button onClick={() => setTab("ai")}>
+                <button className="m-shortcut-ai" onClick={() => setTab("ai")}>
                   <span>
                     <Sparkles size={19} />
                   </span>
@@ -430,6 +440,7 @@ export default function MobileApp() {
                   <ChevronRight size={15} />
                 </button>
               </div>
+              <InstallApp />
               {unread > 0 && (
                 <button className="m-outbox" onClick={sync} disabled={syncBusy}>
                   <Clock size={17} />
@@ -470,7 +481,11 @@ export default function MobileApp() {
                     .slice(0, 6)
                     .map((r: any) => (
                       <div className="m-request" key={r.id}>
-                        <div className="m-request-icon">
+                        <div
+                          className={
+                            "m-request-icon " + String(r.category).toLowerCase()
+                          }
+                        >
                           {String(r.category)
                             .toLowerCase()
                             .includes("water") ? (
@@ -512,7 +527,12 @@ export default function MobileApp() {
                     ))
                 ) : (
                   <div className="m-no-requests">
-                    <ShieldCheck size={21} />
+                    <img
+                      src="/illustrations/helping-people.png"
+                      alt=""
+                      width={160}
+                      height={160}
+                    />
                     <div>
                       <strong>No requests yet</strong>
                       <p>Your help requests will appear here.</p>
@@ -521,6 +541,13 @@ export default function MobileApp() {
                 )}
               </section>
               <section className="m-connection-card">
+                <img
+                  className="m-hub-people"
+                  src="/illustrations/helping-people.png"
+                  alt=""
+                  width={160}
+                  height={160}
+                />
                 <button className="m-place" onClick={() => setTab("community")}>
                   <span className="m-place-icon">
                     <MapPin size={19} />
@@ -637,7 +664,13 @@ export default function MobileApp() {
                   ))
                 ) : (
                   <div className="m-empty-vector">
-                    <MessageCircle size={29} />
+                    <img
+                      className="m-state-art"
+                      src="/illustrations/community-people.png"
+                      alt=""
+                      width={180}
+                      height={180}
+                    />
                     <h3>Start a conversation.</h3>
                     <p>Updates appear on the nodal centre, too.</p>
                   </div>
@@ -653,7 +686,11 @@ export default function MobileApp() {
               </div>
               <div className="m-ai-info">
                 <Sparkles size={21} />
-                <span>OpenAI model · Cerebras inference</span>
+                <span>{aiProvider === "cerebras" ? "OpenAI gpt-oss · Cerebras inference" : "OpenAI · GPT-6 Luna"}</span>
+              </div>
+              <div className="m-provider-options" aria-label="AI provider">
+                <button disabled={busy} aria-pressed={aiProvider === "cerebras"} onClick={() => setAiProvider("cerebras")}>Cerebras</button>
+                <button disabled={busy} aria-pressed={aiProvider === "openai"} onClick={() => setAiProvider("openai")}>OpenAI</button>
               </div>
               <div className="m-chat" aria-live="polite">
                 {!ai.length && (
@@ -692,6 +729,7 @@ export default function MobileApp() {
                           : a.mode === "offline"
                             ? "OFFLINE GUIDE"
                             : "SAMPLE ANSWER"}
+                        {a.provider ? ` · ${a.provider}` : ""}
                       </span>
                     )}
                     <p>{a.text}</p>
@@ -1056,6 +1094,7 @@ export default function MobileApp() {
                 review.
               </p>
             )}
+            <InstallApp variant="settings" />
             <div className="m-connect-explainer">
               <Wifi size={23} />
               <div>
