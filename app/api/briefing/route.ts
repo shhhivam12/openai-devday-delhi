@@ -1,6 +1,7 @@
 import { demoCards } from "@/lib/server/demo";
 import { configured, failure, guard, json, liveEnabled, providerFetch, readBody, RouteError } from "@/lib/server/http";
 import { isOfficialUrl, normalizeSources, REGIONS } from "@/lib/server/policy.mjs";
+import { sealBriefingPack } from "@/lib/server/briefing-pack.mjs";
 export const dynamic = "force-dynamic";
 
 type Region = keyof typeof REGIONS;
@@ -14,27 +15,28 @@ async function signature(value: string, secret: string) {
   return Array.from(bytes).map((byte) => byte.toString(16).padStart(2, "0")).join("");
 }
 
-async function ticketFor(id: string, region: string, secret: string) {
+async function ticketFor(id: string, region: string, purpose: string, secret: string) {
   const expires = Date.now() + 30 * 60_000;
-  return `${expires}.${region}.${await signature(`${id}.${expires}.${region}`, secret)}`;
+  return `${expires}.${region}.${purpose}.${await signature(`${id}.${expires}.${region}.${purpose}`, secret)}`;
 }
 
-async function verifyTicket(id: string, ticket: string, secret: string): Promise<Region> {
-  const [expiry, region, mac] = ticket.split(".");
-  if (!/^\d+$/.test(expiry ?? "") || Number(expiry) < Date.now() || !Object.hasOwn(REGIONS, region ?? "") || !/^[a-f0-9]{64}$/.test(mac ?? "")) throw new RouteError("Briefing access expired. Prepare the district briefing again.", 403);
-  const expected = await signature(`${id}.${expiry}.${region}`, secret);
+async function verifyTicket(id: string, ticket: string, secret: string): Promise<{ region: Region; purpose: string }> {
+  const [expiry, region, purpose, mac] = ticket.split(".");
+  if (!/^\d+$/.test(expiry ?? "") || Number(expiry) < Date.now() || !Object.hasOwn(REGIONS, region ?? "") || !["preparedness", "bulletins"].includes(purpose) || !/^[a-f0-9]{64}$/.test(mac ?? "")) throw new RouteError("Briefing access expired. Prepare the district briefing again.", 403);
+  const expected = await signature(`${id}.${expiry}.${region}.${purpose}`, secret);
   let difference = 0; for (let i = 0; i < expected.length; i++) difference |= expected.charCodeAt(i) ^ mac.charCodeAt(i);
   if (difference !== 0) throw new RouteError("This briefing ticket is invalid.", 403);
-  return region as Region;
+  return { region: region as Region, purpose };
 }
 
-function normalizeRun(run: any, region: Region) {
+async function normalizeRun(run: any, region: Region, purpose: string, secret: string) {
   const sources = normalizeSources((run.output?.grounding ?? []).flatMap((entry: any) => entry.citations ?? []));
   const groundedUrls = new Set(sources.map((source: { url: string }) => source.url));
-  const cards = (Array.isArray(run.output?.structured?.cards) ? run.output.structured.cards : []).filter((card: any) => typeof card.title === "string" && typeof card.summary === "string" && isOfficialUrl(card.sourceUrl) && groundedUrls.has(card.sourceUrl)).slice(0, 5).map((card: any) => ({ title: card.title.slice(0, 160), summary: card.summary.slice(0, 1000), sourceUrl: card.sourceUrl, sourceTitle: sources.find((source: { url: string }) => source.url === card.sourceUrl)?.title ?? "Official source", publishedAt: typeof card.publishedAt === "string" ? card.publishedAt.slice(0, 40) : null, retrievedAt: new Date().toISOString(), reviewStatus: "pending", kind: "research" }));
+  const cards = (Array.isArray(run.output?.structured?.cards) ? run.output.structured.cards : []).filter((card: any) => typeof card.title === "string" && card.title.trim() && typeof card.summary === "string" && isOfficialUrl(card.sourceUrl) && card.sourceUrl.length <= 2000 && groundedUrls.has(card.sourceUrl)).slice(0, 4).map((card: any) => ({ title: card.title.slice(0, 160), summary: card.summary.slice(0, 1000), sourceUrl: card.sourceUrl, sourceTitle: sources.find((source: { url: string }) => source.url === card.sourceUrl)?.title ?? "Official source", publishedAt: typeof card.publishedAt === "string" ? card.publishedAt.slice(0, 40) : null, retrievedAt: new Date().toISOString(), reviewStatus: "pending", kind: "research" }));
   if (!cards.length) throw new RouteError("Exa returned no supported official-source cards. Use the reference pack and retry later.", 502);
-  const response = { ok: true, mode: "live", provider: "Exa Agent", configured: true, region: REGIONS[region].name, answer: `${cards.length} source-linked findings prepared for coordinator review. These findings are not an official alert or a confirmation of current shelter availability.`, cards, sources, pending: false, notice: "Web research gathered online. A coordinator must approve findings before adding them to a community’s saved pack." };
-  completed.set(region, { expires: Date.now() + 60 * 60_000, response });
+  const pack = await sealBriefingPack(region, cards, secret);
+  const response = { ok: true, mode: "live", provider: "Exa Agent", configured: true, region: REGIONS[region].name, purpose, pack, answer: `${cards.length} source-linked findings prepared for coordinator review. These findings are not an official alert or a confirmation of current shelter availability.`, cards, sources, pending: false, notice: "Web research gathered online. A coordinator must approve findings before adding them to a community’s saved pack." };
+  completed.set(`${region}:${purpose}`, { expires: pack.expiresAt, response });
   return response;
 }
 
@@ -46,19 +48,22 @@ export async function POST(request: Request) {
     const body = await readBody(request);
     const region = (body.region ?? "nepal") as Region;
     if (typeof region !== "string" || !Object.hasOwn(REGIONS, region)) throw new RouteError("Choose nepal, uttarakhand or himachal.");
+    const purpose = body.purpose ?? "preparedness";
+    if (purpose !== "preparedness" && purpose !== "bulletins") throw new RouteError("Choose preparedness or bulletins.");
+    const cacheKey = `${region}:${purpose}`;
     const key = process.env.EXA_API_KEY;
     if (!key || !liveEnabled()) return json({ ok: true, mode: "demo", provider: "Exa Agent", configured: Boolean(key), region: REGIONS[region].name, pending: false, answer: "Saved source pack preview. This is a historical/preparedness reference pack; no live web research has been performed.", cards: demoCards, sources: demoCards.map((card) => ({ title: card.sourceTitle, url: card.sourceUrl })), notice: "Add an Exa server key and enable live AI to prepare a fresh district briefing." });
-    const cached = completed.get(region);
+    const cached = completed.get(cacheKey);
     if (cached && cached.expires > Date.now()) return json({ ...cached.response, cached: true });
-    const existing = runs.get(region);
+    const existing = runs.get(cacheKey);
     if (existing && existing.expires > Date.now()) return json(pending(existing.id, existing.ticket));
     const selected = REGIONS[region];
-    const query = `Prepare a brief disaster-readiness information pack for ${selected.name}. Today is ${new Date().toISOString().slice(0, 10)}. Search ONLY these official domains: ${selected.domains.join(", ")}. Find up to 4 authoritative preparedness documents or issued flood/weather bulletins. Preserve document issue dates. Clearly identify historical material. Return only verifiable claims supported by the linked page and a citation for every card. Do not infer current safe routes, emergency contact numbers, open shelters, resource availability or official approval. No personal data or contact enrichment. Each card needs title, a brief factual summary, sourceUrl and publishedAt (null if unknown). This is research for human review, never an official warning.`;
+    const query = `Prepare a brief disaster-readiness information pack for ${selected.name}. Today is ${new Date().toISOString().slice(0, 10)}. Search ONLY these official domains: ${selected.domains.join(", ")}. Find up to 4 ${purpose === "bulletins" ? "issued flood/weather bulletins, preferring recent dated publications; state clearly if nothing current can be established" : "authoritative flood-preparedness and community readiness documents"}. Preserve document issue dates. Clearly identify historical material. Return only verifiable claims supported by the linked page and a citation for every card. Do not infer current safe routes, emergency contact numbers, open shelters, resource availability or official approval. No personal data or contact enrichment. Each card needs title, a brief factual summary, sourceUrl and publishedAt (null if unknown). This is research for human review, never an official warning.`;
     const run = await providerFetch("https://api.exa.ai/agent/runs", key, { query, effort: "low", outputSchema: { type: "object", properties: { cards: { type: "array", maxItems: 4, items: { type: "object", properties: { title: { type: "string" }, summary: { type: "string" }, sourceUrl: { type: "string" }, publishedAt: { type: ["string", "null"] } }, required: ["title", "summary", "sourceUrl", "publishedAt"] } } }, required: ["cards"] } }, 25_000);
-    if (run.status === "completed") return json(normalizeRun(run, region));
+    if (run.status === "completed") return json(await normalizeRun(run, region, purpose, key));
     if (run.status === "failed" || run.status === "cancelled" || typeof run.id !== "string" || !/^[a-zA-Z0-9_-]{1,160}$/.test(run.id)) throw new RouteError("The research provider could not prepare this briefing. Please retry later.", 502);
-    const ticket = await ticketFor(run.id, region, key);
-    runs.set(region, { id: run.id, ticket, expires: Date.now() + 30 * 60_000 });
+    const ticket = await ticketFor(run.id, region, purpose, key);
+    runs.set(cacheKey, { id: run.id, ticket, expires: Date.now() + 30 * 60_000 });
     return json(pending(run.id, ticket));
   } catch (error) { return failure(error, "Exa Agent"); }
 }
@@ -72,10 +77,10 @@ export async function GET(request: Request) {
     const id = params.get("runId") ?? "";
     const ticket = params.get("ticket") ?? "";
     if (!/^[a-zA-Z0-9_-]{1,160}$/.test(id)) throw new RouteError("A valid runId is required.");
-    const region = await verifyTicket(id, ticket, key);
+    const { region, purpose } = await verifyTicket(id, ticket, key);
     const run = await providerFetch(`https://api.exa.ai/agent/runs/${encodeURIComponent(id)}`, key);
-    if (run.status === "completed") { runs.delete(region); return json(normalizeRun(run, region)); }
-    if (run.status === "failed" || run.status === "cancelled") { runs.delete(region); throw new RouteError("Research could not be completed. Please prepare the briefing again.", 502); }
+    if (run.status === "completed") { runs.delete(`${region}:${purpose}`); return json(await normalizeRun(run, region, purpose, key)); }
+    if (run.status === "failed" || run.status === "cancelled") { runs.delete(`${region}:${purpose}`); throw new RouteError("Research could not be completed. Please prepare the briefing again.", 502); }
     return json(pending(id, ticket));
   } catch (error) { return failure(error, "Exa Agent"); }
 }

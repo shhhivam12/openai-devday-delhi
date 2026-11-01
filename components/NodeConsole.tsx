@@ -27,7 +27,7 @@ import {
   X,
 } from "lucide-react";
 import "./node-console.css";
-import DistrictBriefing from "./DistrictBriefing";
+import CoordinatorWorkspace from "./CoordinatorWorkspace";
 
 type RequestItem = {
   id: string;
@@ -152,8 +152,6 @@ export default function NodeConsole({
   appUrl?: string;
 }) {
   const [node, setNode] = useState("school");
-  const [briefOpen, setBriefOpen] = useState(false);
-  const closeBrief = useCallback(() => setBriefOpen(false), []);
   const [snapshot, setSnapshot] = useState<Snapshot>(empty);
   const [connected, setConnected] = useState(false);
   const [view, setView] = useState("overview");
@@ -232,6 +230,7 @@ export default function NodeConsole({
   async function sendMessage(e: React.FormEvent) {
     e.preventDefault();
     if (!message.trim()) return;
+    if (message.trim().length > 800) { setToast("Shorten this draft to 800 characters before sharing."); return; }
     setBusy("message");
     try {
       const response = await fetch("/api/network", {
@@ -292,6 +291,7 @@ export default function NodeConsole({
             { id: "overview", name: "Overview", icon: Activity },
             { id: "requests", name: "Requests", icon: Bell },
             { id: "community", name: "Community", icon: MessageCircle },
+            { id: "copilot", name: "AI workspace", icon: Globe2 },
             { id: "resources", name: "Resources", icon: Package },
           ].map(({ id, name, icon: Icon }) => (
             <button
@@ -339,11 +339,11 @@ export default function NodeConsole({
           <div className="node-header-actions">
             <button
               className="node-brief-trigger"
-              aria-label="Open district brief"
-              onClick={() => setBriefOpen(true)}
+              aria-label="Open AI workspace"
+              onClick={() => setView("copilot")}
             >
               <Globe2 size={15} />
-              <span>District brief</span>
+              <span>AI workspace</span>
             </button>
             <span
               className={"node-live " + (!connected ? "node-disconnected" : "")}
@@ -371,7 +371,7 @@ export default function NodeConsole({
             <div>
               <span className="node-eyebrow">{selected.code}</span>
               <h1>
-                {view === "community"
+                {view === "copilot" ? "Your coordination copilot." : view === "community"
                   ? "Community updates"
                   : view === "resources"
                     ? "Resource board"
@@ -399,6 +399,10 @@ export default function NodeConsole({
               <button onClick={refresh}>Retry</button>
             </div>
           )}
+          <div hidden={view !== "copilot"}>
+            <CoordinatorWorkspace key={node} nodeName={selected.name} counts={{ open: snapshot.counts.open, checkedIn: snapshot.counts.checkedIn, messages: snapshot.counts.messages, byCategory: snapshot.requests.filter(r => r.status !== "completed").reduce<Record<string, number>>((total, r) => { total[r.category] = (total[r.category] || 0) + 1; return total; }, {}) }} onUseDraft={text => { setMessage(text); setView("community"); setToast("Draft added to the community composer. Review and edit before sending."); }}/>
+          </div>
+          {view === "overview" && <section className="node-copilot-entry" aria-label="Coordinator research and drafting"><span className="node-copilot-entry-icon"><Globe2 size={25}/></span><div><h2>Turn evidence into a useful update.</h2><p>Research with Exa. Draft with Cerebras. Review before sharing.</p></div><button onClick={() => setView("copilot")}>Open AI workspace <ArrowRight size={17}/></button></section>}
           {(view === "overview" || view === "requests") && (
             <>
               <section
@@ -659,17 +663,18 @@ export default function NodeConsole({
                   )}
                 </div>
                 <form className="node-compose" onSubmit={sendMessage}>
-                  <input
+                  <textarea
                     aria-label="Community update"
                     value={message}
-                    maxLength={800}
+                    rows={3}
                     onChange={(e) => setMessage(e.target.value)}
                     placeholder="Share a useful update…"
                   />
+                  <span className={"node-compose-count " + (message.length > 800 ? "over-limit" : "")} aria-live="polite">{message.length}/800{message.length > 800 ? " · Shorten draft" : ""}</span>
                   <button
                     type="submit"
                     aria-label="Send community update"
-                    disabled={!message.trim() || busy === "message"}
+                    disabled={!message.trim() || message.trim().length > 800 || busy === "message"}
                   >
                     <Send size={19} />
                   </button>
@@ -745,7 +750,6 @@ export default function NodeConsole({
           </footer>
         </main>
       </div>
-      {briefOpen && <DistrictBriefing onClose={closeBrief} />}
       {toast && (
         <div className="node-toast" role="status">
           <Check size={18} />

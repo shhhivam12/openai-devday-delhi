@@ -22,7 +22,8 @@ All routes return JSON and `Cache-Control: no-store`. The common envelope is `{ 
 | `GET /api/status` | No body | Provider configuration booleans, live opt-in, physical transport status |
 | `POST /api/assist` | `{ message, language?, provider?: "openai" \| "cerebras", context? }` | Short answer and supplied reference links |
 | `POST /api/classify` | `{ message }` | Resource category, attention flag, priority, provenance |
-| `POST /api/briefing` | `{ region?: "nepal" \| "uttarakhand" \| "himachal" }` | Saved example pack or live research run |
+| `POST /api/coordinator` | `{ task, message, pack?, selected?, counts, history? }` | Cerebras coordinator draft from signed research or aggregate counts |
+| `POST /api/briefing` | `{ region?: "nepal" \| "uttarakhand" \| "himachal", purpose?: "preparedness" \| "bulletins" }` | Saved example pack or live research run |
 | `GET /api/briefing?runId=…&ticket=…` | Signed ticket returned by the POST | Pending or completed Exa research |
 
 Message text is limited to 1,200 characters and optional context to 3,000 characters. Bodies are capped at 16 KiB. Cross-origin browser calls are rejected. Requests time out rather than hang. The server fetches only fixed provider endpoints; callers cannot supply an arbitrary fetch URL.
@@ -66,3 +67,14 @@ New OpenAI, Cerebras, and Exa results need internet in this build. A cached app 
 ## Operational data
 
 The demo scene contains fictional people, shelters, supplies, and response assignments. Historical Nepal material is dated explicitly. Official-source research is not automatically an official warning. An answer must never invent safe routes, shelter opening status, rescue confirmation, or current local conditions. Production deployment needs source governance, translated-content review, verified operator identity, privacy controls, and field validation.
+
+
+## Coordinator research-to-draft workspace
+
+`CoordinatorWorkspace.tsx` is the nodal portal’s explicit online AI workflow. It makes no provider calls merely by mounting. The operator chooses a district and a research focus, starts Exa, selects findings, then starts a separate Cerebras action or follow-up chat. The previous simple research dialog is no longer the main portal entry.
+
+The shared backend `/api/briefing` now returns a one-hour signed research pack on successful live completion. Region, expiry and the accepted title/summary/source/date fields are signed with HMAC-SHA256. Cache and pending-run keys include region and research focus. `/api/coordinator` validates the pack and selected indexes before sending only selected excerpts to Cerebras; it does not trust arbitrary client-supplied document context. It accepts bounded conversation history and aggregate exercise counts. Handover needs no research pack, and strips unrecognized count fields. Per-isolate throttles and provider timeouts apply. This is not a hard billing cap.
+
+The independently hosted nodal Site proxies `/api/coordinator` to the existing bound PWA backend using its existing server-only service access. It adds no provider key to the nodal client or a new third-party destination. Save draft downloads a text file. Use in community composer only stages text for editing; the existing explicit Send action remains necessary. Drafts longer than 800 characters cannot be sent until edited. No AI workflow writes official alerts, dispatches responders or distributes physical-node content packs.
+
+Research signatures protect integrity between the two calls; they are not factual verification or government approval. Referenced documents and generated translations need coordinator review. Current Exa findings are cloud context, not implemented local RAG.

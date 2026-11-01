@@ -71,7 +71,7 @@ The independent Sites have separate hosting identities. The nodal server uses a 
 2. **Inspect the proposed node.** Open the IoT bench and select a colored jumper wire or pin. Identify the Raspberry Pi, ESP32, SX127x radio, breadboard and antenna. Switch to “LoRa in action”: follow a short help request and its acknowledgement in **Community mesh**, push a simulated **Government bulletin**, or inspect the separate **LoRaWAN sensors** gateway path.
 3. **Send a real exercise record.** Open the PWA and nodal console at the same hub, such as School. Submit a fictional four-person drinking-water request. It should appear in the laptop queue.
 4. **Close the loop.** Acknowledge the request on the laptop and watch the phone refresh. Continue to assigned/completed to inspect the lifecycle. A database acknowledgement is not a promise of rescue.
-5. **Inspect AI provenance.** Ask a brief question using OpenAI or Cerebras. Prepare a district briefing with Exa; open its source links and check issue/retrieval dates and pending review status.
+5. **Inspect AI provenance.** Ask a brief question using OpenAI or Cerebras. Open AI workspace in the nodal centre, research with Exa, select findings and generate a Cerebras draft. Open the source links and check issue/retrieval dates and pending review status.
 6. **Demonstrate the offline boundary.** Prepare the app and guides while connected. Disconnect the device or make the origin unavailable, reload, read a saved guide, inspect the map and draft a request. Restore connectivity and use the outgoing queue’s sync control. Offline drafts should remain visibly unsent until delivery succeeds.
 
 Use fictional names and needs throughout. No physical radio is needed to review the web MVP. Each 3D view has a **Full screen** control, with **Scene**, **Controls** and **Exit** navigation. Escape exits the expanded view. Scene state stays mounted across fullscreen entry/exit; browsers without native fullscreen use an expanded-page fallback.
@@ -190,7 +190,19 @@ Together’s assistance route can call **Cerebras Inference** with **OpenAI’s 
 
 The intended benefit is responsive assistance when a resident or volunteer has a working connection: clarify the details needed in a help request, explain supplied information in plain language, and keep the answer short enough to use on a phone. The integration has returned a readable live answer with HTTP 200. **We have not measured a latency improvement or tokens-per-second result**, and no on-device Cerebras service is running.
 
-Exa and Cerebras are currently separate features. The next integration milestone is an explicit, reviewed flow from a sourced briefing into a concise, translated information pack. Merely connecting both APIs does not prove that all answers are grounded in the latest Exa results.
+### The coordinator AI workspace: Exa evidence → Cerebras drafts
+
+The nodal portal now connects these services in one visual workspace, available from **AI workspace** in the sidebar, the header and the overview card. This is intended for a connected coordinator, while residents may be using cached essentials elsewhere.
+
+1. **Research with Exa.** Choose Nepal, Uttarakhand or Himachal and select Readiness guides or Issued bulletins. A deliberate button starts a bounded asynchronous Agent run; opening the workspace makes no research call. Source cards preserve summaries, issue/retrieval dates and links, and remain pending human review.
+2. **Choose the evidence.** Check or uncheck individual findings. The server signs the actual accepted research excerpts in a one-hour HMAC-SHA256 pack. The drafting endpoint checks the signature, expiry and selected indexes before calling Cerebras. This protects the integrity of the context passed from research to drafting; it does not establish factual correctness or official approval.
+3. **Draft with Cerebras.** Click Summarise sources, Draft a Hindi update or What needs checking?, or ask a follow-up question in chat. Cerebras receives only the selected signed excerpts, bounded conversation history and aggregate exercise counts. The task asks for numbered source references and preserves uncertainty and document dates. The UI exposes the exact sources supplied to each answer; model citation accuracy still requires review.
+4. **Prepare a handover.** This action works independently of research and uses only aggregate open-request, check-in and message counts. Category breakdowns describe loaded records and may be a subset of the open total. Personal names, message bodies and precise resident locations are not automatically added to the AI context.
+5. **Keep the human in charge.** Save a draft as text, or move a Hindi draft into the community composer. Moving it does not send it. The coordinator edits, checks sources and explicitly sends a short update through the existing exercise-room workflow. The composer shows an 800-character limit; longer drafts must be shortened. No model action dispatches help or publishes an official warning.
+
+The assistant uses Cerebras cloud inference with OpenAI `gpt-oss-120b`, low reasoning effort and a bounded completion. Its response time is shown per call, not as a comparative speed claim. Provider failures leave the question available for retry. Research runs can be left waiting without blocking the requests board. Both services require internet; no local LLM or physical radio integration is implied.
+
+The future milestone is authorized approval and distribution of reviewed, versioned content to physical local nodes. The current research-pack signature binds drafting context; it is not a government signature, approval workflow or implemented offline content-distribution system.
 
 ### OpenAI: assistance and accountable routing
 
@@ -392,7 +404,8 @@ Use a gitignored environment file supported by the local runtime, or server-side
 | `POST /api/network` | UUID-based request, check-in, message or status update |
 | `POST /api/assist` | OpenAI or Cerebras assistance |
 | `POST /api/classify` | OpenAI routing suggestion with deterministic SOS protection |
-| `POST /api/briefing` | Start or retrieve a cached district research run |
+| `POST /api/briefing` | Start or retrieve research by region and focus; return signed findings on completion |
+| `POST /api/coordinator` | Cerebras chat, selected-source briefing/Hindi drafts, evidence gaps and aggregate handovers |
 | `GET /api/briefing?runId=…&ticket=…` | Signed polling for an Exa research result |
 
 ## Validation and known limits
@@ -423,7 +436,8 @@ app/                       Resident, demo, node and project routes
 components/
   MobileApp.tsx            Resident PWA and outgoing queue
   NodeConsole.tsx          Coordinator dashboard
-  DistrictBriefing.tsx     Exa research UI
+  CoordinatorWorkspace.tsx Exa research, source selection and Cerebras coordinator chat
+  DistrictBriefing.tsx     Legacy district research panel
   DemoLanding.tsx          Demo entry and walkthrough
   CitySimulation.tsx       Fictional community scene
   HardwareSimulation.tsx   Interactive electronics concept
