@@ -19,8 +19,20 @@ const actions: { task: Task; label: string; prompt: string; icon: typeof FileTex
 const regions: Record<string, string> = { nepal: "Kathmandu Valley, Nepal", uttarakhand: "Uttarakhand, India", himachal: "Himachal Pradesh, India" };
 function readableDate(value?: string | null) {
   if (!value) return "Issue date unknown";
+  if (!/^\d{4}-\d{2}-\d{2}/.test(value)) return value;
   const d = new Date(value);
   return Number.isNaN(d.getTime()) ? value : d.toLocaleDateString("en-IN", { day: "numeric", month: "short", year: "numeric" });
+}
+function AnswerText({ text, sources = [] }: { text: string; sources?: Source[] }) {
+  function inline(line: string) {
+    return line.split(/(\*\*[^*]+\*\*|\[\d+\])/g).map((part, i) => {
+      if (part.startsWith("**") && part.endsWith("**")) return <strong key={i}>{part.slice(2, -2)}</strong>;
+      const number = /^\[(\d+)\]$/.exec(part);
+      const source = number && sources[Number(number[1]) - 1];
+      return source ? <a className="cw-inline-source" href={source.sourceUrl} target="_blank" rel="noreferrer" key={i} aria-label={`Source ${number![1]}: ${source.title}`}>{part}</a> : part;
+    });
+  }
+  return <>{text.split("\n").map((line, i) => !line.trim() ? null : /^\s*---+\s*$/.test(line) ? <hr key={i}/> : <p className="cw-answer-line" key={i}>{inline(line.replace(/^#{1,6}\s+/, ""))}</p>)}</>;
 }
 export default function CoordinatorWorkspace({ counts, nodeName, onUseDraft }: { counts: Counts; nodeName: string; onUseDraft: (text: string) => void }) {
   const [region, setRegion] = useState("nepal");
@@ -128,9 +140,9 @@ export default function CoordinatorWorkspace({ counts, nodeName, onUseDraft }: {
           {!turns.length && <div className="cw-chat-empty"><span className="cw-chat-orb"><MessageCircle size={31}/><Sparkles size={18}/></span><h3>Less searching.<br/>More time for people.</h3><p>Turn selected evidence into a clear briefing, or prepare the next team’s handover.</p><div className="cw-starter-grid">{actions.map(({ task, label, prompt, icon: Icon, needsSources }) => <button key={task} disabled={thinking || researching || needsSources && !canUseSources} onClick={() => ask(task, prompt)}><Icon size={21}/><span>{label}<small>{needsSources ? "Uses selected Exa sources" : "Uses this hub’s exercise counts"}</small></span><ChevronRight size={17}/></button>)}</div></div>}
           {turns.map(turn => <article key={turn.id} className={"cw-turn cw-turn-" + turn.role}>
             <div className="cw-turn-label">{turn.role === "assistant" ? <><Sparkles size={15}/>{turn.mode === "live" ? "Cerebras · live draft" : "Sample workflow"}{typeof turn.elapsedMs === "number" && <small>{(turn.elapsedMs / 1000).toFixed(1)}s API response</small>}</> : <>You · coordinator</>}</div>
-            <div className="cw-turn-text">{turn.text}</div>
+            <div className="cw-turn-text">{turn.role === "assistant" ? <AnswerText text={turn.text} sources={turn.sources}/> : turn.text}</div>
             {!!turn.sources?.length && <div className="cw-answer-sources"><span>Sources supplied to this answer</span>{turn.sources.map((source, i) => <a href={source.sourceUrl} key={source.sourceUrl + i} target="_blank" rel="noreferrer">[{i + 1}] {source.title}<ArrowUpRight size={13}/></a>)}</div>}
-            {turn.role === "assistant" && turn.mode === "live" && <div className="cw-draft-actions"><span><ShieldCheck size={13}/> Review required</span><button onClick={() => download(turn)}><ArrowDownToLine size={15}/>Save draft</button>{turn.task === "translate" && <button onClick={() => onUseDraft(draftText(turn))}><MessageCircle size={15}/>Use in community composer</button>}</div>}
+            {turn.role === "assistant" && turn.mode === "live" && <div className="cw-draft-actions"><span><ShieldCheck size={13}/> Review required</span><button onClick={() => download(turn)}><ArrowDownToLine size={15}/>Save draft</button>{turn.task === "translate" && <button onClick={() => onUseDraft(`${/^DRAFT/i.test(turn.text.trim()) ? "" : "DRAFT — review required\n"}${turn.text.replace(/\*\*/g, "")}\n\n${turn.sources?.map((s, i) => `[${i + 1}] ${s.sourceUrl}`).join("\n") || ""}`)}><MessageCircle size={15}/>Use in community composer</button>}</div>}
           </article>)}
           {thinking && <div className="cw-thinking" role="status"><LoaderCircle className="cw-spin" size={18}/><span>Cerebras is preparing your draft…</span></div>}
           {chatError && <div className="cw-error" role="alert">{chatError}<span>Your question is back in the composer.</span></div>}

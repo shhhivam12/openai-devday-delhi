@@ -102,3 +102,13 @@ Physical LoRa/Wi-Fi deployment, sensors, radio range, flood physics, local LLMs,
 - Expanded the native system architecture SVG to 1800 × 1740 with a matching 2400 × 2320 PNG and updated primary-source notes. Diagram URLs carry a new asset revision so an existing PWA cache can fetch the updated poster.
 - Opened the node-contents anchor from the hardware view and expanded/collapsed the native RAG explanation. Desktop layout reviewed; phone viewport width and document scroll width both measured 390px.
 - README details retrieval-first RAG, optional local-model/speech candidates, data/queue operation, pack approval/freshness, hardware requirements and unmeasured field limits. No local AI or new provider calls were installed or made.
+
+
+## Coordinator AI workspace — 1 November 2026
+
+- Root and independent nodal TypeScript checks and production builds passed. All 17 meaningful policy, transport and new source-pack tests passed. The new tests reject unsigned/tampered/expired packs, invalid selected-source indexes and invalid counts; handover strips unrecognized fields.
+- Desktop visual review and 390 × 844 responsive review completed; document scroll width remained 390 px. Mounting the workspace made no provider call; the local unconfigured preview clearly labeled sample research and sample responses.
+- The independent hosted nodal portal returned four live Exa findings. Deselecting three findings passed only the selected source into Cerebras. Live summary, Hindi draft and follow-up chat returned the selected document's June 2018 historical date and one supplied source.
+- Use in community composer staged a draft without sending it. The initial 1,015-character full export was correctly blocked by the 800-character send limit. The handoff was then shortened to the draft body and source URLs; full metadata remains in the download.
+- A live handover initially inferred no staff presence from zero recorded check-ins. The task was tightened: counts are now formatted by the server, Cerebras is asked only for neutral follow-up questions, and prompts explicitly distinguish resident records from staff attendance and absence. Model text and translations still need human review.
+- Exa research and Cerebras responses are online features. No physical radios, government alert publishing or local-node RAG were activated by this workspace.
