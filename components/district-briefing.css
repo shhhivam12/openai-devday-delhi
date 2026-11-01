@@ -1,0 +1,344 @@
+.node-brief-trigger {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  border: 1px solid #dbe3f2 !important;
+  background: #f6f8fd !important;
+  color: #3058f4 !important;
+  padding: 9px 11px;
+  border-radius: 7px;
+  font-size: 10px !important;
+  font-weight: 650;
+  white-space: nowrap;
+}
+.district-overlay {
+  position: fixed;
+  inset: 0;
+  background: #0b142680;
+  backdrop-filter: blur(5px);
+  display: flex;
+  justify-content: flex-end;
+  z-index: 90;
+  font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
+  color: #0b1426;
+}
+.district-panel {
+  background: #f8faff;
+  width: 540px;
+  max-width: 100%;
+  height: 100%;
+  box-shadow: -20px 0 70px #06132d30;
+  display: flex;
+  flex-direction: column;
+}
+.district-panel * {
+  box-sizing: border-box;
+}
+.district-panel header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  background: #fff;
+  border-bottom: 1px solid #e0e7f1;
+  padding: 25px 26px;
+}
+.district-icon {
+  display: grid;
+  place-items: center;
+  background: #e8efff;
+  color: #3058f4;
+  width: 42px;
+  height: 42px;
+  border-radius: 12px;
+  flex-shrink: 0;
+}
+.district-panel header h2 {
+  font-size: 23px;
+  font-weight: 750;
+  letter-spacing: -0.7px;
+  margin: 0 0 5px;
+}
+.district-panel header > div > span {
+  font-size: 10px;
+  color: #8c9bb3;
+}
+.district-panel button {
+  font: inherit;
+  border: 0;
+  cursor: pointer;
+  color: inherit;
+}
+.district-panel header > button {
+  margin-left: auto;
+  background: transparent;
+  padding: 8px;
+  color: #6c7e9a;
+  border-radius: 6px;
+  display: grid;
+  place-items: center;
+}
+.district-panel button:focus-visible,
+.district-panel a:focus-visible,
+.district-panel select:focus-visible {
+  outline: 3px solid #21c9c4;
+  outline-offset: 3px;
+}
+.district-toolbar {
+  display: flex;
+  gap: 12px;
+  align-items: center;
+  padding: 20px 25px;
+  border-bottom: 1px solid #e0e7f1;
+}
+.district-toolbar select {
+  font: inherit;
+  font-size: 12px;
+  padding: 11px;
+  border: 1px solid #dbe3f1;
+  background: #fff;
+  border-radius: 7px;
+  color: #52637f;
+  min-width: 0;
+  flex: 1;
+}
+.district-toolbar button {
+  font-size: 11px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 7px;
+  background: #3058f4;
+  color: white;
+  padding: 12px;
+  border-radius: 7px;
+  min-height: 39px;
+}
+.district-toolbar button:disabled {
+  opacity: 0.5;
+  cursor: default;
+}
+.district-body {
+  flex: 1;
+  overflow: auto;
+  padding: 22px 25px;
+}
+.district-loading {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  padding: 40px 15px;
+  color: #62789f;
+}
+.district-loading svg {
+  color: #3058f4;
+  animation: district-spin 1.5s linear infinite;
+}
+.district-loading strong {
+  font-size: 15px;
+  margin: 17px 0 10px;
+  letter-spacing: -0.2px;
+}
+.district-loading p {
+  font-size: 11px;
+  color: #96a4bb;
+  margin: 0;
+  line-height: 1.7;
+}
+.district-mode {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  color: #7c8daa;
+  background: #edf1f9;
+  border: 1px solid #dce4f2;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 9px;
+  font-weight: 700;
+  letter-spacing: 0.4px;
+  margin-bottom: 20px;
+}
+.district-mode > span {
+  height: 5px;
+  width: 5px;
+  border-radius: 50%;
+  background: #8fa0be;
+}
+.district-mode.live {
+  background: #e6f7f3;
+  color: #258d7c;
+  border-color: #cbece4;
+}
+.district-mode.live > span {
+  background: #21b99a;
+}
+.district-mode small {
+  margin-left: auto;
+  font-size: 8px;
+  font-weight: 400;
+}
+.district-source {
+  padding: 22px;
+  border: 1px solid #dfe6f1;
+  border-radius: 11px;
+  background: white;
+  margin-bottom: 16px;
+}
+.district-source-meta {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 8px;
+  font-weight: 650;
+  letter-spacing: 0.5px;
+  color: #8397b8;
+  text-transform: uppercase;
+}
+.district-source h3 {
+  font-size: 19px;
+  font-weight: 700;
+  letter-spacing: -0.4px;
+  line-height: 1.4;
+  margin: 12px 0;
+}
+.district-source p {
+  font-size: 12px;
+  color: #7c8ea9;
+  line-height: 1.8;
+  margin: 0;
+}
+.district-dates {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px 15px;
+  font-size: 8px;
+  color: #9aa8bd;
+  line-height: 1.7;
+  margin-top: 17px;
+}
+.district-source a {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  color: #3058f4;
+  text-decoration: none;
+  font-size: 10px;
+  font-weight: 600;
+  gap: 13px;
+  border-top: 1px solid #edf1f7;
+  margin-top: 17px;
+  padding-top: 15px;
+}
+.district-panel footer {
+  display: flex;
+  align-items: flex-start;
+  gap: 9px;
+  padding: 19px 25px;
+  font-size: 9px;
+  line-height: 1.7;
+  color: #8193b0;
+  border-top: 1px solid #dfe6f2;
+  background: #f0f4fc;
+}
+.district-panel footer > svg {
+  flex-shrink: 0;
+  color: #7d99c0;
+}
+.district-error {
+  background: #edf2ff;
+  padding: 22px;
+  border: 1px solid #d7e1f8;
+  border-radius: 10px;
+  color: #59719b;
+}
+.district-error strong {
+  font-size: 15px;
+}
+.district-error p {
+  font-size: 12px;
+  line-height: 1.7;
+  margin: 12px 0 20px;
+}
+.district-error button {
+  display: flex;
+  align-items: center;
+  gap: 9px;
+  background: #3058f4;
+  color: #fff;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 11px;
+}
+.district-pending {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  color: #7f90ac;
+  font-size: 11px;
+  padding: 15px 0;
+  line-height: 1.7;
+}
+@keyframes district-spin {
+  to {
+    transform: rotate(360deg);
+  }
+}
+@media (max-width: 650px) {
+  .node-brief-trigger {
+    padding: 8px !important;
+    gap: 0;
+  }
+  .node-brief-trigger > span {
+    display: none;
+  }
+  .district-panel header {
+    padding: 21px 19px;
+  }
+  .district-panel header h2 {
+    font-size: 21px;
+  }
+  .district-panel header > div > span {
+    font-size: 8px;
+  }
+  .district-toolbar {
+    padding: 17px;
+    gap: 8px;
+  }
+  .district-toolbar select {
+    font-size: 10px;
+    padding: 11px 9px;
+  }
+  .district-toolbar button {
+    font-size: 10px;
+    padding: 11px;
+  }
+  .district-toolbar button > span {
+    display: none;
+  }
+  .district-body {
+    padding: 18px;
+  }
+  .district-source {
+    padding: 19px;
+  }
+  .district-source h3 {
+    font-size: 18px;
+  }
+  .district-source p {
+    font-size: 11px;
+  }
+  .district-panel footer {
+    padding: 17px;
+    font-size: 8px;
+  }
+  .district-mode {
+    font-size: 8px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .district-loading svg {
+    animation: none;
+  }
+}

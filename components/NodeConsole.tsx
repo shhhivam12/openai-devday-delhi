@@ -13,6 +13,7 @@ import {
   Droplets,
   ExternalLink,
   Home,
+  Globe2,
   MapPin,
   MessageCircle,
   Package,
@@ -26,6 +27,7 @@ import {
   X,
 } from "lucide-react";
 import "./node-console.css";
+import DistrictBriefing from "./DistrictBriefing";
 
 type RequestItem = {
   id: string;
@@ -150,6 +152,8 @@ export default function NodeConsole({
   appUrl?: string;
 }) {
   const [node, setNode] = useState("school");
+  const [briefOpen, setBriefOpen] = useState(false);
+  const closeBrief = useCallback(() => setBriefOpen(false), []);
   const [snapshot, setSnapshot] = useState<Snapshot>(empty);
   const [connected, setConnected] = useState(false);
   const [view, setView] = useState("overview");
@@ -332,6 +336,14 @@ export default function NodeConsole({
             <strong>{selected.name}</strong>
           </div>
           <div className="node-header-actions">
+            <button
+              className="node-brief-trigger"
+              aria-label="Open district brief"
+              onClick={() => setBriefOpen(true)}
+            >
+              <Globe2 size={15} />
+              <span>District brief</span>
+            </button>
             <span
               className={"node-live " + (!connected ? "node-disconnected" : "")}
             >
@@ -718,6 +730,7 @@ export default function NodeConsole({
           </footer>
         </main>
       </div>
+      {briefOpen && <DistrictBriefing onClose={closeBrief} />}
       {toast && (
         <div className="node-toast" role="status">
           <Check size={18} />

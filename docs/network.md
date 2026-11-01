@@ -23,6 +23,8 @@ Messages are bounded to 800 characters, names to 60, location to 120, and people
 
 The nodal dashboard uses relative `/api/network` calls. A separate nodal Site can forward fixed network requests to the mobile Site using server-side private service access. Credentials must not reach the browser. All shared state remains in the mobile Site's D1 database.
 
+The independent nodal Worker enables Cloudflare's `global_fetch_strictly_public` compatibility flag so outbound requests use public hostname routing, including another Site in the same zone. Both network and briefing proxies allow only the configured Together backend. Sanitized failure codes distinguish upstream access, redirects, timeouts and fetch failures.
+
 ## Validation and deployment boundary
 
 Test the three actions from a phone or separate browser and observe them in the laptop console. The console polls every five seconds. Real disconnected operation needs a physical local server and transport adapter. A cloud deployment cannot communicate without a working network path. Resource planning quantities on the nodal dashboard are explicitly local illustrative values and are not shared stock records.

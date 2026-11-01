@@ -13,10 +13,29 @@
 - Production offline-cache check: prepared the pack on built Worker preview, stopped the preview server, reloaded the cached app, then opened the saved flood explainer successfully. This verifies origin-unavailable behavior in this browser, not every mobile OS/browser.
 - Vector logo assets and 192/512 px PNG PWA icons rendered and checked by the logo task.
 
-## Still to validate after keys
+## Live provider validation
 
-One live request each for OpenAI Responses, OpenAI Decisions, Cerebras and Exa; Exa asynchronous completion/citations; optional microphone transcription; actual account rate limits and charges. Regional-language content beyond the supplied primary interface strings needs native-speaker review.
+- Hosted status confirmed live mode, Cerebras and Exa configured, OpenAI absent.
+- Cerebras returned HTTP 200, `mode: live`, with a readable gpt-oss-120b answer.
+- Exa Agent accepted a low-effort asynchronous research run. Signed polling completed with three cards, official-domain source links, preserved issue dates and pending human-review status.
+- A hosted D1 request was saved successfully with HTTP 201. No real emergency service was contacted.
+- The separate hosted nodal Site read that same record and acknowledged it through its fixed server-side proxy (HTTP 200 read; HTTP 201 update). Cloudflare public-hostname routing was enabled to support cross-Site requests.
+
+OpenAI Responses, OpenAI Decisions and optional microphone transcription still await an OpenAI key. Regional-language content beyond the supplied primary interface strings needs native-speaker review. Account billing totals and field outcomes are not measured.
 
 ## Boundaries
 
-Physical LoRa/Wi-Fi deployment, sensors, radio range, flood physics, local LLMs, real rescue dispatch, cross-device synchronization, authenticated coordinator roles, and field outcomes are not validated by this browser MVP. Application records currently persist within one browser. Production business and government pilot are proposals.
+Physical LoRa/Wi-Fi deployment, sensors, radio range, flood physics, local LLMs, real rescue dispatch, authenticated coordinator roles and field outcomes are not validated by this browser MVP. Exercise requests, check-ins and messages persist in shared D1; outgoing retries and prepared guides remain device-local. Production business and government pilot are proposals.
+
+## Three-site redesign verification
+
+- Three separate source checkouts and Site identities created for demo, nodal centre and resident PWA.
+- TypeScript checks passed across all three source trees during integration.
+- 14 server tests now pass, including shared-network input and action validation.
+- Applied the generated seven-statement schema migration to local D1.
+- In separate browser tabs, created a four-person water request in the resident PWA, observed it in the nodal console, acknowledged it, and observed the acknowledgement refresh in the resident PWA.
+- Selected Home 12 in the city: fictional Basnet family details and assigned connection updated.
+- Selected DIO0 in the wiring view: GPIO26 mapping and explanation updated.
+- New PWA uses a bold fist, navy/blue/cyan theme, large icon controls and scoped offline wording. Saved guides and drafting requests need no internet/Wi-Fi; communication still needs a local link.
+- Latest resident presentation uses dark cards, blue/violet accents, original vector neighbours and floating icon navigation; reviewed at desktop and 390 × 844 phone viewport, including the help form.
+- LoRa valley view completed a simulated SOS/acknowledgement. Selecting a photo explained why the demonstration uses short text. Reach and terrain are qualitative controls, not measured RF predictions.

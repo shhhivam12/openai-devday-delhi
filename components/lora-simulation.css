@@ -1,0 +1,459 @@
+.tg-lora {
+  font-family: inherit;
+  color: #e8f3ff;
+  background: #0c1930;
+  border: 1px solid #254165;
+  border-radius: 22px;
+  overflow: hidden;
+  width: 100%;
+}
+.tg-lora-stage {
+  height: 530px;
+  position: relative;
+  isolation: isolate;
+  background: #081225;
+  overflow: hidden;
+}
+.tg-lora-canvas {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  width: 100%;
+}
+.tg-lora-canvas canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+  touch-action: none;
+  outline: none;
+}
+.tg-lora-badge {
+  position: absolute;
+  top: 23px;
+  left: 25px;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  font-size: 9px;
+  letter-spacing: 1.3px;
+  font-weight: 700;
+  color: #b4c8e2;
+  pointer-events: none;
+}
+.tg-lora-badge > span {
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: #58dce8;
+  box-shadow: 0 0 0 4px #58dce81a;
+}
+.tg-lora-scale {
+  position: absolute;
+  right: 25px;
+  top: 22px;
+  display: flex;
+  gap: 15px;
+  font-size: 9px;
+  color: #94b5d8;
+  pointer-events: none;
+}
+.tg-lora-scale > span {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+.tg-lora-scale i {
+  display: block;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #3e8bff;
+  box-shadow: 0 0 0 3px #3e8bff1a;
+}
+.tg-lora-scale > span + span i {
+  background: #5ce0e8;
+  box-shadow: 0 0 0 3px #5ce0e81a;
+}
+.tg-lora-hint {
+  position: absolute;
+  left: 25px;
+  bottom: 22px;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 9px;
+  color: #839fbf;
+  pointer-events: none;
+}
+.tg-lora-status {
+  position: absolute;
+  right: 23px;
+  bottom: 19px;
+  max-width: 370px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 13px 16px;
+  border: 1px solid #315479;
+  background: #10243ee8;
+  backdrop-filter: blur(8px);
+  border-radius: 10px;
+  color: #b9d7f6;
+  font-size: 11px;
+  line-height: 1.6;
+}
+.tg-lora-status > svg {
+  flex: none;
+  color: #67dfe9;
+}
+.tg-lora-status.success {
+  border-color: #2d786d;
+  color: #94e6ce;
+  background: #0c302ee8;
+}
+.tg-lora-status.success > svg {
+  color: #79e9c6;
+}
+.tg-lora-controls {
+  display: flex;
+  align-items: center;
+  gap: 28px;
+  padding: 22px 25px;
+  border-top: 1px solid #203959;
+  border-bottom: 1px solid #203959;
+  background: #0e1e36;
+}
+.tg-lora-reach {
+  display: flex;
+  align-items: center;
+  gap: 11px;
+  flex: 1;
+  font-size: 11px;
+  color: #a5c0df;
+}
+.tg-lora-reach > svg {
+  color: #67cbdc;
+  flex: none;
+}
+.tg-lora-reach input {
+  flex: 1;
+  min-width: 70px;
+  max-width: 250px;
+  height: 4px;
+  accent-color: #57dce9;
+  cursor: pointer;
+}
+.tg-lora-reach b {
+  font-size: 9px;
+  color: #67d6e3;
+  font-weight: 550;
+  min-width: 76px;
+}
+.tg-lora-controls > button {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid #345276;
+  background: #142944;
+  color: #a6bfdd;
+  border-radius: 7px;
+  padding: 10px 13px;
+  font-size: 10px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tg-lora-controls > button.selected {
+  border-color: #4386ac;
+  color: #8ce2f0;
+  background: #123c51;
+}
+.tg-lora-send {
+  display: flex;
+  align-items: center;
+  gap: 23px;
+  padding: 22px 25px;
+}
+.tg-lora-payload {
+  display: flex;
+  gap: 5px;
+  padding: 4px;
+  border-radius: 8px;
+  background: #071327;
+  border: 1px solid #253f62;
+  flex: none;
+}
+.tg-lora-payload > button {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  background: transparent;
+  color: #718eaf;
+  border: 0;
+  padding: 9px 11px;
+  font-size: 10px;
+  border-radius: 5px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tg-lora-payload > button.selected {
+  background: #163e69;
+  color: #8bdcf6;
+}
+.tg-lora-message {
+  flex: 1;
+  min-width: 0;
+}
+.tg-lora-message > span {
+  font-size: 7px;
+  letter-spacing: 1.2px;
+  color: #557a9f;
+  font-weight: 700;
+}
+.tg-lora-message p {
+  font-size: 11px;
+  color: #aac5e3;
+  margin: 6px 0 0;
+  line-height: 1.65;
+}
+.tg-lora-send-button {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  justify-content: space-between;
+  padding: 13px 16px;
+  border-radius: 8px;
+  background: #277be7;
+  color: #fff;
+  border: 1px solid #3d91f5;
+  font-size: 11px;
+  font-weight: 600;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.tg-lora-send-button:hover {
+  background: #338cf5;
+}
+.tg-lora-send-button:disabled {
+  opacity: 0.6;
+  cursor: wait;
+}
+.tg-lora-journey {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 17px;
+  padding: 0 25px 22px;
+  color: #345674;
+}
+.tg-lora-journey > span {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  padding: 9px 12px;
+  border: 1px solid #203b58;
+  border-radius: 7px;
+  color: #6180a3;
+  font-size: 10px;
+}
+.tg-lora-journey > span.active {
+  color: #7bdce5;
+  border-color: #367f92;
+  background: #12303f;
+}
+.tg-lora-caption {
+  font-size: 9px;
+  color: #6f8aab;
+  line-height: 1.8;
+  margin: 0;
+  padding: 0 25px 20px;
+}
+.tg-lora button:focus-visible,
+.tg-lora input:focus-visible {
+  outline: 3px solid #62ddf3;
+  outline-offset: 3px;
+}
+.tg-lora-fallback {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 18px;
+  color: #7cadd6;
+  padding: 35px;
+  text-align: center;
+}
+.tg-lora-fallback p {
+  font-size: 13px;
+  max-width: 250px;
+  line-height: 1.7;
+}
+@media (min-width: 1500px) {
+  .tg-lora-stage {
+    height: 590px;
+  }
+}
+@media (max-width: 900px) {
+  .tg-lora-stage {
+    height: 480px;
+  }
+  .tg-lora-send {
+    gap: 15px;
+  }
+  .tg-lora-payload > button {
+    font-size: 9px;
+    padding: 9px;
+  }
+  .tg-lora-message p {
+    font-size: 10px;
+  }
+  .tg-lora-send-button {
+    font-size: 10px;
+    padding: 12px;
+  }
+  .tg-lora-controls {
+    gap: 15px;
+  }
+  .tg-lora-reach {
+    gap: 8px;
+    font-size: 10px;
+  }
+  .tg-lora-reach b {
+    font-size: 8px;
+    min-width: 65px;
+  }
+  .tg-lora-journey {
+    gap: 12px;
+  }
+  .tg-lora-journey > span {
+    font-size: 9px;
+    padding: 9px;
+  }
+}
+@media (max-width: 650px) {
+  .tg-lora {
+    border-radius: 16px;
+  }
+  .tg-lora-stage {
+    height: 430px;
+  }
+  .tg-lora-badge {
+    left: 16px;
+    top: 17px;
+    font-size: 7px;
+    letter-spacing: 0.8px;
+  }
+  .tg-lora-scale {
+    right: auto;
+    left: 16px;
+    top: 43px;
+    font-size: 8px;
+    gap: 15px;
+  }
+  .tg-lora-hint {
+    left: 16px;
+    bottom: 87px;
+    font-size: 8px;
+  }
+  .tg-lora-status {
+    left: 15px;
+    right: 15px;
+    bottom: 16px;
+    max-width: none;
+    padding: 12px 14px;
+    font-size: 10px;
+    min-height: 49px;
+  }
+  .tg-lora-status > svg {
+    width: 17px;
+  }
+  .tg-lora-controls {
+    padding: 17px 16px;
+    flex-wrap: wrap;
+    gap: 13px;
+  }
+  .tg-lora-reach {
+    flex-basis: 100%;
+    font-size: 10px;
+    gap: 8px;
+  }
+  .tg-lora-reach input {
+    max-width: none;
+  }
+  .tg-lora-reach b {
+    font-size: 8px;
+    min-width: 65px;
+  }
+  .tg-lora-controls > button {
+    font-size: 9px;
+    padding: 9px 11px;
+  }
+  .tg-lora-send {
+    padding: 18px 16px;
+    display: grid;
+    grid-template-columns: 1fr auto;
+    gap: 15px 11px;
+  }
+  .tg-lora-payload {
+    grid-column: 1;
+    justify-self: start;
+  }
+  .tg-lora-payload > button {
+    font-size: 9px;
+    padding: 9px 10px;
+  }
+  .tg-lora-payload > button svg {
+    width: 14px;
+  }
+  .tg-lora-message {
+    grid-column: 1/3;
+    grid-row: 2;
+  }
+  .tg-lora-message p {
+    font-size: 11px;
+  }
+  .tg-lora-send-button {
+    grid-column: 2;
+    grid-row: 1;
+    font-size: 9px;
+    gap: 8px;
+    padding: 12px 10px;
+  }
+  .tg-lora-send-button svg {
+    width: 14px;
+  }
+  .tg-lora-journey {
+    padding: 0 16px 18px;
+    gap: 5px;
+    justify-content: space-between;
+  }
+  .tg-lora-journey > span {
+    font-size: 7px;
+    padding: 8px 6px;
+    gap: 4px;
+    flex-direction: column;
+    text-align: center;
+    min-height: 48px;
+    justify-content: center;
+    flex: 1;
+  }
+  .tg-lora-journey > span svg {
+    width: 14px;
+    height: 14px;
+  }
+  .tg-lora-journey > svg {
+    width: 9px;
+    flex: none;
+  }
+  .tg-lora-caption {
+    font-size: 8px;
+    padding: 0 16px 18px;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .tg-lora * {
+    transition: none !important;
+    scroll-behavior: auto !important;
+  }
+}

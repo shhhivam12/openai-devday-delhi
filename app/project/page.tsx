@@ -43,7 +43,7 @@ export default function Project() {
           <li>
             Explore 24 Kathmandu-inspired homes, four hubs, family details and
             animated connections. Inspect the Pi, ESP32, SX127x radio and jumper
-            wires.
+            wires. Send an illustrated SOS across the LoRa valley.
           </li>
         </ol>
       </section>
@@ -84,7 +84,7 @@ export default function Project() {
               ],
               [
                 "OpenAI / Cerebras / Exa",
-                "Server adapters, disabled until keys and live opt-in",
+                "Cerebras cloud assistance and Exa source-linked research verified live. OpenAI Responses, Decisions and voice await a server key",
               ],
               [
                 "Physical LoRa, local AI and sensor readings",
@@ -107,7 +107,8 @@ export default function Project() {
           <b>OpenAI</b> supports Decisions, Responses and optional speech
           transcription. <b>Cerebras</b> serves OpenAI gpt-oss-120b for cloud
           assistance. <b>Exa Agent</b> prepares source-linked district
-          briefings. Cloud API calls remain disabled before key setup.
+          briefings. Cerebras and Exa have passed live checks; OpenAI awaits its
+          server key. Cloud calls need internet.
         </p>
       </section>
       <section id="business">

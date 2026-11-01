@@ -22,6 +22,7 @@ import {
 } from "lucide-react";
 import CitySimulation from "./CitySimulation";
 import HardwareSimulation from "./HardwareSimulation";
+import LoRaSimulation from "./LoRaSimulation";
 import "./demo-landing.css";
 
 type Props = { appUrl?: string; nodeUrl?: string };
@@ -77,8 +78,8 @@ export default function DemoLanding({
   appUrl = "https://together-relief.shiiim.chatgpt.site",
   nodeUrl = "https://together-node.shiiim.chatgpt.site",
 }: Props) {
-  const [mode, setMode] = useState<"city" | "hardware">("city");
-  function explore(next: "city" | "hardware") {
+  const [mode, setMode] = useState<"city" | "hardware" | "radio">("city");
+  function explore(next: "city" | "hardware" | "radio") {
     setMode(next);
     document
       .getElementById("explore")
@@ -97,6 +98,7 @@ export default function DemoLanding({
         <nav aria-label="Demo sections">
           <button onClick={() => explore("city")}>The city</button>
           <button onClick={() => explore("hardware")}>The node</button>
+          <button onClick={() => explore("radio")}>LoRa in action</button>
           <a href="#pilot">For districts</a>
         </nav>
         <a className="demo-nav-launch" href={appUrl}>
@@ -183,7 +185,7 @@ export default function DemoLanding({
               <h2>
                 {mode === "city"
                   ? "A city. Four nodes. A way to reach each other."
-                  : "Small hardware. A human purpose."}
+                  : mode === "hardware" ? "Small hardware. A human purpose." : "Small messages. Across the valley."}
               </h2>
             </div>
             <div className="demo-mode-tabs" aria-label="Simulation mode">
@@ -201,19 +203,26 @@ export default function DemoLanding({
               >
                 <Cpu size={17} /> Inside the node
               </button>
+              <button
+                className={mode === "radio" ? "selected" : ""}
+                onClick={() => setMode("radio")}
+                aria-pressed={mode === "radio"}
+              >
+                <Radio size={17} /> LoRa in action
+              </button>
             </div>
           </div>
           <p className="demo-explorer-hint">
             {mode === "city"
               ? "Hover or tap a home. Meet the family. Follow its connection."
-              : "Tap a component. Follow the jumper wires. See what connects to what."}
+              : mode === "hardware" ? "Tap a component. Follow the jumper wires. See what connects to what." : "Send an SOS. Explore radio reach and what a ridge changes."}
           </p>
           <div
             className={
               mode === "city" ? "demo-city-frame" : "demo-hardware-frame"
             }
           >
-            {mode === "city" ? <CitySimulation /> : <HardwareSimulation />}
+            {mode === "city" ? <CitySimulation /> : mode === "hardware" ? <HardwareSimulation /> : <LoRaSimulation />}
           </div>
           <div className="demo-simulation-note">
             <span>

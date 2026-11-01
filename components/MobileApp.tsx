@@ -2,6 +2,8 @@
 import { useEffect, useState, useRef } from "react";
 import {
   LifeBuoy,
+  Droplets,
+  Utensils,
   Heart,
   Check,
   CheckCircle2,
@@ -94,6 +96,7 @@ export default function MobileApp() {
   const [busy, setBusy] = useState(false);
   const [syncBusy, setSyncBusy] = useState(false);
   const [recent, setRecent] = saved<any[]>("tg-recent", []);
+  const [routing, setRouting] = saved<Record<string, string>>("tg-routing", {});
   const timer = useRef<ReturnType<typeof setTimeout> | null>(null);
   const hi = language === "hi";
   const say = (s: string) => {
@@ -181,6 +184,26 @@ export default function MobileApp() {
           ? "फ़ोन में सुरक्षित। जुड़ने पर भेजें।"
           : "Saved on this phone. Retry when connected.",
     );
+    if (ok && event.type === "request")
+      fetch("/api/classify", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify({
+          message: event.category + ": " + event.message,
+        }),
+      })
+        .then((r) => r.json())
+        .then((data: any) => {
+          if (data.ok)
+            setRouting((all) => ({
+              ...all,
+              [event.id]:
+                (data.mode === "live" ? "OpenAI Decisions" : "Demo rules") +
+                " · " +
+                data.category,
+            }));
+        })
+        .catch(() => {});
     return ok;
   }
   async function sync() {
@@ -300,7 +323,7 @@ export default function MobileApp() {
           href="https://together-demo.shiiim.chatgpt.site"
         >
           <img src="/brand/mark.svg" alt="" />
-          together<span>®</span>
+          together
         </a>
         <div className="m-vector-people" aria-hidden="true">
           <svg viewBox="0 0 330 300">
@@ -412,6 +435,7 @@ export default function MobileApp() {
                   {hi ? "नमस्ते" : "HELLO"}, {name.split(" ")[0]}
                 </span>
                 <h2>{hi ? "आप अकेले नहीं हैं।" : "You’re not alone."}</h2>
+                <CommunityPortraits />
               </div>
               <div className="m-offline-note">
                 <CloudOff size={23} />
@@ -512,6 +536,9 @@ export default function MobileApp() {
                     </div>
                     <div>
                       <strong>{r.category}</strong>
+                      {routing[r.id] && (
+                        <small className="m-route-label">{routing[r.id]}</small>
+                      )}
                       <p>
                         {r.people} people · {r.location}
                       </p>
@@ -880,10 +907,10 @@ export default function MobileApp() {
             >
               <div className="m-category-options">
                 {[
-                  { name: "Water", icon: "◉" },
-                  { name: "Food", icon: "▱" },
-                  { name: "Shelter", icon: "⌂" },
-                  { name: "Rescue", icon: "✚" },
+                  { name: "Water", icon: <Droplets size={23} /> },
+                  { name: "Food", icon: <Utensils size={23} /> },
+                  { name: "Shelter", icon: <Home size={23} /> },
+                  { name: "Rescue", icon: <LifeBuoy size={23} /> },
                 ].map((c, i) => (
                   <label key={c.name}>
                     <input
@@ -1069,4 +1096,96 @@ export default function MobileApp() {
 }
 function ArrowDownIcon() {
   return <ChevronRight size={20} />;
+}
+
+function CommunityPortraits() {
+  return (
+    <div
+      className="m-community-art"
+      aria-label="Illustration of neighbours supporting one another"
+      role="img"
+    >
+      <span className="m-community-glow" />
+      <svg
+        className="m-portrait m-portrait-back"
+        viewBox="0 0 80 80"
+        aria-hidden="true"
+      >
+        <defs>
+          <clipPath id="tg-avatar-back">
+            <circle cx="40" cy="40" r="37" />
+          </clipPath>
+        </defs>
+        <circle
+          cx="40"
+          cy="40"
+          r="39"
+          fill="#1c2740"
+          stroke="#536a96"
+          strokeWidth="2"
+        />
+        <g clipPath="url(#tg-avatar-back)">
+          <path d="M6 85c0-25 12-39 34-39s34 14 34 39" fill="#69b9cf" />
+          <path d="M33 44h14v15c-5 5-9 5-14 0Z" fill="#b5816b" />
+          <ellipse cx="40" cy="31" rx="18" ry="22" fill="#d4a78b" />
+          <path
+            d="M21 29c-2-14 5-23 19-23s23 10 19 27l-7-16c-8 3-19 6-31 6Z"
+            fill="#11192b"
+          />
+          <circle cx="34" cy="33" r="1.5" fill="#141c2c" />
+          <circle cx="46" cy="33" r="1.5" fill="#141c2c" />
+          <path
+            d="M35 42q5 4 10 0"
+            fill="none"
+            stroke="#805547"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </g>
+      </svg>
+      <svg
+        className="m-portrait m-portrait-main"
+        viewBox="0 0 90 90"
+        aria-hidden="true"
+      >
+        <defs>
+          <clipPath id="tg-avatar-main">
+            <circle cx="45" cy="45" r="41" />
+          </clipPath>
+        </defs>
+        <circle
+          cx="45"
+          cy="45"
+          r="43"
+          fill="#263365"
+          stroke="#91a0ff"
+          strokeWidth="2"
+        />
+        <g clipPath="url(#tg-avatar-main)">
+          <path d="M5 94c0-27 15-42 40-42s40 15 40 42" fill="#8d83ff" />
+          <path d="M36 47h18v18c-6 5-12 5-18 0Z" fill="#93644f" />
+          <ellipse cx="45" cy="35" rx="20" ry="24" fill="#b78267" />
+          <path
+            d="M24 38c-5-24 5-32 21-32 17 0 28 13 21 36l-5-22c-12 0-20-4-24-7-2 9-5 15-13 17Z"
+            fill="#0c1325"
+          />
+          <circle cx="37" cy="36" r="1.7" fill="#11192b" />
+          <circle cx="52" cy="36" r="1.7" fill="#11192b" />
+          <path
+            d="M39 46q6 4 12 0"
+            fill="none"
+            stroke="#6d4438"
+            strokeWidth="2"
+            strokeLinecap="round"
+          />
+        </g>
+      </svg>
+      <span className="m-portrait-heart">
+        <Heart size={11} fill="currentColor" />
+      </span>
+      <span className="m-portrait-link">
+        <Check size={11} />
+      </span>
+    </div>
+  );
 }
