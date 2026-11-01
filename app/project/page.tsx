@@ -1,206 +1,165 @@
-import Link from "next/link";
-export const metadata = {
-  title: "Together — Project, evidence, and government pilot",
-};
+import "./project.css";
+export const metadata = { title: "Together — Project evidence and pilot" };
 export default function Project() {
   return (
-    <main className="project-page">
-      <a className="brand" href="/">
+    <main className="evidence">
+      <a className="evidence-brand" href="/">
         <img src="/brand/mark.svg" alt="" />
-        <span>together.</span>
+        together.
       </a>
-      <p className="eyebrow">DEV DAY EXCHANGE · NEW DELHI · TEAM SISYPHUS</p>
-      <h1>Connection is a form of care.</h1>
-      <p className="project-lead">
-        Together is a multilingual disaster-readiness and relief-coordination
-        PWA for communities and district authorities. It brings help requests,
-        check-ins, saved information, and a human view of relief operations into
-        one place.
+      <h1>Community relief, connected.</h1>
+      <p>
+        Three focused experiences: an interactive demonstration, a laptop nodal
+        centre, and a resident PWA.
       </p>
-      <a className="button primary" href="/">
-        Explore the interactive demo →
-      </a>
+      <div className="evidence-links">
+        <a href="https://together-demo.shiiim.chatgpt.site">
+          Explore the demo ↗
+        </a>
+        <a href="https://together-node.shiiim.chatgpt.site">
+          Open nodal centre ↗
+        </a>
+        <a href="/">Open mobile app ↗</a>
+      </div>
       <section>
-        <h2>The problem</h2>
-        <p>
-          When disasters disrupt normal communication, residents struggle to
-          share needs and coordinators lose a clear picture of resources.
-          Together explores community Wi-Fi hubs and short LoRa messages as a
-          way to keep essential coordination close to people.
-        </p>
-        <p>
-          The visual scenario is inspired by Nepal’s September 2024 floods. All
-          residents, shelters, inventories, radio coverage, water levels and
-          response assignments shown in the application are illustrative.
-        </p>
-      </section>
-      <section>
-        <h2>Try a complete journey</h2>
+        <h2>Try the complete journey</h2>
         <ol>
           <li>
-            Choose Hindi, English or Nepali. Garhwali, Kumaoni and Kangri are
-            identified regional pack previews.
+            Open the mobile app. Choose a node, then submit a fictional help
+            request.
           </li>
           <li>
-            Submit a help request. Open the relief desk to acknowledge it and
-            record an assignment.
+            Open the nodal centre at the same node. Acknowledge or assign the
+            request.
           </li>
           <li>
-            Ask Together a question. Observe the response provenance: sample,
-            offline guide or live API.
+            Watch the mobile status update. Send a community message from either
+            view.
           </li>
           <li>
-            Prepare the offline pack; open saved guides and try an offline
-            reload.
+            Download the guides. Disconnect and reload to read saved text;
+            requests wait on the device until connectivity returns.
           </li>
           <li>
-            Explore the flood diorama and the Raspberry Pi / ESP32 / LoRa node
-            assembly.
-          </li>
-          <li>
-            Prepare a district briefing. Without keys this is a labeled
-            saved-source preview.
+            Explore 24 Kathmandu-inspired homes, four hubs, family details and
+            animated connections. Inspect the Pi, ESP32, SX127x radio and jumper
+            wires.
           </li>
         </ol>
       </section>
       <section>
-        <h2>Implementation and evidence</h2>
-        <div className="project-table">
-          <table>
-            <thead>
-              <tr>
-                <th>Capability</th>
-                <th>Status in this build</th>
+        <h2>What is implemented</h2>
+        <table>
+          <thead>
+            <tr>
+              <th>Capability</th>
+              <th>Evidence / boundary</th>
+            </tr>
+          </thead>
+          <tbody>
+            {[
+              [
+                "Shared requests, check-ins and messages",
+                "Cloudflare D1 persistence; separate mobile and nodal sites share one backend",
+              ],
+              [
+                "Request acknowledgements and assignments",
+                "Real shared demo state; no emergency service is contacted",
+              ],
+              [
+                "Offline essentials",
+                "Cached app and six included guides; on-device outgoing queue",
+              ],
+              [
+                "No internet / Wi-Fi claim",
+                "Applies to saved guides and drafting requests. Messaging needs a local connection; hosted demo sync uses internet",
+              ],
+              [
+                "Language",
+                "Hindi primary actions, English; Nepali selection and regional pack previews remain limited",
+              ],
+              [
+                "3D city and hardware",
+                "Interactive illustrations; fictional families and conceptual pin connections",
+              ],
+              [
+                "OpenAI / Cerebras / Exa",
+                "Server adapters, disabled until keys and live opt-in",
+              ],
+              [
+                "Physical LoRa, local AI and sensor readings",
+                "Deployment roadmap; no hardware test or local model running",
+              ],
+            ].map(([a, b]) => (
+              <tr key={a}>
+                <td>{a}</td>
+                <td>{b}</td>
               </tr>
-            </thead>
-            <tbody>
-              {[
-                [
-                  "Help requests, check-ins, community updates",
-                  "Working, saved in this browser",
-                ],
-                [
-                  "Coordinator acknowledgements and assignments",
-                  "Working demonstration; browser-local records",
-                ],
-                [
-                  "Knowledge library and offline pack",
-                  "6 included guides; service-worker cache after preparation",
-                ],
-                [
-                  "Language interface",
-                  "Hindi primary actions, English and Nepali; regional language pack previews",
-                ],
-                [
-                  "Interactive flood and hardware scenes",
-                  "Working Three.js 3D illustrations; hardware and radio simulated",
-                ],
-                [
-                  "OpenAI, Cerebras, Exa routes",
-                  "Implemented server adapters; live verification pending API keys",
-                ],
-                [
-                  "Voice transcription",
-                  "Optional OpenAI endpoint; requires key, permission and connectivity",
-                ],
-                [
-                  "Physical LoRa, sensor readings and local inference",
-                  "Deployment roadmap; no physical integration or local model running",
-                ],
-                [
-                  "Production dispatch and government partnership",
-                  "Proposed business; no real emergency service or government endorsement",
-                ],
-              ].map(([a, b]) => (
-                <tr key={a}>
-                  <td>{a}</td>
-                  <td>{b}</td>
-                </tr>
-              ))}
-            </tbody>
-          </table>
-        </div>
+            ))}
+          </tbody>
+        </table>
       </section>
       <section>
         <h2>Meaningful integrations</h2>
         <p>
-          <b>ChatGPT Sites</b> hosts the mobile experience and server routes.{" "}
-          <b>Codex</b> implements, tests and integrates the application and
-          original visual assets. <b>OpenAI Decisions</b> categorizes reports
-          for human review; <b>OpenAI Responses</b> supports concise assistance,
-          with optional <b>OpenAI transcription</b>. <b>Cerebras</b> serves
-          OpenAI’s gpt-oss-120b for rapid cloud assistance. <b>Exa Agent</b>{" "}
-          prepares source-linked district briefings from government and
-          humanitarian domains.
-        </p>
-        <p>
-          API calls are disabled until server keys are configured and
-          TOGETHER_LIVE_AI=true. This version runs no local LLM. No key is
-          exposed to the browser.
+          <b>ChatGPT Sites</b> hosts all three experiences. <b>Codex</b>{" "}
+          implements and verifies the code, original vectors, and 3D scenes.{" "}
+          <b>OpenAI</b> supports Decisions, Responses and optional speech
+          transcription. <b>Cerebras</b> serves OpenAI gpt-oss-120b for cloud
+          assistance. <b>Exa Agent</b> prepares source-linked district
+          briefings. Cloud API calls remain disabled before key setup.
         </p>
       </section>
       <section id="business">
-        <h2>A government preparedness service</h2>
+        <h2>Preparedness as a district service</h2>
         <p>
-          <b>Customer:</b> district disaster-management authorities, state
-          authorities, NGOs and relief operators.{" "}
-          <b>Residents use the service free.</b>
+          Proposed buyers are district and state disaster authorities, NGOs and
+          relief operators. Residents access the service free.
         </p>
         <p>
-          <b>Proposed offer:</b> an eight-week pilot across three community
-          sites, with language-pack preparation, operator training and a
-          supervised readiness drill. Hardware is procured and priced separately
-          after site assessment.
+          The proposed first offer is an eight-week, three-site pilot:
+          language-pack preparation, operator training, and a supervised
+          readiness drill. Hardware is scoped and priced separately. Revenue
+          combines deployment and training with annual software, content, drills
+          and support.
         </p>
         <p>
-          <b>Revenue:</b> one-time deployment and training, followed by annual
-          software, content updates, drills and maintenance support. The service
-          is installed and practiced before a disaster.
-        </p>
-        <p>
-          <b>Pilot measures:</b> request acknowledgement time, information
-          availability, comprehension of local-language content, operator
-          training time, and cost per maintained site. These are proposed
-          measures, not achieved field results.
-        </p>
-        <p>
-          Together complements official alert systems; Exa findings and AI
-          summaries require source review. A production deployment needs
-          authenticated operators, durable synchronization, verified local data,
-          privacy controls and tested hardware.
+          Measure acknowledgement time, information availability, language
+          comprehension, training time and cost per maintained site. These are
+          proposed pilot measures. No customer, government partnership or
+          achieved field outcome is claimed.
         </p>
       </section>
       <section>
-        <h2>Architecture</h2>
+        <h2>Deployment architecture</h2>
         <p>
-          Phone → nearby Wi-Fi → community hub (Raspberry Pi or another edge
-          computer) → ESP32 + LoRa radio → another equipped relief point. Only
-          compact messages travel over LoRa. Larger information packs and future
-          local inference stay at the hub. Cloud APIs become available during
-          connectivity windows.
+          A phone connects to nearby hub Wi-Fi. A Raspberry Pi or capable edge
+          computer serves local content and queues messages. An ESP32 plus a
+          separate LoRa transceiver carries compact messages between equipped
+          points. Larger information and future local inference stay at the hub.
+          Standard LoRaWAN is a gateway-based sensor option; the inter-camp mesh
+          is a separate transport concept.
         </p>
         <p>
-          Standard LoRaWAN can serve sensor-to-gateway deployments; inter-camp
-          multi-hop communication in this concept uses a LoRa mesh architecture.
-          This demo does not measure radio propagation or predict flooding.
+          The current web demo shares data through a cloud database. It does not
+          provide physical radio communication. The wiring view is illustrative
+          and requires board-specific validation before construction.
         </p>
       </section>
       <section>
-        <h2>Sources and repository</h2>
+        <h2>Sources and code</h2>
+        <a href="https://github.com/shhhivam12/openai-devday-delhi">
+          GitHub source and progress commits ↗
+        </a>
         <ul>
           <li>
-            <a href="https://github.com/shhhivam12/openai-devday-delhi">
-              GitHub source and progress commits ↗
-            </a>
-          </li>
-          <li>
             <a href="https://www.unicef.org/media/163091/file/Nepal-Humanitarian-SitRep-Floods-01-October-2024.pdf">
-              UNICEF Nepal floods · historical report, 1 October 2024 ↗
+              UNICEF Nepal flood report · 1 October 2024 ↗
             </a>
           </li>
           <li>
             <a href="https://sachet.ndma.gov.in/">
-              NDMA SACHET · official Indian alerts ↗
+              NDMA SACHET official alert portal ↗
             </a>
           </li>
           <li>
@@ -213,17 +172,10 @@ export default function Project() {
               Himachal Pradesh State Disaster Management Authority ↗
             </a>
           </li>
-          <li>
-            <a href="https://dhm.gov.np/">
-              Nepal meteorological and hydrological information ↗
-            </a>
-          </li>
         </ul>
       </section>
       <footer>
-        Built with Codex · ChatGPT Sites · OpenAI · Cerebras · Exa
-        <br />
-        Together — when we have each other.
+        Team Sisyphus · DevDay Exchange, New Delhi · 1 November 2026
       </footer>
     </main>
   );

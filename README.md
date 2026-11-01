@@ -78,3 +78,13 @@ Proposed customer: district/state disaster authorities and relief organizations.
 - [Exa Agent](https://exa.ai/docs/agent/quickstart)
 
 Original Together code and vector assets are supplied for the hackathon. Vendored starter libraries retain their own licenses.
+
+## November 1 redesign — three separate Sites
+
+- Demo landing: https://together-demo.shiiim.chatgpt.site — 24 Kathmandu-inspired homes, four hubs, family selection, animated connection dots, and detailed Pi/ESP32/SX127x wiring scene.
+- Nodal centre: https://together-node.shiiim.chatgpt.site — laptop operator console.
+- Resident PWA: https://together-relief.shiiim.chatgpt.site — simplified navy/blue/white interface and bold fist identity.
+
+The current resident entry is `components/MobileApp.tsx`. The landing and nodal implementations also exist at `/demo` and `/node` in this source for integration QA; separate Site checkouts publish them at their own root URLs. Shared state is now persisted in D1, not only browser storage. Phone and console poll `/api/network`; the independent nodal Site uses a server proxy with a server-only private service credential. That credential is never included in source or browser code. See `docs/network.md`.
+
+“No internet / Wi-Fi” applies to downloaded guides and saving outgoing requests. Physical messaging still needs local Wi-Fi or a radio bridge. Hosted cross-site synchronization uses internet in this demo. API keys are still pending.

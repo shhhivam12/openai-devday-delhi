@@ -1,4 +1,4 @@
-import TogetherApp from "../components/TogetherApp";
+import MobileApp from "../components/MobileApp";
 export default function Home() {
-  return <TogetherApp />;
+  return <MobileApp />;
 }

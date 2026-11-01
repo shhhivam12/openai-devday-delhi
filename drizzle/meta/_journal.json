@@ -1,5 +1,13 @@
 {
   "version": "7",
   "dialect": "sqlite",
-  "entries": []
+  "entries": [
+    {
+      "idx": 0,
+      "version": "6",
+      "when": 1793510246371,
+      "tag": "0000_dizzy_lenny_balinger",
+      "breakpoints": true
+    }
+  ]
 }
