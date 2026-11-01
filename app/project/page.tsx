@@ -71,6 +71,10 @@ export default function Project() {
                 "Cached app and six included guides; on-device outgoing queue",
               ],
               [
+                "Saved local map",
+                "Original Kathmandu-inspired neighbourhood, selectable homes and hubs, zoom and community sheet. Included with the app; no external map tiles or GPS. Illustrative, not navigation guidance",
+              ],
+              [
                 "No internet / Wi-Fi claim",
                 "Applies to saved guides and drafting requests. Messaging needs a local connection; hosted demo sync uses internet",
               ],

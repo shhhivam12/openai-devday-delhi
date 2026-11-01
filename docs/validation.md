@@ -36,6 +36,20 @@ Physical LoRa/Wi-Fi deployment, sensors, radio range, flood physics, local LLMs,
 - In separate browser tabs, created a four-person water request in the resident PWA, observed it in the nodal console, acknowledged it, and observed the acknowledgement refresh in the resident PWA.
 - Selected Home 12 in the city: fictional Basnet family details and assigned connection updated.
 - Selected DIO0 in the wiring view: GPIO26 mapping and explanation updated.
-- New PWA uses a bold fist, navy/blue/cyan theme, large icon controls and scoped offline wording. Saved guides and drafting requests need no internet/Wi-Fi; communication still needs a local link.
-- Latest resident presentation uses dark cards, blue/violet accents, original vector neighbours and floating icon navigation; reviewed at desktop and 390 × 844 phone viewport, including the help form.
+- New PWA uses a bold fist, large icon controls and scoped offline wording. Saved guides and drafting requests need no internet/Wi-Fi; communication still needs a local link.
+- Resident controls, vector neighbours and floating icon navigation were reviewed at desktop and 390 × 844 phone viewport, including the help form. Final warm-white/forest-green palette verified after integration on the resident screen, nodal console, landing and LoRa scene. Canvas label color handling and font size were adjusted for legibility on light backgrounds.
 - LoRa valley view completed a simulated SOS/acknowledgement. Selecting a photo explained why the demonstration uses short text. Reach and terrain are qualitative controls, not measured RF predictions.
+
+## Final light-theme check
+
+- Prepared the light PWA cache, stopped its local Worker server, reloaded the app and opened the saved flood explainer successfully. Shared sync correctly displayed device-only status.
+- Cache version and readiness state are versioned together so a previous download does not claim the updated pack is ready.
+- Green fist SVG, app icons, wordmark and submission banner regenerated; no API/network workflow changed in the theme pass.
+
+## Reference-layout rebuild and local map
+
+- Rebuilt resident structure with compact header controls, grey/white grouped lists, black pill actions, restrained lime status chips and five-icon navigation. Home artwork was removed.
+- Saved SVG neighbourhood map includes four selectable hubs and three fictional family homes, a layer toggle, zoom and a selected-hub card. It loads no external tiles and does not request GPS.
+- Browser: selecting Home 12 displayed the fictional Basnet family and Riverside hub; selecting that hub updated the app connection settings. Switched back to School and submitted a four-person demonstration request successfully.
+- After preparing the updated app cache, stopped the local Worker, reloaded the app and opened the Map tab. Hubs, homes, controls and the selected-hub card remained available; connection status correctly changed to device-only.
+- Original solid fist, wordmark, lime app icon and banner replaced the previous logo; checked at 16, 24 and 32 pixels by the logo task.

@@ -125,7 +125,7 @@ export default function CitySimulation() {
       return;
     }
     renderer.setPixelRatio(Math.min(window.devicePixelRatio || 1, 1.65));
-    renderer.setClearColor(0x081225, 1);
+    renderer.setClearColor(0xf6f6ef, 1);
     renderer.shadowMap.enabled = true;
     renderer.shadowMap.type = THREE.PCFSoftShadowMap;
     renderer.outputColorSpace = THREE.SRGBColorSpace;
@@ -136,7 +136,7 @@ export default function CitySimulation() {
     renderer.domElement.setAttribute("role", "img");
     mount.appendChild(renderer.domElement);
     const scene = new THREE.Scene();
-    scene.fog = new THREE.Fog(0x081225, 45, 100);
+    scene.fog = new THREE.Fog(0xf6f6ef, 45, 100);
     const camera = new THREE.PerspectiveCamera(37, 1, 0.1, 150);
     camera.position.set(29, 30, 34);
     const controls = new OrbitControls(camera, renderer.domElement);
@@ -148,8 +148,8 @@ export default function CitySimulation() {
     controls.maxPolarAngle = Math.PI / 2.45;
     controls.minPolarAngle = 0.25;
     controls.update();
-    scene.add(new THREE.HemisphereLight(0xd8ecff, 0x234059, 2.25));
-    const light = new THREE.DirectionalLight(0xe5f4ff, 3);
+    scene.add(new THREE.HemisphereLight(0xffffff, 0xb8c3ad, 2.25));
+    const light = new THREE.DirectionalLight(0xfffdf5, 3);
     light.position.set(-15, 25, 12);
     light.castShadow = true;
     light.shadow.mapSize.set(1024, 1024);
@@ -220,26 +220,28 @@ export default function CitySimulation() {
       x: number,
       y: number,
       z: number,
-      color = "#c1e8ff",
+      color = "#294a35",
     ) => {
       const canvas = document.createElement("canvas");
       canvas.width = 512;
       canvas.height = 96;
       const ctx = canvas.getContext("2d")!;
-      ctx.fillStyle = "#101f38";
+      ctx.fillStyle = "#fffef7";
       ctx.fillRect(0, 0, 512, 96);
-      ctx.strokeStyle = "#4e759e";
+      ctx.strokeStyle = "#b9c7ae";
       ctx.lineWidth = 3;
       ctx.strokeRect(1, 1, 510, 94);
       ctx.fillStyle = color;
-      ctx.font = "600 31px Arial";
+      ctx.font = "600 44px Arial";
       ctx.textAlign = "center";
       ctx.textBaseline = "middle";
       ctx.fillText(text, 256, 49);
       const texture = new THREE.CanvasTexture(canvas);
+      texture.colorSpace = THREE.SRGBColorSpace;
       textures.push(texture);
       const m = new THREE.SpriteMaterial({
         map: texture,
+        toneMapped: false,
         transparent: true,
         depthTest: false,
       });
@@ -258,18 +260,18 @@ export default function CitySimulation() {
       });
     };
     // Raised city base, streets, river and four bridges.
-    box(31, 0.8, 23, 0x1b3047, 0, -0.5, 0);
-    box(30.7, 0.12, 22.7, 0x556b78, 0, -0.04, 0);
+    box(31, 0.8, 23, 0x3c5740, 0, -0.5, 0);
+    box(30.7, 0.12, 22.7, 0x99ab8f, 0, -0.04, 0);
     for (const x of [-9.25, -5.3, 5.3, 9.25])
-      box(0.72, 0.035, 20.8, 0x9baab0, x, 0.045, 0);
+      box(0.72, 0.035, 20.8, 0xc1cbb6, x, 0.045, 0);
     for (const z of [-4.1, 0.4, 4.9]) {
-      box(29, 0.04, 0.72, 0xa2afb4, 0, 0.05, z);
+      box(29, 0.04, 0.72, 0xc1cbb6, 0, 0.05, z);
       for (let i = -13; i < 14; i += 2)
-        box(0.6, 0.045, 0.07, 0xdce8ed, i, 0.078, z);
+        box(0.6, 0.045, 0.07, 0xf2f4e8, i, 0.078, z);
     }
     const river = mesh(
       new THREE.BoxGeometry(3.2, 0.15, 23.2),
-      mat(0x2e9ac4, {
+      mat(0x9dc9c0, {
         transparent: true,
         opacity: 0.76,
         metalness: 0.2,
@@ -281,18 +283,18 @@ export default function CitySimulation() {
     );
     const riverGlow = mesh(
       new THREE.PlaneGeometry(3.1, 23),
-      mat(0x53d2e0, { transparent: true, opacity: 0.2 }),
+      mat(0xc7e6d9, { transparent: true, opacity: 0.2 }),
       0,
       0.2,
       0,
     );
     riverGlow.rotation.x = -Math.PI / 2;
     for (const z of [-4.1, 4.9]) {
-      box(4.6, 0.15, 1.0, 0xd8e0e4, 0, 0.42, z);
+      box(4.6, 0.15, 1.0, 0xf2f4e8, 0, 0.42, z);
       for (const zz of [z - 0.5, z + 0.5]) {
-        box(4.6, 0.07, 0.06, 0x253b55, 0, 1.05, zz);
+        box(4.6, 0.07, 0.06, 0x3c5740, 0, 1.05, zz);
         for (let x = -2.1; x < 2.2; x += 0.6)
-          cylinder(0.025, 0.025, 0.58, 0x314b65, x, 0.75, zz);
+          cylinder(0.025, 0.025, 0.58, 0x6d8765, x, 0.75, zz);
       }
     }
     // Architectural silhouettes: Kathmandu-inspired red-brick homes, flat roofs, terraces.
@@ -305,23 +307,23 @@ export default function CitySimulation() {
       homeGroups[home.id] = group;
       const floors = 2 + (i % 3),
         height = floors * 0.59;
-      const brick = [0x7a4b60, 0x8b5864, 0x6c5877, 0x62758a, 0x997780][i % 5];
-      box(1.8, 0.16, 2.1, 0xc5c9c9, 0, 0.12, 0, group);
+      const brick = [0xa78d7b, 0xbaa58d, 0xaaac95, 0xa3b39c, 0xc1b497][i % 5];
+      box(1.8, 0.16, 2.1, 0xdce2d1, 0, 0.12, 0, group);
       box(1.5, height, 1.75, brick, 0, 0.24 + height / 2, 0, group);
       for (let floor = 0; floor < floors; floor++) {
         const yy = 0.48 + floor * 0.59;
         for (const xx of [-0.43, 0.43]) {
-          box(0.3, 0.36, 0.035, 0x9bd9ec, xx, yy, 0.89, group);
-          box(0.32, 0.045, 0.05, 0x273a52, xx, yy + 0.2, 0.91, group);
+          box(0.3, 0.36, 0.035, 0xdce2d1, xx, yy, 0.89, group);
+          box(0.32, 0.045, 0.05, 0x3c5740, xx, yy + 0.2, 0.91, group);
         }
-        box(1.56, 0.05, 1.8, 0xb4bcc6, 0, 0.25 + (floor + 1) * 0.59, 0, group);
+        box(1.56, 0.05, 1.8, 0xdce2d1, 0, 0.25 + (floor + 1) * 0.59, 0, group);
       }
-      box(0.32, 0.55, 0.045, 0x243c59, 0, 0.43, 0.9, group);
-      box(1.72, 0.12, 1.94, 0x263b57, 0, height + 0.32, 0, group);
+      box(0.32, 0.55, 0.045, 0x3c5740, 0, 0.43, 0.9, group);
+      box(1.72, 0.12, 1.94, 0x3c5740, 0, height + 0.32, 0, group);
       if (i % 3 === 0) {
         const roof = mesh(
           new THREE.ConeGeometry(1.38, 0.5, 4),
-          mat(0x27384f),
+          mat(0x3c5740),
           0,
           height + 0.59,
           0,
@@ -329,16 +331,16 @@ export default function CitySimulation() {
         );
         roof.rotation.y = Math.PI / 4;
       } else {
-        box(0.12, 0.23, 1.88, 0xbdc8d3, -0.8, height + 0.46, 0, group);
-        box(0.12, 0.23, 1.88, 0xbdc8d3, 0.8, height + 0.46, 0, group);
-        cylinder(0.22, 0.22, 0.45, 0x2a415b, 0.35, height + 0.62, -0.4, group);
+        box(0.12, 0.23, 1.88, 0xdce2d1, -0.8, height + 0.46, 0, group);
+        box(0.12, 0.23, 1.88, 0xdce2d1, 0.8, height + 0.46, 0, group);
+        cylinder(0.22, 0.22, 0.45, 0x6d8765, 0.35, height + 0.62, -0.4, group);
       }
       if (i % 4 === 0) {
         const cloth = box(
           0.5,
           0.04,
           0.45,
-          0x277be7,
+          0x2f6145,
           -0.3,
           height + 0.42,
           0.2,
@@ -350,7 +352,7 @@ export default function CitySimulation() {
       const ring = mesh(
         new THREE.RingGeometry(1.18, 1.26, 40),
         new THREE.MeshBasicMaterial({
-          color: 0x6ee7f9,
+          color: 0x3c7c50,
           transparent: true,
           opacity: 0,
           side: THREE.DoubleSide,
@@ -373,7 +375,7 @@ export default function CitySimulation() {
             0.065,
             0.09,
             0.27,
-            p ? 0x8b9df2 : 0x35c9de,
+            p ? 0x7a9564 : 0x2f6645,
             0,
             0.24,
             0,
@@ -394,12 +396,12 @@ export default function CitySimulation() {
     const temple = new THREE.Group();
     temple.position.set(5.1, 0, -10);
     scene.add(temple);
-    box(2.5, 0.2, 2.5, 0xa8a8b4, 0, 0.16, 0, temple);
-    box(1.8, 1.05, 1.8, 0x765064, 0, 0.78, 0, temple);
+    box(2.5, 0.2, 2.5, 0xc1cbb6, 0, 0.16, 0, temple);
+    box(1.8, 1.05, 1.8, 0x6d8765, 0, 0.78, 0, temple);
     for (let i = 0; i < 3; i++) {
       const roof = mesh(
         new THREE.ConeGeometry(1.8 - i * 0.43, 0.65, 4),
-        mat(0x263b56),
+        mat(0x3c5740),
         0,
         1.55 + i * 0.67,
         0,
@@ -411,19 +413,19 @@ export default function CitySimulation() {
           0.85 - i * 0.18,
           0.6,
           0.85 - i * 0.18,
-          0x896172,
+          0x99ab8f,
           0,
           1.8 + i * 0.67,
           0,
           temple,
         );
     }
-    cylinder(0.055, 0.1, 0.7, 0xc4d5e7, 5.1, 3.63, -10);
+    cylinder(0.055, 0.1, 0.7, 0xdadfcf, 5.1, 3.63, -10);
     // Hills give city context without presenting a geographic model.
     for (let i = 0; i < 10; i++) {
       const hill = mesh(
         new THREE.ConeGeometry(3.5 + (i % 3), 6 + (i % 4), 5),
-        mat(i % 2 ? 0x263e58 : 0x1e334c),
+        mat(i % 2 ? 0x3c5740 : 0x3c5740),
         -21 + i * 4.6,
         1.8,
         -17 - (i % 2) * 2,
@@ -436,14 +438,14 @@ export default function CitySimulation() {
       const group = new THREE.Group();
       group.position.set(n.x, 0, n.z);
       scene.add(group);
-      box(2.4, 0.3, 2.2, 0x213a62, 0, 0.3, 0, group);
-      box(1.9, 1.1, 1.7, 0xe7f0f6, 0, 1, 0, group);
-      box(2.2, 0.18, 2.0, 0x277be7, 0, 1.65, 0, group);
-      box(0.7, 0.8, 0.04, 0x2c7ac7, 0, 0.9, 0.87, group);
-      cylinder(0.07, 0.09, 2.3, 0x17365d, 0.6, 2.8, 0, group);
+      box(2.4, 0.3, 2.2, 0x3c5740, 0, 0.3, 0, group);
+      box(1.9, 1.1, 1.7, 0xf2f4e8, 0, 1, 0, group);
+      box(2.2, 0.18, 2.0, 0x2f6145, 0, 1.65, 0, group);
+      box(0.7, 0.8, 0.04, 0x456b4c, 0, 0.9, 0.87, group);
+      cylinder(0.07, 0.09, 2.3, 0x3c5740, 0.6, 2.8, 0, group);
       const led = mesh(
         new THREE.SphereGeometry(0.14, 12, 12),
-        mat(0x42e5ef, { emissive: 0x42e5ef, emissiveIntensity: 1.8 }),
+        mat(0x3a7d4c, { emissive: 0x3a7d4c, emissiveIntensity: 1.8 }),
         0.6,
         4,
         0,
@@ -454,7 +456,7 @@ export default function CitySimulation() {
       const rings = [];
       for (let r = 0; r < 3; r++) {
         const m = new THREE.MeshBasicMaterial({
-          color: 0x29bce2,
+          color: 0x4b8754,
           transparent: true,
           opacity: 0.45 - r * 0.1,
           side: THREE.DoubleSide,
@@ -482,7 +484,7 @@ export default function CitySimulation() {
         new THREE.Vector3(n.x, 2.7, n.z),
       );
       const lineMat = new THREE.MeshBasicMaterial({
-        color: 0x46d9f2,
+        color: 0x315f3d,
         transparent: true,
         opacity: 0.08,
       });
@@ -494,7 +496,7 @@ export default function CitySimulation() {
       const dots = Array.from({ length: 3 }, () =>
         mesh(
           new THREE.SphereGeometry(0.09, 8, 8),
-          new THREE.MeshBasicMaterial({ color: 0xb8f9ff }),
+          new THREE.MeshBasicMaterial({ color: 0x2d6d3d }),
         ),
       );
       dots.forEach((d) => materials.push(d.material as THREE.Material));
@@ -504,7 +506,7 @@ export default function CitySimulation() {
     for (let i = 0; i < 18; i++) {
       const star = mesh(
         new THREE.PlaneGeometry(0.08, 0.5),
-        mat(0x83d6e6, { transparent: true, opacity: 0.3 }),
+        mat(0xc9e2d6, { transparent: true, opacity: 0.3 }),
         Math.sin(i * 2.4) * 1.2,
         0.25,
         -10 + i * 1.2,

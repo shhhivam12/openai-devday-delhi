@@ -35,9 +35,11 @@ import {
   Signal,
   CloudOff,
   CheckCheck,
+  Settings2,
 } from "lucide-react";
 import { knowledge, languages } from "../lib/content";
 import "./mobile-app.css";
+import NeighbourhoodMap from "./NeighbourhoodMap";
 type Tab = "home" | "community" | "ai" | "guides" | "alerts";
 type EventRecord = {
   id: string;
@@ -85,7 +87,7 @@ export default function MobileApp() {
   const [article, setArticle] = useState<(typeof knowledge)[number] | null>(
     null,
   );
-  const [pack, setPack] = saved("tg-pack-ready", false);
+  const [pack, setPack] = saved("tg-pack-ready:together-v5", false);
   const [packBusy, setPackBusy] = useState(false);
   const [search, setSearch] = useState("");
   const [message, setMessage] = useState("");
@@ -286,11 +288,11 @@ export default function MobileApp() {
     try {
       await navigator.serviceWorker.register("/sw.js");
       await navigator.serviceWorker.ready;
-      const c = await caches.open("together-v2");
+      const c = await caches.open("together-v5");
       await c.addAll([
         "/",
         "/manifest.webmanifest",
-        "/brand/mark.svg",
+        "/brand/mark-mono.svg",
         "/icon-192.png",
         "/icon-512.png",
       ]);
@@ -322,246 +324,232 @@ export default function MobileApp() {
           className="m-outer-brand"
           href="https://together-demo.shiiim.chatgpt.site"
         >
-          <img src="/brand/mark.svg" alt="" />
+          <img src="/brand/mark-mono.svg" alt="" />
           together
         </a>
-        <div className="m-vector-people" aria-hidden="true">
-          <svg viewBox="0 0 330 300">
-            <circle cx="165" cy="150" r="124" fill="#16284d" />
-            <path
-              d="M25 234 Q165 110 305 234"
-              fill="none"
-              stroke="#335bfc"
-              strokeWidth="2"
-              strokeDasharray="7 8"
-            />
-            <circle cx="119" cy="83" r="24" fill="#85acff" />
-            <path
-              d="M77 202V144Q77 114 119 114Q159 114 159 144V202"
-              fill="#315afa"
-            />
-            <path
-              d="M97 201L87 269M139 201L149 269"
-              stroke="#315afa"
-              strokeWidth="23"
-              strokeLinecap="round"
-            />
-            <circle cx="222" cy="116" r="20" fill="#c7e2ff" />
-            <path
-              d="M188 222V168Q188 141 222 141Q256 141 256 168V222"
-              fill="#26c6c6"
-            />
-            <path
-              d="M205 219L199 269M239 219L245 269"
-              stroke="#26c6c6"
-              strokeWidth="18"
-              strokeLinecap="round"
-            />
-            <path
-              d="M151 145L181 168L195 161"
-              fill="none"
-              stroke="#85acff"
-              strokeWidth="17"
-              strokeLinecap="round"
-            />
-            <circle cx="282" cy="58" r="23" fill="#21365b" />
-            <path
-              d="M269 58L278 66L295 49"
-              fill="none"
-              stroke="#29d7c5"
-              strokeWidth="4"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
-        <h1>{hi ? "हम साथ हैं।" : "We have each other."}</h1>
-        <p>
-          {hi ? "मदद, जानकारी और अपने लोग।" : "Help. Knowledge. Your people."}
-        </p>
+        <p>The resident app</p>
         <div className="m-side-links">
           <a href="https://together-node.shiiim.chatgpt.site">
-            Open nodal centre <ArrowUpRight size={16} />
+            Open nodal centre <ArrowUpRight size={15} />
           </a>
           <a href="https://together-demo.shiiim.chatgpt.site">
-            Explore the demo <ArrowUpRight size={16} />
+            Explore the demo <ArrowUpRight size={15} />
           </a>
         </div>
       </aside>
       <div className="m-phone">
         <header className="m-header">
+          <button
+            className="m-header-square"
+            onClick={() => setSettings(true)}
+            aria-label="Language and node settings"
+          >
+            <Settings2 size={18} />
+          </button>
           <a href="/" className="m-brand">
-            <img src="/brand/mark.svg" alt="" />
-            <span>
-              together<span>.</span>
-            </span>
+            <img src="/brand/mark-mono.svg" alt="" />
+            <span>together</span>
           </a>
-          <div>
-            <button
-              aria-label="Language and node settings"
-              className="m-language"
-              onClick={() => setSettings(true)}
-            >
-              <Globe size={16} />
-              {hi
-                ? "हिन्दी"
-                : language === "en"
-                  ? "EN"
-                  : languages.find((l) => l.code === language)?.name}
-            </button>
-            <button
-              className="m-icon-button"
-              onClick={() => setTab("alerts")}
-              aria-label="Saved alerts"
-            >
-              <Bell size={21} />
-            </button>
-          </div>
+          <button
+            className="m-header-square"
+            onClick={() => setTab("alerts")}
+            aria-label="Saved alerts"
+          >
+            <Bell size={18} />
+          </button>
         </header>
-        <button
-          className={"m-node-status " + (!connected ? "waiting" : "")}
-          onClick={() => setSettings(true)}
-        >
-          <span className="m-node-dot" />
-          <Radio size={15} />
-          <span>{nodeNames[node]}</span>
-          <span>{connected ? "DEMO SYNC" : "DEVICE ONLY"}</span>
-          <ChevronRight size={14} />
-        </button>
-        <div className="m-body">
+        <div className={"m-body " + (tab === "community" ? "m-map-body" : "")}>
           {tab === "home" && (
             <>
-              <div className="m-greeting">
-                <span>
-                  {hi ? "नमस्ते" : "HELLO"}, {name.split(" ")[0]}
-                </span>
-                <h2>{hi ? "आप अकेले नहीं हैं।" : "You’re not alone."}</h2>
-                <CommunityPortraits />
+              <div className="m-page-title">
+                <h2>
+                  {hi ? "\u0905\u0928\u0941\u0930\u094b\u0927" : "Requests"}
+                </h2>
+                <button
+                  className="m-text-control"
+                  onClick={() => setSettings(true)}
+                >
+                  <User size={15} />
+                  {name.split(" ")[0]}
+                </button>
               </div>
-              <div className="m-offline-note">
-                <CloudOff size={23} />
-                <div>
-                  <strong>
-                    {hi
-                      ? "सहेजे गाइड के लिए इंटरनेट / Wi-Fi नहीं चाहिए"
-                      : "No internet / Wi-Fi needed for saved guides"}
-                  </strong>
-                  <p>
-                    {hi
-                      ? "संदेश भेजने के लिए स्थानीय नोड Wi-Fi से जुड़ें।"
-                      : "Connect to local node Wi-Fi to send messages."}
-                  </p>
-                </div>
-              </div>
-              <div className="m-action-grid">
-                <button className="m-help" onClick={() => setHelp(true)}>
-                  <LifeBuoy size={31} />
-                  <span>{hi ? "मदद चाहिए" : "I need help"}</span>
-                  <ArrowUpRight size={20} />
+              <div className="m-filter-strip">
+                <button onClick={() => setSettings(true)}>
+                  {nodeNames[node]}
+                  <ChevronRight size={12} />
                 </button>
                 <button
-                  className={"m-safe " + (checkin ? "done" : "")}
-                  onClick={markSafe}
-                  disabled={checkin}
+                  className="m-filter-active"
+                  onClick={() => setSettings(true)}
                 >
-                  {checkin ? <CheckCheck size={29} /> : <Heart size={29} />}
+                  <span
+                    className={"m-node-dot " + (connected ? "connected" : "")}
+                  />
+                  {connected ? "Connected" : "Device only"}
+                  <ChevronRight size={12} />
+                </button>
+              </div>
+              <button className="m-primary-cta" onClick={() => setHelp(true)}>
+                <Plus size={18} />
+                {hi
+                  ? "\u092e\u0926\u0926 \u091a\u093e\u0939\u093f\u090f"
+                  : "Request help"}
+                <ArrowUpRight size={17} />
+              </button>
+              <div className="m-shortcuts">
+                <button onClick={markSafe} disabled={checkin}>
                   <span>
-                    {checkin
-                      ? hi
-                        ? "सुरक्षित दर्ज"
-                        : "Checked in"
-                      : hi
-                        ? "मैं सुरक्षित हूँ"
-                        : "I’m safe"}
+                    <CheckCircle2 size={19} />
                   </span>
-                  <span className="m-action-sub">
-                    {checkin
-                      ? "Saved check-in"
-                      : hi
-                        ? "अपनों को बताएं"
-                        : "Let people know"}
+                  <div>
+                    <strong>
+                      {checkin
+                        ? "Checked in"
+                        : hi
+                          ? "\u092e\u0948\u0902 \u0938\u0941\u0930\u0915\u094d\u0937\u093f\u0924 \u0939\u0942\u0901"
+                          : "I am safe"}
+                    </strong>
+                    <small>
+                      {checkin ? "Saved check-in" : "Let people know"}
+                    </small>
+                  </div>
+                  {checkin ? <Check size={15} /> : <ChevronRight size={15} />}
+                </button>
+                <button onClick={() => setTab("ai")}>
+                  <span>
+                    <Sparkles size={19} />
                   </span>
-                </button>
-                <button onClick={() => setTab("ai")} className="m-action">
-                  <Sparkles size={26} />
-                  <span>{hi ? "AI से पूछें" : "Ask AI"}</span>
-                  <ArrowUpRight size={15} />
-                </button>
-                <button onClick={() => setTab("guides")} className="m-action">
-                  <BookOpen size={26} />
-                  <span>{hi ? "ज़रूरी जानकारी" : "Saved guides"}</span>
-                  <ArrowUpRight size={15} />
+                  <div>
+                    <strong>
+                      {hi
+                        ? "AI \u0938\u0947 \u092a\u0942\u091b\u0947\u0902"
+                        : "Ask AI"}
+                    </strong>
+                    <small>OpenAI / Cerebras</small>
+                  </div>
+                  <ChevronRight size={15} />
                 </button>
               </div>
               {unread > 0 && (
                 <button className="m-outbox" onClick={sync} disabled={syncBusy}>
-                  <Clock size={18} />
-                  <span>
-                    {unread}{" "}
-                    {hi ? "संदेश फ़ोन में सुरक्षित" : "saved on your phone"}
-                  </span>
-                  <RefreshCw size={16} className={syncBusy ? "spin" : ""} />
+                  <Clock size={17} />
+                  <span>{unread} waiting to send</span>
+                  <RefreshCw size={15} className={syncBusy ? "spin" : ""} />
                 </button>
               )}
-              <div className="m-section-line">
-                <h3>{hi ? "आपके पास" : "Near you"}</h3>
-                <button onClick={() => setTab("community")}>
-                  {hi ? "सब देखें" : "View all"}
-                  <ArrowRight size={14} />
-                </button>
-              </div>
-              <button className="m-place" onClick={() => setSettings(true)}>
-                <div className="m-place-icon">
-                  <Home size={22} />
-                </div>
-                <div>
-                  <strong>{nodeNames[node]}</strong>
-                  <p>Demo community centre</p>
-                </div>
-                <span className="m-tag">
-                  {connected ? "Connected" : "Saved"}
-                </span>
-              </button>
-              <div className="m-section-line">
-                <h3>{hi ? "आपके अनुरोध" : "Your requests"}</h3>
-                <span>
-                  {myRequests.length +
-                    queue.filter((q) => q.type === "request").length}
-                </span>
-              </div>
-              {myRequests.length ? (
-                myRequests.slice(0, 3).map((r: any) => (
-                  <div className="m-request" key={r.id}>
-                    <div className="m-request-icon">
-                      <LifeBuoy size={19} />
-                    </div>
-                    <div>
-                      <strong>{r.category}</strong>
-                      {routing[r.id] && (
-                        <small className="m-route-label">{routing[r.id]}</small>
-                      )}
-                      <p>
-                        {r.people} people · {r.location}
-                      </p>
-                    </div>
-                    <span
-                      className={
-                        "m-tag " + (r.status === "assigned" ? "blue" : "")
-                      }
-                    >
-                      {r.status}
-                    </span>
+              <section className="m-activity-card" aria-label="Your requests">
+                <div className="m-activity-top">
+                  <div>
+                    <small>Activity</small>
+                    <strong>
+                      {hi
+                        ? "\u0906\u092a\u0915\u0947 \u0905\u0928\u0941\u0930\u094b\u0927"
+                        : "Your requests"}
+                    </strong>
                   </div>
-                ))
-              ) : (
-                <div className="m-no-requests">
-                  <ShieldCheck size={19} />
-                  <span>
-                    {hi
-                      ? "ज़रूरत पड़ने पर हम यहाँ हैं।"
-                      : "Here when you need a hand."}
-                  </span>
+                  <div>
+                    <small>Total</small>
+                    <strong>
+                      {myRequests.length +
+                        queue.filter((q) => q.type === "request").length}
+                    </strong>
+                  </div>
                 </div>
-              )}
+                {[
+                  ...queue
+                    .filter((q) => q.type === "request")
+                    .map((q) => ({ ...q, status: "Saved on phone" })),
+                  ...myRequests,
+                ].length ? (
+                  [
+                    ...queue
+                      .filter((q) => q.type === "request")
+                      .map((q) => ({ ...q, status: "Saved on phone" })),
+                    ...myRequests,
+                  ]
+                    .slice(0, 6)
+                    .map((r: any) => (
+                      <div className="m-request" key={r.id}>
+                        <div className="m-request-icon">
+                          {String(r.category)
+                            .toLowerCase()
+                            .includes("water") ? (
+                            <Droplets size={19} />
+                          ) : String(r.category)
+                              .toLowerCase()
+                              .includes("food") ? (
+                            <Utensils size={18} />
+                          ) : (
+                            <LifeBuoy size={19} />
+                          )}
+                        </div>
+                        <div className="m-request-copy">
+                          <strong>{r.category}</strong>
+                          <p>
+                            {r.people} people / {r.location}
+                          </p>
+                          {routing[r.id] && (
+                            <small className="m-route-label">
+                              {routing[r.id]}
+                            </small>
+                          )}
+                        </div>
+                        <div className="m-request-state">
+                          <span
+                            className={
+                              "m-tag " +
+                              (["assigned", "done", "acknowledged"].includes(
+                                r.status,
+                              )
+                                ? "lime"
+                                : "")
+                            }
+                          >
+                            {r.status}
+                          </span>
+                        </div>
+                      </div>
+                    ))
+                ) : (
+                  <div className="m-no-requests">
+                    <ShieldCheck size={21} />
+                    <div>
+                      <strong>No requests yet</strong>
+                      <p>Your help requests will appear here.</p>
+                    </div>
+                  </div>
+                )}
+              </section>
+              <section className="m-connection-card">
+                <button className="m-place" onClick={() => setTab("community")}>
+                  <span className="m-place-icon">
+                    <MapPin size={19} />
+                  </span>
+                  <div>
+                    <strong>{nodeNames[node]}</strong>
+                    <p>Map and community</p>
+                  </div>
+                  <ChevronRight size={17} />
+                </button>
+                <button className="m-place" onClick={() => setTab("guides")}>
+                  <span className="m-place-icon">
+                    <BookOpen size={19} />
+                  </span>
+                  <div>
+                    <strong>Saved guides</strong>
+                    <p>Read without internet / Wi-Fi</p>
+                  </div>
+                  <span className="m-mini-count">6</span>
+                  <ChevronRight size={17} />
+                </button>
+              </section>
+              <div className="m-offline-note">
+                <CloudOff size={17} />
+                <div>
+                  <strong>No internet / Wi-Fi needed for saved guides</strong>
+                  <p>Connect to local node Wi-Fi to send messages.</p>
+                </div>
+              </div>
               <div className="m-demo-foot">
                 <span>DEMO</span>
                 <p>
@@ -573,72 +561,88 @@ export default function MobileApp() {
           )}
           {tab === "community" && (
             <>
-              <div className="m-page-title">
-                <h2>{hi ? "हमारा समुदाय" : "Community"}</h2>
-                <span className="m-tag">{nodeNames[node]}</span>
-              </div>
-              <div className="m-community-people">
-                <span>
-                  <Users size={20} />
-                  <b>{network?.checkins?.length || 0}</b> check-ins
-                </span>
-                <span>
-                  <MessageCircle size={20} />
-                  <b>{network?.messages?.length || 0}</b> messages
-                </span>
-              </div>
-              <form
-                className="m-compose"
-                onSubmit={(e) => {
-                  e.preventDefault();
-                  sendCommunity();
-                }}
-              >
-                <textarea
-                  value={message}
-                  onChange={(e) => setMessage(e.target.value)}
-                  placeholder={
-                    hi
-                      ? "कुछ मदद या जानकारी साझा करें…"
-                      : "Share an update or offer help…"
-                  }
-                  maxLength={500}
-                  aria-label="Community message"
-                />
+              <div className="m-map-heading">
+                <h2>{hi ? "\u0928\u0915\u094d\u0936\u093e" : "Map"}</h2>
                 <button
-                  disabled={!message.trim()}
-                  aria-label="Send community message"
+                  className="m-header-square"
+                  aria-label="Choose community node"
+                  onClick={() => setSettings(true)}
                 >
-                  <Send size={19} />
+                  <Settings2 size={17} />
                 </button>
-              </form>
-              {(network?.messages || []).length ? (
-                network.messages.map((p: any) => (
-                  <article className="m-post" key={p.id}>
-                    <div className="m-post-author">
-                      <span>{p.name[0]}</span>
-                      <strong>{p.name}</strong>
-                      <small>
-                        {new Date(p.createdAt).toLocaleTimeString([], {
-                          hour: "2-digit",
-                          minute: "2-digit",
-                        })}
-                      </small>
-                    </div>
-                    <p>{p.message}</p>
-                  </article>
-                ))
-              ) : (
-                <div className="m-empty-vector">
-                  <Users size={44} />
-                  <h3>{hi ? "बात शुरू करें।" : "Start a conversation."}</h3>
-                  <p>
+              </div>
+              <div className="m-local-map-frame">
+                <NeighbourhoodMap
+                  selectedNode={node}
+                  onSelectNode={setNode}
+                  connected={connected}
+                />
+              </div>
+              <section className="m-map-sheet">
+                <div className="m-sheet-handle" />
+                <div className="m-page-title">
+                  <h2>
                     {hi
-                      ? "आपका संदेश नोड के लोगों तक पहुँचेगा।"
-                      : "Updates appear on the nodal centre, too."}
-                  </p>
+                      ? "\u0939\u092e\u093e\u0930\u093e \u0938\u092e\u0941\u0926\u093e\u092f"
+                      : "Community"}
+                  </h2>
+                  <span className="m-tag lime">{nodeNames[node]}</span>
                 </div>
-              )}
+                <div className="m-community-people">
+                  <span>
+                    <Users size={17} />
+                    <b>{network?.checkins?.length || 0}</b> check-ins
+                  </span>
+                  <span>
+                    <MessageCircle size={17} />
+                    <b>{network?.messages?.length || 0}</b> messages
+                  </span>
+                </div>
+                <form
+                  className="m-compose"
+                  onSubmit={(e) => {
+                    e.preventDefault();
+                    sendCommunity();
+                  }}
+                >
+                  <textarea
+                    value={message}
+                    onChange={(e) => setMessage(e.target.value)}
+                    placeholder="Share an update or offer help..."
+                    maxLength={500}
+                    aria-label="Community message"
+                  />
+                  <button
+                    disabled={!message.trim()}
+                    aria-label="Send community message"
+                  >
+                    <Send size={18} />
+                  </button>
+                </form>
+                {(network?.messages || []).length ? (
+                  network.messages.map((p: any) => (
+                    <article className="m-post" key={p.id}>
+                      <div className="m-post-author">
+                        <span>{p.name[0]}</span>
+                        <strong>{p.name}</strong>
+                        <small>
+                          {new Date(p.createdAt).toLocaleTimeString([], {
+                            hour: "2-digit",
+                            minute: "2-digit",
+                          })}
+                        </small>
+                      </div>
+                      <p>{p.message}</p>
+                    </article>
+                  ))
+                ) : (
+                  <div className="m-empty-vector">
+                    <MessageCircle size={29} />
+                    <h3>Start a conversation.</h3>
+                    <p>Updates appear on the nodal centre, too.</p>
+                  </div>
+                )}
+              </section>
             </>
           )}
           {tab === "ai" && (
@@ -844,26 +848,44 @@ export default function MobileApp() {
         <nav className="m-bottom-nav" aria-label="Resident navigation">
           {(
             [
-              { id: "home", icon: Home, label: hi ? "होम" : "Home" },
+              {
+                id: "home",
+                icon: Home,
+                label: hi ? "\u0939\u094b\u092e" : "Home",
+              },
               {
                 id: "community",
-                icon: Users,
-                label: hi ? "समुदाय" : "Community",
+                icon: MapPin,
+                label: hi ? "\u0928\u0915\u094d\u0936\u093e" : "Map",
               },
               { id: "ai", icon: Sparkles, label: "Ask AI" },
-              { id: "guides", icon: BookOpen, label: hi ? "गाइड" : "Guides" },
+              {
+                id: "guides",
+                icon: BookOpen,
+                label: hi ? "\u0917\u093e\u0907\u0921" : "Guides",
+              },
+              {
+                id: "settings",
+                icon: Settings2,
+                label: hi ? "\u0938\u0947\u091f\u093f\u0902\u0917" : "Settings",
+              },
             ] as const
           ).map(({ id, icon: Icon, label }) => (
             <button
-              className={tab === id ? "active" : ""}
+              className={
+                (id === "settings" ? settings : tab === id) ? "active" : ""
+              }
               key={id}
               onClick={() => {
-                setTab(id);
-                document.querySelector(".m-body")?.scrollTo(0, 0);
+                if (id === "settings") setSettings(true);
+                else {
+                  setTab(id);
+                  document.querySelector(".m-body")?.scrollTo(0, 0);
+                }
               }}
               aria-label={label}
             >
-              <Icon size={23} />
+              <Icon size={21} />
               <span>{label}</span>
             </button>
           ))}
@@ -1096,96 +1118,4 @@ export default function MobileApp() {
 }
 function ArrowDownIcon() {
   return <ChevronRight size={20} />;
-}
-
-function CommunityPortraits() {
-  return (
-    <div
-      className="m-community-art"
-      aria-label="Illustration of neighbours supporting one another"
-      role="img"
-    >
-      <span className="m-community-glow" />
-      <svg
-        className="m-portrait m-portrait-back"
-        viewBox="0 0 80 80"
-        aria-hidden="true"
-      >
-        <defs>
-          <clipPath id="tg-avatar-back">
-            <circle cx="40" cy="40" r="37" />
-          </clipPath>
-        </defs>
-        <circle
-          cx="40"
-          cy="40"
-          r="39"
-          fill="#1c2740"
-          stroke="#536a96"
-          strokeWidth="2"
-        />
-        <g clipPath="url(#tg-avatar-back)">
-          <path d="M6 85c0-25 12-39 34-39s34 14 34 39" fill="#69b9cf" />
-          <path d="M33 44h14v15c-5 5-9 5-14 0Z" fill="#b5816b" />
-          <ellipse cx="40" cy="31" rx="18" ry="22" fill="#d4a78b" />
-          <path
-            d="M21 29c-2-14 5-23 19-23s23 10 19 27l-7-16c-8 3-19 6-31 6Z"
-            fill="#11192b"
-          />
-          <circle cx="34" cy="33" r="1.5" fill="#141c2c" />
-          <circle cx="46" cy="33" r="1.5" fill="#141c2c" />
-          <path
-            d="M35 42q5 4 10 0"
-            fill="none"
-            stroke="#805547"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </g>
-      </svg>
-      <svg
-        className="m-portrait m-portrait-main"
-        viewBox="0 0 90 90"
-        aria-hidden="true"
-      >
-        <defs>
-          <clipPath id="tg-avatar-main">
-            <circle cx="45" cy="45" r="41" />
-          </clipPath>
-        </defs>
-        <circle
-          cx="45"
-          cy="45"
-          r="43"
-          fill="#263365"
-          stroke="#91a0ff"
-          strokeWidth="2"
-        />
-        <g clipPath="url(#tg-avatar-main)">
-          <path d="M5 94c0-27 15-42 40-42s40 15 40 42" fill="#8d83ff" />
-          <path d="M36 47h18v18c-6 5-12 5-18 0Z" fill="#93644f" />
-          <ellipse cx="45" cy="35" rx="20" ry="24" fill="#b78267" />
-          <path
-            d="M24 38c-5-24 5-32 21-32 17 0 28 13 21 36l-5-22c-12 0-20-4-24-7-2 9-5 15-13 17Z"
-            fill="#0c1325"
-          />
-          <circle cx="37" cy="36" r="1.7" fill="#11192b" />
-          <circle cx="52" cy="36" r="1.7" fill="#11192b" />
-          <path
-            d="M39 46q6 4 12 0"
-            fill="none"
-            stroke="#6d4438"
-            strokeWidth="2"
-            strokeLinecap="round"
-          />
-        </g>
-      </svg>
-      <span className="m-portrait-heart">
-        <Heart size={11} fill="currentColor" />
-      </span>
-      <span className="m-portrait-link">
-        <Check size={11} />
-      </span>
-    </div>
-  );
 }

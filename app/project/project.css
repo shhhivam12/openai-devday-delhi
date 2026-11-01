@@ -25,7 +25,7 @@
 }
 .evidence > p {
   font-size: 18px;
-  color: #5f7293;
+  color: #56665b;
 }
 .evidence-links {
   display: flex;
@@ -34,7 +34,7 @@
   margin: 25px 0;
 }
 .evidence-links a {
-  background: #3058f4;
+  background: #202120;
   color: #fff;
   padding: 11px 15px;
   border-radius: 8px;
@@ -42,7 +42,7 @@
 }
 .evidence section {
   padding: 30px 0;
-  border-bottom: 1px solid #dae3f2;
+  border-bottom: 1px solid #d8e0d4;
 }
 .evidence h2 {
   font-size: 25px;
@@ -52,7 +52,7 @@
 .evidence section p,
 .evidence li {
   font-size: 14px;
-  color: #5f7293;
+  color: #56665b;
   margin-bottom: 13px;
 }
 .evidence table {
@@ -63,22 +63,22 @@
 .evidence th,
 .evidence td {
   padding: 13px;
-  border: 1px solid #d9e1f0;
+  border: 1px solid #d8e0d4;
   text-align: left;
   vertical-align: top;
 }
 .evidence th {
-  background: #e5edff;
+  background: #f0f2ee;
 }
 .evidence a:not(.evidence-brand) {
-  color: #3058f4;
+  color: #202120;
 }
 .evidence .evidence-links a {
   color: white;
 }
 .evidence footer {
   font-size: 11px;
-  color: #8194b2;
+  color: #66766a;
   padding-top: 25px;
 }
 @media (max-width: 550px) {

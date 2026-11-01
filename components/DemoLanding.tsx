@@ -32,7 +32,7 @@ function Neighbour({ variant = 0 }: { variant?: number }) {
     <svg viewBox="0 0 140 150" aria-hidden="true" className="demo-neighbour">
       <path
         d="M18 145c0-27 14-43 43-43h20c29 0 43 16 43 43"
-        fill={variant ? "#4c73ff" : "#21c9c4"}
+        fill={variant ? "#557651" : "#a8bc91"}
       />
       <path d="M58 88h25v23c-5 10-20 10-25 0Z" fill="#c39077" />
       <ellipse
@@ -44,17 +44,17 @@ function Neighbour({ variant = 0 }: { variant?: number }) {
       />
       <path
         d="M38 57c-4-26 10-43 33-43 24 0 38 20 30 49l-8-21c-12 0-21-6-26-12-4 14-13 22-29 27Z"
-        fill="#0b1426"
+        fill="#28392d"
       />
       <path
         d="M45 88c6 14 16 20 25 20s20-7 26-20"
         fill="none"
-        stroke="#0b1426"
+        stroke="#28392d"
         strokeWidth="5"
         strokeLinecap="round"
       />
-      <circle cx="59" cy="62" r="2" fill="#0b1426" />
-      <circle cx="81" cy="62" r="2" fill="#0b1426" />
+      <circle cx="59" cy="62" r="2" fill="#28392d" />
+      <circle cx="81" cy="62" r="2" fill="#28392d" />
       <path
         d="M64 80q6 5 12 0"
         fill="none"
@@ -65,8 +65,8 @@ function Neighbour({ variant = 0 }: { variant?: number }) {
       {variant === 1 && (
         <path
           d="M40 37 70 16l30 21"
-          fill="#eef3ff"
-          stroke="#0b1426"
+          fill="#f4f4e9"
+          stroke="#28392d"
           strokeWidth="3"
         />
       )}
@@ -90,7 +90,7 @@ export default function DemoLanding({
       <header className="demo-nav">
         <a className="demo-logo" href="#" aria-label="Together home">
           <span>
-            <img src="/brand/mark.svg" alt="" />
+            <img src="/brand/mark-mono.svg" alt="" />
           </span>
           <b>together</b>
           <i />
@@ -119,7 +119,7 @@ export default function DemoLanding({
             </h1>
             <p>Help. Trusted information. Each other.</p>
             <div className="demo-hero-actions">
-              <a className="demo-btn demo-btn-blue" href={appUrl}>
+              <a className="demo-btn demo-btn-primary" href={appUrl}>
                 <Smartphone size={19} /> Open mobile app{" "}
                 <ArrowUpRight size={17} />
               </a>
@@ -185,7 +185,9 @@ export default function DemoLanding({
               <h2>
                 {mode === "city"
                   ? "A city. Four nodes. A way to reach each other."
-                  : mode === "hardware" ? "Small hardware. A human purpose." : "Small messages. Across the valley."}
+                  : mode === "hardware"
+                    ? "Small hardware. A human purpose."
+                    : "Small messages. Across the valley."}
               </h2>
             </div>
             <div className="demo-mode-tabs" aria-label="Simulation mode">
@@ -215,14 +217,22 @@ export default function DemoLanding({
           <p className="demo-explorer-hint">
             {mode === "city"
               ? "Hover or tap a home. Meet the family. Follow its connection."
-              : mode === "hardware" ? "Tap a component. Follow the jumper wires. See what connects to what." : "Send an SOS. Explore radio reach and what a ridge changes."}
+              : mode === "hardware"
+                ? "Tap a component. Follow the jumper wires. See what connects to what."
+                : "Send an SOS. Explore radio reach and what a ridge changes."}
           </p>
           <div
             className={
               mode === "city" ? "demo-city-frame" : "demo-hardware-frame"
             }
           >
-            {mode === "city" ? <CitySimulation /> : mode === "hardware" ? <HardwareSimulation /> : <LoRaSimulation />}
+            {mode === "city" ? (
+              <CitySimulation />
+            ) : mode === "hardware" ? (
+              <HardwareSimulation />
+            ) : (
+              <LoRaSimulation />
+            )}
           </div>
           <div className="demo-simulation-note">
             <span>
@@ -355,7 +365,7 @@ export default function DemoLanding({
       <footer className="demo-footer">
         <a className="demo-logo" href="#">
           <span>
-            <img src="/brand/mark.svg" alt="" />
+            <img src="/brand/mark-mono.svg" alt="" />
           </span>
           <b>together</b>
           <i />

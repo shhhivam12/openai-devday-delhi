@@ -1,8 +1,8 @@
 @import "tailwindcss";
 :root {
-  font-family: "Inter", "Avenir Next", "Segoe UI", Arial, sans-serif;
-  color: #0b1426;
-  background: #f1f4fa;
+  font-family: Arial, Helvetica, sans-serif;
+  color: #202120;
+  background: #f3f4f4;
   font-synthesis: none;
 }
 * {
@@ -38,7 +38,7 @@ a:focus-visible,
 input:focus-visible,
 select:focus-visible,
 textarea:focus-visible {
-  outline: 3px solid #4873ff;
+  outline: 3px solid #202120;
   outline-offset: 3px;
 }
 h1,

@@ -6,7 +6,7 @@ export const metadata: Metadata = {
     "A multilingual community relief companion. Ask for help, find saved knowledge, and explore a Himalayan flood and IoT node simulation.",
   manifest: "/manifest.webmanifest",
   icons: { icon: "/brand/mark.svg", apple: "/icon-192.png" },
-  themeColor: "#3058f4",
+  themeColor: "#f3f4f4",
 };
 export default function RootLayout({
   children,

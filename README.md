@@ -14,9 +14,10 @@ Sharing follows each Site's current access policy. These previews are private. C
 
 ## Working now
 
-- Dark, high-contrast navy/blue/violet resident interface, original bold fist logo, vector neighbours and large mobile controls. Layout inspiration: the user-supplied Nixtio dark collaboration design; original Together assets and relief workflow.
+- Light, high-contrast pale-grey/white/black interface with restrained lime accents, original solid fist logo, compact list rows and clear mobile controls. Compact cards and icon navigation adapted from the user-supplied collaboration reference, with the requested light palette and original Together assets.
 - Shared request, check-in and message state in Cloudflare D1. Separate phone and laptop sessions see updates through polling.
 - UUID-based retries and bounded inputs. Coordinator status advances from received to acknowledged, assigned and completed.
+- A saved, original Kathmandu-inspired neighbourhood map with four selectable hubs, fictional homes, zoom controls and a community sheet. No map service, tile download or GPS permission is required; this demonstration is not route guidance.
 - Device-local outgoing queue and cached app/guide preparation. Saved guides and drafting requests need no internet or Wi-Fi after preparation.
 - Hindi primary actions and English; Nepali and Garhwali/Kumaoni/Kangri selections have limited or preview coverage.
 - 24 illustrated homes and four hubs in a Kathmandu-inspired scene. Hover or tap homes to inspect fictional family details and animated connections. Water levels are visual, not a flood forecast.

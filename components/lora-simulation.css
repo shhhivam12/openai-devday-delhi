@@ -1,8 +1,8 @@
 .tg-lora {
   font-family: inherit;
-  color: #e8f3ff;
-  background: #0c1930;
-  border: 1px solid #254165;
+  color: #24362c;
+  background: #f4f6ee;
+  border: 1px solid #d6decd;
   border-radius: 22px;
   overflow: hidden;
   width: 100%;
@@ -11,7 +11,7 @@
   height: 530px;
   position: relative;
   isolation: isolate;
-  background: #081225;
+  background: #fafaf4;
   overflow: hidden;
 }
 .tg-lora-canvas {
@@ -37,15 +37,15 @@
   font-size: 9px;
   letter-spacing: 1.3px;
   font-weight: 700;
-  color: #b4c8e2;
+  color: #53664f;
   pointer-events: none;
 }
 .tg-lora-badge > span {
   width: 6px;
   height: 6px;
   border-radius: 50%;
-  background: #58dce8;
-  box-shadow: 0 0 0 4px #58dce81a;
+  background: #3d694a;
+  box-shadow: 0 0 0 4px #4462441a;
 }
 .tg-lora-scale {
   position: absolute;
@@ -54,7 +54,7 @@
   display: flex;
   gap: 15px;
   font-size: 9px;
-  color: #94b5d8;
+  color: #53664f;
   pointer-events: none;
 }
 .tg-lora-scale > span {
@@ -67,12 +67,12 @@
   width: 7px;
   height: 7px;
   border-radius: 50%;
-  background: #3e8bff;
-  box-shadow: 0 0 0 3px #3e8bff1a;
+  background: #3d694a;
+  box-shadow: 0 0 0 3px #4462441a;
 }
 .tg-lora-scale > span + span i {
-  background: #5ce0e8;
-  box-shadow: 0 0 0 3px #5ce0e81a;
+  background: #3d694a;
+  box-shadow: 0 0 0 3px #4462441a;
 }
 .tg-lora-hint {
   position: absolute;
@@ -82,7 +82,7 @@
   align-items: center;
   gap: 6px;
   font-size: 9px;
-  color: #839fbf;
+  color: #61745c;
   pointer-events: none;
 }
 .tg-lora-status {
@@ -94,34 +94,34 @@
   align-items: center;
   gap: 10px;
   padding: 13px 16px;
-  border: 1px solid #315479;
-  background: #10243ee8;
+  border: 1px solid #d6decd;
+  background: #24392be8;
   backdrop-filter: blur(8px);
   border-radius: 10px;
-  color: #b9d7f6;
+  color: #24362c;
   font-size: 11px;
   line-height: 1.6;
 }
 .tg-lora-status > svg {
   flex: none;
-  color: #67dfe9;
+  color: #3d694a;
 }
 .tg-lora-status.success {
-  border-color: #2d786d;
-  color: #94e6ce;
-  background: #0c302ee8;
+  border-color: #d6decd;
+  color: #53664f;
+  background: #24392be8;
 }
 .tg-lora-status.success > svg {
-  color: #79e9c6;
+  color: #3d694a;
 }
 .tg-lora-controls {
   display: flex;
   align-items: center;
   gap: 28px;
   padding: 22px 25px;
-  border-top: 1px solid #203959;
-  border-bottom: 1px solid #203959;
-  background: #0e1e36;
+  border-top: 1px solid #e9eee1;
+  border-bottom: 1px solid #e9eee1;
+  background: #f4f6ee;
 }
 .tg-lora-reach {
   display: flex;
@@ -129,10 +129,10 @@
   gap: 11px;
   flex: 1;
   font-size: 11px;
-  color: #a5c0df;
+  color: #53664f;
 }
 .tg-lora-reach > svg {
-  color: #67cbdc;
+  color: #3d694a;
   flex: none;
 }
 .tg-lora-reach input {
@@ -140,12 +140,12 @@
   min-width: 70px;
   max-width: 250px;
   height: 4px;
-  accent-color: #57dce9;
+  accent-color: #3d694a;
   cursor: pointer;
 }
 .tg-lora-reach b {
   font-size: 9px;
-  color: #67d6e3;
+  color: #3d694a;
   font-weight: 550;
   min-width: 76px;
 }
@@ -153,9 +153,9 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  border: 1px solid #345276;
-  background: #142944;
-  color: #a6bfdd;
+  border: 1px solid #d6decd;
+  background: #f4f6ee;
+  color: #53664f;
   border-radius: 7px;
   padding: 10px 13px;
   font-size: 10px;
@@ -163,9 +163,9 @@
   white-space: nowrap;
 }
 .tg-lora-controls > button.selected {
-  border-color: #4386ac;
-  color: #8ce2f0;
-  background: #123c51;
+  border-color: #61745c;
+  color: #53664f;
+  background: #e9eee1;
 }
 .tg-lora-send {
   display: flex;
@@ -178,8 +178,8 @@
   gap: 5px;
   padding: 4px;
   border-radius: 8px;
-  background: #071327;
-  border: 1px solid #253f62;
+  background: #fafaf4;
+  border: 1px solid #e9eee1;
   flex: none;
 }
 .tg-lora-payload > button {
@@ -187,7 +187,7 @@
   align-items: center;
   gap: 6px;
   background: transparent;
-  color: #718eaf;
+  color: #61745c;
   border: 0;
   padding: 9px 11px;
   font-size: 10px;
@@ -196,8 +196,8 @@
   white-space: nowrap;
 }
 .tg-lora-payload > button.selected {
-  background: #163e69;
-  color: #8bdcf6;
+  background: #e9eee1;
+  color: #53664f;
 }
 .tg-lora-message {
   flex: 1;
@@ -206,12 +206,12 @@
 .tg-lora-message > span {
   font-size: 7px;
   letter-spacing: 1.2px;
-  color: #557a9f;
+  color: #61745c;
   font-weight: 700;
 }
 .tg-lora-message p {
   font-size: 11px;
-  color: #aac5e3;
+  color: #53664f;
   margin: 6px 0 0;
   line-height: 1.65;
 }
@@ -222,16 +222,16 @@
   justify-content: space-between;
   padding: 13px 16px;
   border-radius: 8px;
-  background: #277be7;
-  color: #fff;
-  border: 1px solid #3d91f5;
+  background: #3d694a;
+  color: #24362c;
+  border: 1px solid #3d694a;
   font-size: 11px;
   font-weight: 600;
   cursor: pointer;
   white-space: nowrap;
 }
 .tg-lora-send-button:hover {
-  background: #338cf5;
+  background: #3d694a;
 }
 .tg-lora-send-button:disabled {
   opacity: 0.6;
@@ -243,33 +243,33 @@
   justify-content: center;
   gap: 17px;
   padding: 0 25px 22px;
-  color: #345674;
+  color: #d6decd;
 }
 .tg-lora-journey > span {
   display: flex;
   align-items: center;
   gap: 7px;
   padding: 9px 12px;
-  border: 1px solid #203b58;
+  border: 1px solid #e9eee1;
   border-radius: 7px;
-  color: #6180a3;
+  color: #61745c;
   font-size: 10px;
 }
 .tg-lora-journey > span.active {
-  color: #7bdce5;
-  border-color: #367f92;
-  background: #12303f;
+  color: #3d694a;
+  border-color: #a4b59c;
+  background: #f4f6ee;
 }
 .tg-lora-caption {
   font-size: 9px;
-  color: #6f8aab;
+  color: #61745c;
   line-height: 1.8;
   margin: 0;
   padding: 0 25px 20px;
 }
 .tg-lora button:focus-visible,
 .tg-lora input:focus-visible {
-  outline: 3px solid #62ddf3;
+  outline: 3px solid #3d694a;
   outline-offset: 3px;
 }
 .tg-lora-fallback {
@@ -280,7 +280,7 @@
   justify-content: center;
   flex-direction: column;
   gap: 18px;
-  color: #7cadd6;
+  color: #3d694a;
   padding: 35px;
   text-align: center;
 }
@@ -456,4 +456,114 @@
     transition: none !important;
     scroll-behavior: auto !important;
   }
+}
+/* Light, forest-green radio story. */
+.tg-lora {
+  color: #2d4532;
+  background: #fafbf3;
+  border-color: #cbd9be;
+}
+.tg-lora-stage {
+  background: #f6f6ef;
+}
+.tg-lora-badge,
+.tg-lora-scale,
+.tg-lora-hint {
+  color: #687f5d;
+}
+.tg-lora-badge > span {
+  background: #467847;
+  box-shadow: 0 0 0 4px #46784715;
+}
+.tg-lora-scale i {
+  background: #779262;
+  box-shadow: 0 0 0 3px #77926216;
+}
+.tg-lora-scale > span + span i {
+  background: #356a40;
+  box-shadow: 0 0 0 3px #356a4015;
+}
+.tg-lora-status {
+  border-color: #bed1ad;
+  background: #fffef6eb;
+  color: #4b6a40;
+}
+.tg-lora-status > svg {
+  color: #497c42;
+}
+.tg-lora-status.success {
+  border-color: #9fbd8b;
+  background: #edf5e1ed;
+  color: #3c6d3e;
+}
+.tg-lora-status.success > svg {
+  color: #4a8548;
+}
+.tg-lora-controls {
+  border-color: #cad9bd;
+  background: #f1f5e8;
+}
+.tg-lora-reach {
+  color: #607b53;
+}
+.tg-lora-reach > svg,
+.tg-lora-reach b {
+  color: #477444;
+}
+.tg-lora-reach input {
+  accent-color: #4e8147;
+}
+.tg-lora-controls > button {
+  border-color: #bbceac;
+  background: #fafcf3;
+  color: #66815b;
+}
+.tg-lora-controls > button.selected {
+  border-color: #91b17a;
+  background: #e5efd7;
+  color: #487443;
+}
+.tg-lora-payload {
+  background: #f2f6e8;
+  border-color: #c4d6b3;
+}
+.tg-lora-payload > button {
+  color: #849876;
+}
+.tg-lora-payload > button.selected {
+  background: #deebcb;
+  color: #49703e;
+}
+.tg-lora-message > span {
+  color: #8b9c7e;
+}
+.tg-lora-message p {
+  color: #627a53;
+}
+.tg-lora-send-button {
+  background: #2b5b3a;
+  border-color: #3d7148;
+  color: #fffef5;
+}
+.tg-lora-send-button:hover {
+  background: #397347;
+}
+.tg-lora-journey {
+  color: #b0c0a3;
+}
+.tg-lora-journey > span {
+  border-color: #cddcbd;
+  color: #7e9470;
+}
+.tg-lora-journey > span.active {
+  color: #46743e;
+  border-color: #9fbc87;
+  background: #e7f0d9;
+}
+.tg-lora-caption {
+  color: #7b8f6e;
+}
+.tg-lora button:focus-visible,
+.tg-lora input:focus-visible {
+  outline-color: #4b7e48;
 }

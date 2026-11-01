@@ -2,9 +2,9 @@
   display: flex;
   align-items: center;
   gap: 7px;
-  border: 1px solid #dbe3f2 !important;
-  background: #f6f8fd !important;
-  color: #3058f4 !important;
+  border: 1px solid #edf2e9 !important;
+  background: #fcfcf8 !important;
+  color: #202120 !important;
   padding: 9px 11px;
   border-radius: 7px;
   font-size: 10px !important;
@@ -14,20 +14,20 @@
 .district-overlay {
   position: fixed;
   inset: 0;
-  background: #0b142680;
+  background: #20212070;
   backdrop-filter: blur(5px);
   display: flex;
   justify-content: flex-end;
   z-index: 90;
   font-family: Inter, "Avenir Next", "Segoe UI", Arial, sans-serif;
-  color: #0b1426;
+  color: #202120;
 }
 .district-panel {
-  background: #f8faff;
+  background: #fcfcf8;
   width: 540px;
   max-width: 100%;
   height: 100%;
-  box-shadow: -20px 0 70px #06132d30;
+  box-shadow: -20px 0 70px #20212018;
   display: flex;
   flex-direction: column;
 }
@@ -39,14 +39,14 @@
   align-items: center;
   gap: 12px;
   background: #fff;
-  border-bottom: 1px solid #e0e7f1;
+  border-bottom: 1px solid #edf2e9;
   padding: 25px 26px;
 }
 .district-icon {
   display: grid;
   place-items: center;
-  background: #e8efff;
-  color: #3058f4;
+  background: #edf2e9;
+  color: #202120;
   width: 42px;
   height: 42px;
   border-radius: 12px;
@@ -60,7 +60,7 @@
 }
 .district-panel header > div > span {
   font-size: 10px;
-  color: #8c9bb3;
+  color: #75846e;
 }
 .district-panel button {
   font: inherit;
@@ -72,7 +72,7 @@
   margin-left: auto;
   background: transparent;
   padding: 8px;
-  color: #6c7e9a;
+  color: #656b63;
   border-radius: 6px;
   display: grid;
   place-items: center;
@@ -80,7 +80,7 @@
 .district-panel button:focus-visible,
 .district-panel a:focus-visible,
 .district-panel select:focus-visible {
-  outline: 3px solid #21c9c4;
+  outline: 3px solid #586653;
   outline-offset: 3px;
 }
 .district-toolbar {
@@ -88,16 +88,16 @@
   gap: 12px;
   align-items: center;
   padding: 20px 25px;
-  border-bottom: 1px solid #e0e7f1;
+  border-bottom: 1px solid #edf2e9;
 }
 .district-toolbar select {
   font: inherit;
   font-size: 12px;
   padding: 11px;
-  border: 1px solid #dbe3f1;
+  border: 1px solid #edf2e9;
   background: #fff;
   border-radius: 7px;
-  color: #52637f;
+  color: #3f674c;
   min-width: 0;
   flex: 1;
 }
@@ -107,7 +107,7 @@
   align-items: center;
   justify-content: center;
   gap: 7px;
-  background: #3058f4;
+  background: #202120;
   color: white;
   padding: 12px;
   border-radius: 7px;
@@ -129,10 +129,10 @@
   justify-content: center;
   text-align: center;
   padding: 40px 15px;
-  color: #62789f;
+  color: #656b63;
 }
 .district-loading svg {
-  color: #3058f4;
+  color: #202120;
   animation: district-spin 1.5s linear infinite;
 }
 .district-loading strong {
@@ -142,7 +142,7 @@
 }
 .district-loading p {
   font-size: 11px;
-  color: #96a4bb;
+  color: #75846e;
   margin: 0;
   line-height: 1.7;
 }
@@ -150,9 +150,9 @@
   display: flex;
   align-items: center;
   gap: 6px;
-  color: #7c8daa;
-  background: #edf1f9;
-  border: 1px solid #dce4f2;
+  color: #656b63;
+  background: #edf2e9;
+  border: 1px solid #edf2e9;
   border-radius: 6px;
   padding: 10px 12px;
   font-size: 9px;
@@ -164,15 +164,15 @@
   height: 5px;
   width: 5px;
   border-radius: 50%;
-  background: #8fa0be;
+  background: #75846e;
 }
 .district-mode.live {
-  background: #e6f7f3;
-  color: #258d7c;
-  border-color: #cbece4;
+  background: #edf2e9;
+  color: #202120;
+  border-color: #e2e5e2;
 }
 .district-mode.live > span {
-  background: #21b99a;
+  background: #25815b;
 }
 .district-mode small {
   margin-left: auto;
@@ -181,7 +181,7 @@
 }
 .district-source {
   padding: 22px;
-  border: 1px solid #dfe6f1;
+  border: 1px solid #edf2e9;
   border-radius: 11px;
   background: white;
   margin-bottom: 16px;
@@ -193,7 +193,7 @@
   font-size: 8px;
   font-weight: 650;
   letter-spacing: 0.5px;
-  color: #8397b8;
+  color: #75846e;
   text-transform: uppercase;
 }
 .district-source h3 {
@@ -205,7 +205,7 @@
 }
 .district-source p {
   font-size: 12px;
-  color: #7c8ea9;
+  color: #656b63;
   line-height: 1.8;
   margin: 0;
 }
@@ -214,7 +214,7 @@
   flex-wrap: wrap;
   gap: 8px 15px;
   font-size: 8px;
-  color: #9aa8bd;
+  color: #75846e;
   line-height: 1.7;
   margin-top: 17px;
 }
@@ -222,12 +222,12 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  color: #3058f4;
+  color: #202120;
   text-decoration: none;
   font-size: 10px;
   font-weight: 600;
   gap: 13px;
-  border-top: 1px solid #edf1f7;
+  border-top: 1px solid #edf2e9;
   margin-top: 17px;
   padding-top: 15px;
 }
@@ -238,20 +238,20 @@
   padding: 19px 25px;
   font-size: 9px;
   line-height: 1.7;
-  color: #8193b0;
-  border-top: 1px solid #dfe6f2;
-  background: #f0f4fc;
+  color: #75846e;
+  border-top: 1px solid #edf2e9;
+  background: #fcfcf8;
 }
 .district-panel footer > svg {
   flex-shrink: 0;
-  color: #7d99c0;
+  color: #75846e;
 }
 .district-error {
-  background: #edf2ff;
+  background: #edf2e9;
   padding: 22px;
-  border: 1px solid #d7e1f8;
+  border: 1px solid #edf2e9;
   border-radius: 10px;
-  color: #59719b;
+  color: #656b63;
 }
 .district-error strong {
   font-size: 15px;
@@ -265,7 +265,7 @@
   display: flex;
   align-items: center;
   gap: 9px;
-  background: #3058f4;
+  background: #202120;
   color: #fff;
   border-radius: 6px;
   padding: 10px 12px;
@@ -275,7 +275,7 @@
   display: flex;
   align-items: center;
   gap: 8px;
-  color: #7f90ac;
+  color: #75846e;
   font-size: 11px;
   padding: 15px 0;
   line-height: 1.7;
@@ -341,4 +341,51 @@
   .district-loading svg {
     animation: none;
   }
+}
+
+.node-brief-trigger {
+  background: #f1f5eb !important;
+  color: #202120 !important;
+  border-color: #d5e0cc !important;
+}
+.district-panel {
+  background: #fafbf6;
+  color: #202120;
+}
+.district-panel header {
+  background: #fff;
+}
+.district-panel header h2,
+.district-source h3 {
+  color: #202120;
+}
+.district-toolbar button,
+.district-error button {
+  background: #202120;
+  color: #fff;
+}
+.district-source {
+  background: #fff;
+}
+.district-source p {
+  color: #66785c;
+}
+.district-panel footer {
+  background: #eef3e8;
+  color: #61775a;
+}
+.district-source a {
+  color: #202120;
+}
+.district-icon {
+  background: #e9f0e2;
+  color: #202120;
+}
+.district-mode {
+  background: #edf2e8;
+  color: #61775a;
+  border-color: #d5e1ca;
+}
+.district-loading svg {
+  color: #202120;
 }
