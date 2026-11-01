@@ -107,6 +107,10 @@ The illustrated neighbourhood map is an original local asset with selectable hub
 
 ## Architecture and data flow
 
+![Together system architecture](public/diagrams/system-architecture.png)
+
+[Editable full-size SVG](public/diagrams/system-architecture.svg) · [Download PNG](public/diagrams/system-architecture.png) · [Technical notes and primary sources](docs/diagrams/README.md)
+
 ```mermaid
 flowchart TB
   subgraph Phone[Resident phone]
@@ -243,6 +247,10 @@ flowchart LR
 The electronics scene includes a green Raspberry Pi, teal ESP32, blue radio board, white breadboard, antenna, metallic ports, colored jumper wires and selectable pin explanations. LED/power controls are educational interactions. **This is not validated wiring, a schematic or an electrical simulator.** Hardware selection, voltage compatibility, antenna placement, regional radio requirements, power design and field testing must precede deployment.
 
 ### LoRa, LoRa mesh and LoRaWAN are different layers
+
+![Proposed LoRa mesh, separate LoRaWAN gateway path and illustrative range rings](public/diagrams/radio-network.png)
+
+[Editable full-size SVG](public/diagrams/radio-network.svg) · [Download PNG](public/diagrams/radio-network.png). The 1/3/5 km rings are illustrative planning distances, not measured coverage.
 
 | Term | What it means | Together’s intended use |
 | --- | --- | --- |

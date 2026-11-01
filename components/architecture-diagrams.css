@@ -1,0 +1,23 @@
+.tg-architecture{max-width:1290px;margin:0 auto 72px;padding:0 4%;color:#151719;scroll-margin-top:28px}
+.tg-architecture-heading{margin-bottom:26px}
+.tg-architecture-heading>span{font-size:11px;letter-spacing:1.5px;color:#0056cd;font-weight:600}
+.tg-architecture-heading h2{font-size:32px!important;font-weight:500!important;line-height:1.2;letter-spacing:-1px;margin:12px 0!important;color:#151719!important}
+.tg-architecture-heading p{font-size:15px;line-height:1.7;color:#42474f;margin:0}
+.tg-architecture-grid{display:grid;grid-template-columns:1fr 1fr;gap:22px}
+.tg-architecture-card{border:1px solid #dce1e8;border-radius:28px;background:#fff;overflow:hidden;min-width:0}
+.tg-architecture-preview{position:relative;display:block;background:#fff;border-bottom:1px solid #e2e6ec;aspect-ratio:3/2;overflow:hidden}
+.tg-architecture-preview img{display:block;width:100%;height:100%;object-fit:contain;transition:transform .2s}
+.tg-architecture-preview:hover img{transform:scale(1.025)}
+.tg-architecture-preview>span{position:absolute;right:14px;bottom:14px;display:flex;align-items:center;gap:5px;padding:8px 12px;border-radius:20px;background:#151719;color:#fff;font-size:11px}
+.tg-architecture-card-body{padding:23px}
+.tg-architecture-card-body h3{display:flex;align-items:center;gap:10px;font-size:21px!important;font-weight:500!important;line-height:1.3;color:#151719!important;margin:0 0 9px!important;letter-spacing:-.5px}
+.tg-architecture-card-body h3 svg{color:#006aff;flex-shrink:0}
+.tg-architecture-card-body p{font-size:14px;line-height:1.7;color:#42474f;margin:0 0 20px}
+.tg-architecture-links{display:flex;gap:10px;flex-wrap:wrap}
+.tg-architecture-links a{display:flex;align-items:center;justify-content:center;gap:7px;padding:11px 16px;border:1px solid #dce1e8;border-radius:20px;color:#151719;font-size:13px;text-decoration:none;min-height:43px}
+.tg-architecture-links a:first-child{background:#006aff;border-color:#006aff;color:#fff}
+.tg-architecture a:focus-visible{outline:3px solid #006aff70;outline-offset:4px}
+.tg-architecture-note{font-size:12px;line-height:1.7;color:#4b5057;margin:20px 0 0}
+@media(max-width:750px){.tg-architecture{padding:0 6%;margin-bottom:45px}.tg-architecture-grid{grid-template-columns:1fr;gap:18px}.tg-architecture-heading h2{font-size:27px!important}.tg-architecture-heading p{font-size:14px}.tg-architecture-card-body{padding:22px}.tg-architecture-card-body h3{font-size:22px!important}.tg-architecture-note{font-size:12px}}
+@media(prefers-reduced-motion:reduce){.tg-architecture-preview img{transition:none}}
+.evidence .tg-architecture{margin-top:30px}.evidence .tg-architecture-links a:first-child{color:#fff}.evidence .tg-architecture-preview>span{color:#fff}

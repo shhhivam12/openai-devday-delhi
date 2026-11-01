@@ -18,6 +18,7 @@ import {
   Waves,
 } from "lucide-react";
 import "./demo-landing.css";
+import ArchitectureDiagrams from "./ArchitectureDiagrams";
 
 function SceneLoading() {
   return <div className="demo-scene-loading" role="status"><Radio size={26} /><span>Preparing the interactive view…</span></div>;
@@ -53,6 +54,7 @@ export default function DemoLanding({
           <button onClick={() => explore("city")}>The village</button>
           <button onClick={() => explore("hardware")}>The node</button>
           <button onClick={() => explore("radio")}>LoRa in action</button>
+          <a href="#architecture">Architecture</a>
           <a href="#pilot">For districts</a>
         </nav>
         <a className="demo-nav-launch" href={appUrl}>
@@ -227,6 +229,7 @@ export default function DemoLanding({
           </div>
         </section>
         <p className="demo-backhaul-note">Requests travel out. Bulletins travel back when a head-server link is available. Local nodes retain the last saved update.</p>
+        <ArchitectureDiagrams />
 
         <section
           className="demo-launch-grid"

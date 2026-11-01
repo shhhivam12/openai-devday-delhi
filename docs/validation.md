@@ -80,3 +80,10 @@ Physical LoRa/Wi-Fi deployment, sensors, radio range, flood physics, local LLMs,
 - Disabled the head-server link after completion: publishing became unavailable and saved bulletin text remained visible. Started a community notice and paused after node receipt: progress stayed at 4/4 nodes and 0/24 households while the household retained its earlier preparedness bulletin. Cancelled timers did not report later delivery.
 - Tested a 390 × 844 phone viewport: no horizontal document overflow, selection and publishing controls worked, and a phone broadcast completed. Camera framing includes the full valley; fog starts beyond normal phone viewing distance.
 - Demo broadcasts are mounted-component state only, reset on leaving/reloading, and do not call a government API, write shared D1 or deliver actual warnings.
+
+## Judge-facing technical diagrams
+
+- Added editable system and radio-network SVG posters with 2400 × 1773 PNG exports. Both were rendered and visually reviewed; source notes link to LoRa Alliance, Semtech, Murata and Meshtastic primary documentation.
+- Architecture gallery is linked from the demo navigation and included on the project-evidence page. Previews load, cards stack at a narrow phone width, and the document has no horizontal overflow.
+- Both SVG and PNG asset routes returned HTTP 200 with the expected MIME types; `/project` returned HTTP 200.
+- System poster separates working PWA/cloud services, simulated bulletin publishing and proposed field hardware. Radio poster separates proposed LoRa mesh from conventional LoRaWAN telemetry; 1/3/5 km rings are explicitly illustrative and not measured coverage.
