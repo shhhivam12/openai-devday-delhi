@@ -67,7 +67,7 @@ The independent Sites have separate hosting identities. The nodal server uses a 
 
 ### A five-minute demonstration
 
-1. **Meet the community.** Open the landing and select a house. The Kathmandu-inspired scene has **24 selectable fictional families, 125 context buildings and four hubs**, with winding roads, a curved river, highlighted homes and animated connections. The people, locations and water levels are illustrative.
+1. **Meet the community.** Open the landing and select a cottage. The forested Himalayan village has **24 selectable fictional families and four distant hubs**, with wooded hills, terraces, small homes and animated connections. Follow the government head-server backbone, send a simulated bulletin, then disable the backhaul link to inspect the retained last bulletin. The people, locations, links and broadcasts are illustrative.
 2. **Inspect the proposed node.** Open the IoT bench and select a colored jumper wire or pin. Identify the Raspberry Pi, ESP32, SX127x radio, breadboard and antenna. Switch to “LoRa in action,” send the simulated short SOS and watch the acknowledgement.
 3. **Send a real exercise record.** Open the PWA and nodal console at the same hub, such as School. Submit a fictional four-person drinking-water request. It should appear in the laptop queue.
 4. **Close the loop.** Acknowledge the request on the laptop and watch the phone refresh. Continue to assigned/completed to inspect the lifecycle. A database acknowledgement is not a promise of rescue.
@@ -205,9 +205,15 @@ Best-effort per-client limits apply within each server isolate. They are **not**
 
 ## IoT deployment vision: community Wi-Fi plus compact radio messages
 
-![Kathmandu-inspired community and four proposed hubs](docs/images/village.jpg)
+![Forested Himalayan village, four proposed hubs and government head server](docs/images/village.jpg)
 
 A future node could sit at a designated school, health centre, panchayat building or shelter. The goal is a local service people can reach even when the wider internet is unavailable, backed by a compact transport for messages between sites.
+
+![Simulated government bulletin publishing and saved node messages](docs/images/government-bulletin.jpg)
+
+The village also illustrates a proposed **government head server → internet backhaul → community hub → local distribution** path. Its bulletin control animates a demonstration broadcast; disabling backhaul leaves the last received demo bulletin visible. Bulletins are retained only while this scene is mounted; leaving the view or reloading resets them. This is simulation state, not a government API integration, a shared D1 write or delivery of an official warning. The hosted resident/coordinator workflow remains separate.
+
+In a physical deployment, hubs could store the last approved bulletin for local access during an internet outage. Before that behavior is operational, each bulletin needs a verified origin, issue and expiry times, a verifiable signature and a human approval process. Cached notices must retain their dates and visibly indicate when they are stale; an unavailable backhaul must never make an old bulletin appear current. These verification and distribution mechanisms are future requirements.
 
 ```mermaid
 flowchart LR
@@ -216,6 +222,8 @@ flowchart LR
   HUB --> BRIDGE[ESP32 and LoRa radio bridge]
   BRIDGE -.->|Short packets over a proposed LoRa mesh| OTHER[Other community hubs]
   HUB -.->|When internet returns| CLOUD[Cloud sync and research]
+  GOV[Government head server] -.->|Backhaul when available| HUB
+  HUB --- BULLETIN[Last reviewed bulletin stored locally]
   SENSOR[Optional IoT sensor] -.->|Separate LoRaWAN option| GATEWAY[LoRaWAN gateway and network server]
 ```
 

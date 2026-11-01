@@ -10,16 +10,17 @@ Together is a mobile disaster-readiness and relief-coordination PWA demonstratio
 
 | Capability | Implementation status | Verification |
 | --- | --- | --- |
-| Server-side API adapters | Implemented, keys required for live use | `/api/status`, assist/classify/briefing route source |
+| Server-side API adapters | Implemented and activated with server-only secrets | `/api/status`, assist/classify/briefing route source |
 | Missing-key behavior | Implemented | Responses explicitly say demo; no upstream calls |
-| OpenAI Responses and Decisions | Integration code implemented; live credentials untested | Live API test required after secret setup |
-| Cerebras OpenAI gpt-oss inference | Integration code implemented; live credentials untested | Live API test required after secret setup |
-| Exa Agent research | Integration code implemented; live credentials untested | Signed pending-run polling and grounded-card filter |
+| OpenAI Responses and Decisions | Verified live on 1 November 2026 | HTTP 200; resident provider selection and live answer badge also exercised |
+| Cerebras OpenAI gpt-oss inference | Verified live | HTTP 200 with readable gpt-oss-120b answer |
+| Exa Agent research | Verified live | Signed asynchronous polling completed with three supported source cards; human review remains pending |
 | Physical LoRa/Wi-Fi transport | Simulated architecture | No radio boards are connected |
 | Local LLM | Planned deployment option | No local inference is installed or run for this MVP |
 | Official live alert ingestion | Planned production adapter | Reference links and research are not official alert delivery |
 | Regional language quality | Beta until native-speaker review | Validate each pack and speech workflow separately |
-| Persistent production coordination backend | Future deployment work | Browser scenario state is not a government operations database |
+| Shared exercise backend | Implemented with Cloudflare D1 | Request created in resident Site, read and acknowledged by independent nodal Site; status refreshed on resident screen |
+| Production operator authorization | Future deployment work | Sites access is not a dispatcher-role model; no verified government operation is claimed |
 
 Frontend interactions, caching, and 3D views should be evaluated against their actual completed state and root README. This table does not imply untested features work.
 
@@ -36,9 +37,9 @@ Frontend interactions, caching, and 3D views should be evaluated against their a
 
 ## Verification performed without credentials
 
-`node --test tests/server-policy.test.mjs tests/http.test.mjs` passes 11 tests covering unsafe source URL rejection, source deduplication, Hindi/English explicit SOS rules, input bounds, Responses parsing that excludes reasoning output, streamed body limits, invalid JSON, cross-origin calls, rate limits, and sanitized provider errors. Provider HTTP is stubbed; no paid API is called by these tests. Tests use Node 22.18+ native TypeScript stripping.
+`npm test` passes 14 tests covering unsafe source URL rejection, source deduplication, Hindi/English explicit SOS rules, shared-network action validation, input bounds, Responses parsing that excludes reasoning output, streamed body limits, invalid JSON, cross-origin calls, rate limits, and sanitized provider errors. Provider HTTP is stubbed; no paid API is called by these tests. Tests use Node 22.18+ native TypeScript stripping.
 
-Required integration checks after keys are added: one assist call per selected provider, one Decisions classification, one completed Exa research run with citations, provider-timeout behavior, and rejection of invalid/oversized input. Capture actual results before changing any “untested” labels.
+Live smoke checks above are recorded in [validation](validation.md). They do not establish provider quality, latency improvements, full language coverage, physical radio performance or field outcomes. Timeout/error policies and invalid/oversized inputs have automated coverage; exhaustive provider-outage testing remains future work.
 
 ## API evidence
 

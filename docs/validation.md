@@ -71,3 +71,12 @@ Physical LoRa/Wi-Fi deployment, sensors, radio range, flood physics, local LLMs,
 - Prepared the version-7 offline pack, stopped the preview server, reloaded the PWA, selected the local map and opened the saved flood explainer. Device-only state remained explicit.
 - Added a resident provider selector for Cerebras and OpenAI. Live server provider calls were verified earlier; the selector itself does not call a provider until a question is sent.
 - README now includes seven screenshots, two architecture diagrams, dated humanitarian sources, multilingual coverage, Exa/Cerebras implementation details and proposed district-pilot metrics.
+
+## Forest village and government bulletin demonstration
+
+- Replaced urban blocks with 24 small selectable cottages, wooded hills, terraces, courtyards, footpaths, bridges and 620 instanced trees. Four hubs sit beyond the household clusters; a separate government head-server campus has visible backbone links. Distances are illustrative.
+- Selected Home 12 and the government server through the accessible selector. Household and server information panels updated. Scene inspector is below the canvas so it does not cover the remote hubs.
+- Sent a preparedness demo bulletin: progress advanced to 4/4 nodes and then 24/24 households, and the selected family displayed the received bulletin.
+- Disabled the head-server link after completion: publishing became unavailable and saved bulletin text remained visible. Started a community notice and paused after node receipt: progress stayed at 4/4 nodes and 0/24 households while the household retained its earlier preparedness bulletin. Cancelled timers did not report later delivery.
+- Tested a 390 × 844 phone viewport: no horizontal document overflow, selection and publishing controls worked, and a phone broadcast completed. Camera framing includes the full valley; fog starts beyond normal phone viewing distance.
+- Demo broadcasts are mounted-component state only, reset on leaving/reloading, and do not call a government API, write shared D1 or deliver actual warnings.

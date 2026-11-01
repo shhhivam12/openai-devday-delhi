@@ -12,6 +12,7 @@ import {
   House,
   Laptop,
   Radio,
+  Server,
   ShieldCheck,
   Smartphone,
   Waves,
@@ -49,7 +50,7 @@ export default function DemoLanding({
           <i />
         </a>
         <nav aria-label="Demo sections">
-          <button onClick={() => explore("city")}>The city</button>
+          <button onClick={() => explore("city")}>The village</button>
           <button onClick={() => explore("hardware")}>The node</button>
           <button onClick={() => explore("radio")}>LoRa in action</button>
           <a href="#pilot">For districts</a>
@@ -113,11 +114,11 @@ export default function DemoLanding({
           <div className="demo-explorer-heading">
             <div>
               <span className="demo-eyebrow">
-                KATHMANDU, NEPAL · ILLUSTRATIVE SCENARIO
+                NEPAL · A HIMALAYAN VILLAGE SCENARIO
               </span>
               <h2>
                 {mode === "city"
-                  ? "A city. Four nodes. A way to reach each other."
+                  ? "Across the village. Connected through the nodes."
                   : mode === "hardware"
                     ? "Small hardware. A human purpose."
                     : "Small messages. Across the valley."}
@@ -129,7 +130,7 @@ export default function DemoLanding({
                 onClick={() => setMode("city")}
                 aria-pressed={mode === "city"}
               >
-                <House size={17} /> City view
+                <House size={17} /> Village view
               </button>
               <button
                 className={mode === "hardware" ? "selected" : ""}
@@ -149,7 +150,7 @@ export default function DemoLanding({
           </div>
           <p className="demo-explorer-hint">
             {mode === "city"
-              ? "Hover or tap a home. Meet the family. Follow its connection."
+              ? "Meet a family. Explore a distant node. Send a demo bulletin from the government server."
               : mode === "hardware"
                 ? "Tap a component. Follow the jumper wires. See what connects to what."
                 : "Send an SOS. Explore radio reach and what a ridge changes."}
@@ -172,7 +173,7 @@ export default function DemoLanding({
               <Waves size={14} /> Inspired by Nepal’s 2024 floods.
             </span>
             <span>
-              Families, floodwater, hardware and radio links are simulated.
+              Families, floodwater, radio links and government broadcasts are simulated.
             </span>
           </div>
         </section>
@@ -197,7 +198,7 @@ export default function DemoLanding({
             <span className="demo-step-icon">
               <Cpu size={27} />
             </span>
-            <b>Nearby node</b>
+            <b>Village node</b>
             <small>Saved knowledge + requests</small>
           </div>
           <div className="demo-connection-link">
@@ -212,7 +213,20 @@ export default function DemoLanding({
             <b>Relief centre</b>
             <small>People coordinating help</small>
           </div>
+          <div className="demo-connection-link">
+            <span>BACKHAUL</span>
+            <i />
+            <ChevronRight size={17} />
+          </div>
+          <div className="demo-connection-step">
+            <span className="demo-step-icon">
+              <Server size={27} />
+            </span>
+            <b>Government server</b>
+            <small>Reviewed updates to local nodes</small>
+          </div>
         </section>
+        <p className="demo-backhaul-note">Requests travel out. Bulletins travel back when a head-server link is available. Local nodes retain the last saved update.</p>
 
         <section
           className="demo-launch-grid"

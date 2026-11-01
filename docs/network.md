@@ -28,3 +28,9 @@ The independent nodal Worker enables Cloudflare's `global_fetch_strictly_public`
 ## Validation and deployment boundary
 
 Test the three actions from a phone or separate browser and observe them in the laptop console. The console polls every five seconds. Real disconnected operation needs a physical local server and transport adapter. A cloud deployment cannot communicate without a working network path. Resource planning quantities on the nodal dashboard are explicitly local illustrative values and are not shared stock records.
+
+## Village bulletin simulation
+
+The forested Himalayan village depicts 24 fictional families and four community hubs, with a proposed government head-server backbone. Its interactive bulletin path is government head server → internet backhaul → hub → local distribution. The demo broadcast and backhaul toggle operate within the scene; when the backhaul is disabled, the last received demo bulletin remains visible. Retention lasts only while the scene is mounted and resets on leaving the view or reloading. They do not call a government API, write shared D1 records, deliver physical radio packets or create official warnings.
+
+This simulation is separate from the implemented cloud request/check-in/message workflow above. A future physical hub could retain approved bulletins for local reading through an internet outage, but that requires durable local storage and a distribution service. Operational bulletins also need verified origin, issue and expiry times, signature verification and human approval. An expired or disconnected cached bulletin must be visibly dated and marked stale rather than presented as current guidance. These mechanisms are deployment requirements, not implemented capabilities of the scene.

@@ -41,9 +41,10 @@ export default function Project() {
             requests wait on the device until connectivity returns.
           </li>
           <li>
-            Explore 24 Kathmandu-inspired homes, four hubs, family details and
-            animated connections. Inspect the Pi, ESP32, SX127x radio and jumper
-            wires. Send an illustrated SOS across the LoRa valley.
+            Explore 24 families in a forested Himalayan village, four distant
+            hubs and their government head server. Push a simulated bulletin
+            through the network. Inspect the Pi, ESP32, SX127x radio and jumper
+            wires, then send an illustrated SOS across the LoRa valley.
           </li>
         </ol>
       </section>
@@ -83,8 +84,8 @@ export default function Project() {
                 "Hindi primary actions, English; Nepali selection and regional pack previews remain limited",
               ],
               [
-                "3D city and hardware",
-                "Interactive illustrations; fictional families and conceptual pin connections",
+                "3D village, government bulletin and hardware",
+                "Interactive forest village and simulated server-to-hub bulletin delivery; fictional families and conceptual pin connections. No official warning feed or physical radio delivery",
               ],
               [
                 "OpenAI / Cerebras / Exa",
